@@ -1,20 +1,37 @@
 const CONFIG = {
-    // ... (Keep your existing colors, hero, etc.) ...
+    // --- VISUAL SETTINGS ---
+    colors: {
+        main: "#7b7f68",    // Olive Green
+        accent: "#223346",  // Navy Blue
+        background: "#f9f9f7",
+        white: "#ffffff"
+    },
 
     // --- IMAGES ---
+    // You can use file names (e.g., "hero.jpg") if uploaded to GitHub, or full URLs
     heroImage: "hero.JPG", 
+    
+    // Magazine Style Vertical Photos (Portrait orientation works best)
     magazine: {
-        photo1: "Handout.JPG", 
-        photo2: "arm.JPG",
-        
-        // NEW: The image for your "About Us" story
-        about: "907A3642.JPG"
+        // "Our Story" Image
+        about: "907A3642.JPG",
+        // Image next to Transport Section
+        photo1: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800&q=80", 
+        // Image next to Stay Section
+        photo2: "https://images.unsplash.com/photo-1520854221256-17451cc330e7?auto=format&fit=crop&w=800&q=80"
+    },
+
+    // --- HERO SECTION ---
+    hero: {
+        title: "Sarah & Tom",
+        date: "June 19, 2027",
+        targetDate: "June 19, 2027 16:00:00 GMT-0600" 
     },
 
     // --- NAVIGATION ---
     nav: {
-        story: "Our Story", // NEW LINK
-        party: "Wedding Party", // NEW LINK
+        story: "Our Story",
+        party: "Wedding Party",
         details: "Details",
         transport: "Getting There",
         stay: "Stay",
@@ -22,13 +39,13 @@ const CONFIG = {
         rsvp: "RSVP"
     },
 
-    // --- NEW SECTION: ABOUT US ---
+    // --- SECTION: OUR STORY ---
     about: {
         title: "Our Story",
         body: "It all started five years ago at a coffee shop in Denver. Tom spilled his latte, Sarah offered him a napkin, and the rest is history. We have spent the last few years hiking every peak in Colorado, adopting our golden retriever, and building a life we love.",
     },
 
-    // --- NEW SECTION: WEDDING PARTY ---
+    // --- SECTION: WEDDING PARTY ---
     party: {
         title: "The Wedding Party",
         people: [
@@ -50,9 +67,114 @@ const CONFIG = {
                 bio: "Met Sarah in nursing school. The kindest soul you will ever meet.",
                 image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80"
             }
-            // Add as many people as you want here!
+            // Copy and paste the block above to add more people!
         ]
     },
 
-    // ... (Keep details, transport, stay, registry, rsvp as they were) ...
+    // --- SECTION: DETAILS ---
+    details: {
+        title: "The Details",
+        dateText: "Saturday, June 19, 2027",
+        
+        ceremony: {
+            title: "Ceremony",
+            venue: "The Mountain Overlook",
+            time: "4:00 PM",
+            note: "Please arrive by 3:30 PM for a welcome drink."
+        },
+        reception: {
+            title: "Reception",
+            venue: "Pine Ridge Lodge",
+            time: "5:30 PM",
+            note: "Cocktails, Dinner & Dancing to follow."
+        }
+    },
+
+    // --- SECTION: TRANSPORTATION ---
+    transport: {
+        title: "Transportation",
+        intro: "We encourage guests to book transportation early due to limited parking at the venue.",
+        
+        options: [
+            {
+                type: "Car or Shuttle",
+                desc: "Rent a car at the airport OR book a Home James shuttle for roundtrips from the Denver Airport to Granby. Reserve a car rental from Avalanche Car Rental in Granby for transportation while in the valley or download the Granby Connect ride-share app.",
+                link: "https://www.ridehomejames.com", 
+                btn: "Home James Shuttle"
+            },
+            {
+                type: "Train",
+                desc: "Take the train from DIA to Union Station. Take the Amtrak train through the mountains. Call 800-USA-RAIL or visit amtrak.com. Spend a day in Denver or take the scenic train right to Granby. Then reserve a car in Granby from Avalanche Car Rental.",
+                link: "https://www.amtrak.com",
+                btn: "Visit Amtrak"
+            },
+            {
+                type: "Bus",
+                desc: "Take the train from DIA to Union Station, then take the BUSTANG Outrider (charter bus) to Granby. Reserve a car in Granby from Avalanche Car Rental.",
+                link: "https://ridebustang.com",
+                btn: "Bustang Schedule"
+            }
+        ]
+    },
+
+    // --- SECTION: STAY ---
+    stay: {
+        title: "Travel & Stay",
+        intro: "Your guests can book lodging via their favorite online booking platform or directly from our website Granby Ranch.",
+        
+        recommendations: [
+            {
+                name: "Our Favorite VRBO",
+                desc: "VRBO #1460059. This is our FAVORITE property, perfect for getting ready/brunch and the owner will waive the minimum night stay for our couples!",
+                link: "http://vrbo.com/1460059",
+                btn: "View Property"
+            },
+            {
+                name: "Granby Penthouse",
+                desc: "Ski-In/Ski-Out Granby Penthouse w/ Mountain Views via Evolve.",
+                link: "#", // Add specific link if you have it
+                btn: "View on Evolve"
+            },
+            {
+                name: "Base Camp Escape",
+                desc: "Ski-In/Ski-Out Granby Base Camp Escape w/ Balcony via Evolve.",
+                link: "#", // Add specific link if you have it
+                btn: "View on Evolve"
+            }
+        ],
+
+        // Extra Activity Links
+        activityLinks: [
+            { text: "Summer in Granby Blog", link: "https://www.destinationgranby.com/blog/post/summer-in-granby/" },
+            { text: "Grand County Summer Activities", link: "https://www.visitgrandcounty.com/play/summer-activities" }
+        ]
+    },
+
+    // --- SECTION: REGISTRY ---
+    registry: {
+        title: "Registry",
+        body: "Your presence is the greatest gift. However, should you wish to help us celebrate with a gift, a registry is held at:",
+        btnText: "View Registry",
+        link: "https://www.zola.com"
+    },
+
+    // --- SECTION: RSVP ---
+    rsvp: {
+        title: "RSVP",
+        intro: "Please search for your name below to unlock your RSVP.",
+        searchPlaceholder: "First or Last Name (e.g. Smith)",
+        btnFind: "Find Invitation",
+        
+        attendLabel: "Will you be attending?",
+        yesLabel: "Joyfully Accept",
+        noLabel: "Regretfully Decline",
+        
+        stayLabel: "Where are you staying?",
+        stayPlaceholder: "Hotel Name or Airbnb",
+        
+        msgLabel: "Message to the Couple",
+        msgPlaceholder: "Leave a note...",
+        
+        btnSubmit: "Submit RSVP"
+    }
 };
