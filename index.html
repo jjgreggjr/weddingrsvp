@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarah & Tom | 06.19.2027</title>
+    <title>Wedding Website</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,199 +12,103 @@
     <script src="config.js"></script>
 
     <style>
-        /* --- VARIABLES --- */
+        /* --- VARIABLES (DEFAULTS) --- */
         :root {
-            --main-color: #7b7f68;  /* Olive */
-            --accent-color: #223346; /* Navy */
+            --main-color: #7b7f68;
+            --accent-color: #223346;
             --bg-color: #f9f9f7;
             --white: #ffffff;
             --hero-overlay: rgba(0,0,0,0.4);
         }
 
-        /* --- GLOBAL RESET --- */
         body, html { margin: 0; padding: 0; font-family: 'Lato', sans-serif; color: #333; line-height: 1.6; height: 100%; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--accent-color); margin-top: 0; }
         * { box-sizing: border-box; }
 
-        /* --- HERO SECTION (FIXED BEHIND) --- */
+        /* --- HERO (FIXED) --- */
         .hero-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -1; /* Sits behind content */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            z-index: -1;
             background-color: var(--accent-color);
-            background-image: linear-gradient(var(--hero-overlay), var(--hero-overlay)), url('hero.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
             color: var(--white);
-            transition: opacity 0.1s; /* smooth fade */
         }
-        
-        /* Fallback image if hero.jpg doesn't exist yet */
-        .hero-container.default-bg {
-            background-image: linear-gradient(var(--hero-overlay), var(--hero-overlay)), url('https://images.unsplash.com/photo-1519225421980-715cb0202128?q=80&w=1600&auto=format&fit=crop');
-        }
+        .hero-content h1 { font-size: 3.5rem; margin: 0; color: var(--white); font-style: italic; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
 
-        .hero-content h1 { 
-            font-size: 3.5rem; 
-            margin: 0; 
-            color: var(--white); 
-            font-style: italic; 
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
+        /* COUNTDOWN */
+        #countdown { display: flex; gap: 20px; margin-top: 30px; justify-content: center; }
+        .time-box { display: flex; flex-direction: column; align-items: center; }
+        .time-number { font-size: 2.5rem; font-weight: 700; font-family: 'Playfair Display', serif; line-height: 1; }
+        .time-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; opacity: 0.9; }
 
-        /* COUNTDOWN TIMER */
-        #countdown {
-            display: flex;
-            gap: 20px;
-            margin-top: 30px;
-            justify-content: center;
-        }
-        .time-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .time-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
-            line-height: 1;
-        }
-        .time-label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 5px;
-            opacity: 0.9;
-        }
-
-        /* --- MAIN CONTENT (SCROLLS OVER) --- */
+        /* --- MAIN CONTENT --- */
         .page-content {
             position: relative;
-            margin-top: 100vh; /* Pushes content below hero */
+            margin-top: 100vh;
             background: var(--bg-color);
             z-index: 10;
-            box-shadow: 0 -10px 30px rgba(0,0,0,0.1); /* Shadow to separate from hero */
-            min-height: 100vh;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
         }
 
-        /* --- NAV --- */
+        /* NAV */
         nav {
-            background: var(--white);
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #eee;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            background: var(--white); padding: 20px 0; position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid #eee; text-align: center; display: flex; justify-content: center; flex-wrap: wrap;
         }
-        nav a {
-            color: var(--main-color);
-            text-decoration: none;
-            margin: 0 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
+        nav a { color: var(--main-color); text-decoration: none; margin: 0 15px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; font-size: 0.85rem; transition: color 0.3s; }
         nav a:hover { color: var(--accent-color); }
 
-        /* --- SECTIONS --- */
+        /* SECTIONS */
         section { padding: 80px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
         
-        /* Grid Layouts */
-        .info-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; 
-            margin-top: 40px; 
+        /* PARALLAX IMAGE STRIPS */
+        .parallax-strip {
+            height: 400px;
+            background-attachment: fixed; /* THE MAGIC EFFECT */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
         }
+
+        /* GRID & CARDS */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
         .info-card { 
-            background: var(--white); 
-            padding: 40px; 
-            border: 1px solid #e0e0e0; 
-            border-top: 4px solid var(--main-color);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border-radius: 4px;
+            background: var(--white); padding: 40px; border: 1px solid #e0e0e0; 
+            border-top: 4px solid var(--main-color); box-shadow: 0 4px 15px rgba(0,0,0,0.03); border-radius: 4px;
         }
         
         .btn { 
-            display: inline-block; 
-            background: var(--main-color); 
-            color: white; 
-            padding: 15px 35px; 
-            text-decoration: none; 
-            border-radius: 4px; 
-            transition: 0.3s; 
-            cursor: pointer; 
-            border: none; 
-            font-size: 1rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            display: inline-block; background: var(--main-color); color: white; padding: 15px 35px; 
+            text-decoration: none; border-radius: 4px; transition: 0.3s; cursor: pointer; border: none; 
+            font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; margin-top: 15px;
         }
         .btn:hover { background: var(--accent-color); transform: translateY(-2px); }
 
-        /* --- RSVP FORM STYLES --- */
-        .rsvp-section { background: var(--white); }
+        /* FORM */
         .rsvp-wrapper { max-width: 600px; margin: 0 auto; text-align: left; }
-        
-        input, textarea, select { 
-            width: 100%; 
-            padding: 15px; 
-            margin: 8px 0 25px; 
-            border: 1px solid #ccc; 
-            border-radius: 4px; 
-            background: #fafafa;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-        input:focus, textarea:focus { outline: 2px solid var(--main-color); border-color: transparent; }
-
+        input, textarea, select { width: 100%; padding: 15px; margin: 8px 0 25px; border: 1px solid #ccc; border-radius: 4px; background: #fafafa; font-family: inherit; font-size: 1rem; }
+        input:focus { outline: 2px solid var(--main-color); border-color: transparent; }
         .hidden { display: none; }
-        
-        .card-result { 
-            border: 1px solid #eee; 
-            padding: 20px; 
-            margin-bottom: 10px; 
-            cursor: pointer; 
-            background: #fafafa; 
-            transition: 0.2s;
-            border-radius: 6px;
-        }
-        .card-result:hover { background: #eee; border-color: #ccc; }
-        
-        .tag { float: right; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; }
+        .card-result { border: 1px solid #eee; padding: 20px; margin-bottom: 10px; cursor: pointer; background: #fafafa; border-radius: 6px; }
+        .card-result:hover { background: #eee; }
+        .tag { float: right; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; text-transform: uppercase; font-weight: bold; }
         .tag.yes { background: #d4edda; color: #155724; }
         .tag.no { background: #f8d7da; color: #721c24; }
 
-        /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
+            .parallax-strip { background-attachment: scroll; height: 250px; } /* Disable fixed attachment on mobile for performance */
             .hero-content h1 { font-size: 2.5rem; }
-            .time-number { font-size: 1.8rem; }
-            .info-grid { grid-template-columns: 1fr; }
             section { padding: 50px 20px; }
-            nav a { margin: 5px 10px; font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="hero-container default-bg" id="hero-bg">
+    <div class="hero-container" id="hero-bg">
         <div class="hero-content">
-            <h1>Sarah & Tom</h1>
-            
+            <h1 id="hero-title">Sarah & Tom</h1>
             <div id="countdown">
                 <div class="time-box"><span class="time-number" id="d">00</span><span class="time-label">Days</span></div>
                 <div class="time-box"><span class="time-number" id="h">00</span><span class="time-label">Hours</span></div>
@@ -217,65 +121,86 @@
     <div class="page-content">
         
         <nav>
-            <a href="#details">Details</a>
-            <a href="#travel">Travel</a>
-            <a href="#registry">Registry</a>
-            <a href="#rsvp">RSVP</a>
+            <a href="#details" id="nav-details">Details</a>
+            <a href="#transport" id="nav-transport">Transport</a>
+            <a href="#travel" id="nav-stay">Travel</a>
+            <a href="#registry" id="nav-registry">Registry</a>
+            <a href="#rsvp" id="nav-rsvp">RSVP</a>
         </nav>
 
         <section id="details">
-            <h2>The Details</h2>
-            <p id="date-display">June 19, 2027</p>
+            <h2 id="details-title">The Details</h2>
+            <p id="details-date">Date Loading...</p>
             <div class="info-grid">
                 <div class="info-card">
-                    <h3>Ceremony</h3>
-                    <p id="venue-display">Loading Venue...</p>
-                    <p>4:00 PM</p>
-                    <small style="color:#666">Please arrive by 3:30 PM</small>
+                    <h3 id="ceremony-title">Ceremony</h3>
+                    <p id="ceremony-venue">Venue Name</p>
+                    <p><strong id="ceremony-time">00:00</strong></p>
+                    <small style="color:#666" id="ceremony-note">Note...</small>
                 </div>
                 <div class="info-card">
-                    <h3>Reception</h3>
-                    <p><strong>Pine Ridge Lodge</strong></p>
-                    <p>Cocktails, Dinner & Dancing immediately following.</p>
+                    <h3 id="reception-title">Reception</h3>
+                    <p id="reception-venue">Venue Name</p>
+                    <p><strong id="reception-time">00:00</strong></p>
+                    <p id="reception-note">Note...</p>
                 </div>
             </div>
         </section>
 
-        <section id="travel" style="background-color: #eef0eb;">
-            <h2>Travel & Stay</h2>
-            <p>We have reserved blocks at these nearby hotels.</p>
+        <div class="parallax-strip" id="scroll-img-1"></div>
+
+        <section id="transport">
+            <h2 id="transport-title">Transportation</h2>
+            <p id="transport-body" style="max-width: 600px; margin: 0 auto 30px auto;">Transport info...</p>
             <div class="info-grid">
                 <div class="info-card">
-                    <h3>Grand Alpine Hotel</h3>
-                    <p>$189 / Night</p>
-                    <a href="#" class="btn">Book Room</a>
+                    <h3 id="shuttle-title">Shuttle</h3>
+                    <p id="shuttle-body" style="white-space: pre-line;">Info...</p>
                 </div>
                 <div class="info-card">
-                    <h3>Mountain Inn</h3>
-                    <p>$149 / Night</p>
-                    <a href="#" class="btn">Book Room</a>
+                    <h3 id="drive-title">Driving</h3>
+                    <p id="drive-body">Info...</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="parallax-strip" id="scroll-img-2"></div>
+
+        <section id="travel" style="background-color: #f4f4f4;">
+            <h2 id="stay-title">Travel & Stay</h2>
+            <p id="stay-intro">Loading...</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3 id="hotel1-name">Hotel 1</h3>
+                    <p id="hotel1-price">$000</p>
+                    <a href="#" id="hotel1-btn" class="btn">Book</a>
+                </div>
+                <div class="info-card">
+                    <h3 id="hotel2-name">Hotel 2</h3>
+                    <p id="hotel2-price">$000</p>
+                    <a href="#" id="hotel2-btn" class="btn">Book</a>
                 </div>
             </div>
         </section>
 
         <section id="registry">
-            <h2>Registry</h2>
-            <p>Your presence is the greatest gift. However, should you wish to help us celebrate with a gift, a registry is held at:</p>
-            <a id="registry-btn" href="#" target="_blank" class="btn" style="margin-top: 20px;">View Registry</a>
+            <h2 id="registry-title">Registry</h2>
+            <p id="registry-body">Loading...</p>
+            <a id="registry-btn" href="#" target="_blank" class="btn">View Registry</a>
         </section>
 
         <section id="rsvp" class="rsvp-section">
-            <h2>RSVP</h2>
-            <p>Please search for your name to reply.</p>
+            <h2 id="rsvp-title">RSVP</h2>
+            <p id="rsvp-intro">Search name...</p>
             
             <div class="rsvp-wrapper">
                 <div id="search-view">
-                    <input type="text" id="name-search" placeholder="First or Last Name (e.g. Smith)">
-                    <button class="btn" style="width:100%" onclick="searchGuest()">Find Invitation</button>
+                    <input type="text" id="name-search" placeholder="...">
+                    <button class="btn" style="width:100%" onclick="searchGuest()" id="btn-find">Find Invitation</button>
                 </div>
 
                 <div id="list-view" class="hidden">
-                    <p>We found the following matches:</p>
+                    <p>Select your invitation:</p>
                     <div id="results-list"></div>
                     <button class="btn" style="background:#999; margin-top:10px; width:100%" onclick="resetView()">Back</button>
                 </div>
@@ -287,30 +212,24 @@
                     <form onsubmit="submitRSVP(event)">
                         <input type="hidden" id="row-index"><input type="hidden" id="verified-name">
 
-                        <label style="font-weight:bold; display:block; margin-bottom:10px;">Will you be attending?</label>
+                        <label id="lbl-attend" style="font-weight:bold; display:block; margin-bottom:10px;">Attending?</label>
                         <div style="display:flex; gap:20px; margin-bottom:20px;">
-                            <div>
-                                <input type="radio" name="rsvp" value="Yes" id="r-yes" style="width:auto; margin:0;"> 
-                                <label for="r-yes" style="margin-left:5px;">Joyfully Accept</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="rsvp" value="No" id="r-no" style="width:auto; margin:0;"> 
-                                <label for="r-no" style="margin-left:5px;">Decline</label>
-                            </div>
+                            <div><input type="radio" name="rsvp" value="Yes" id="r-yes" style="width:auto; margin:0;"> <label for="r-yes" id="lbl-yes" style="margin-left:5px;">Yes</label></div>
+                            <div><input type="radio" name="rsvp" value="No" id="r-no" style="width:auto; margin:0;"> <label for="r-no" id="lbl-no" style="margin-left:5px;">No</label></div>
                         </div>
 
                         <div id="plus-one-box" class="hidden">
                             <label style="font-weight:bold;">Plus One Name</label>
-                            <input type="text" id="plus-one-name" placeholder="Full name of your guest">
+                            <input type="text" id="plus-one-name" placeholder="Full name">
                         </div>
 
-                        <label style="font-weight:bold;">Where are you staying?</label>
-                        <input type="text" id="accommodation" placeholder="Hotel Name or Airbnb">
+                        <label id="lbl-stay" style="font-weight:bold;">Accommodation</label>
+                        <input type="text" id="accommodation" placeholder="...">
                         
-                        <label style="font-weight:bold;">Message to the Couple</label>
-                        <textarea id="message" rows="3" placeholder="Leave a note for the couple..."></textarea>
+                        <label id="lbl-msg" style="font-weight:bold;">Message</label>
+                        <textarea id="message" rows="3" placeholder="..."></textarea>
 
-                        <button type="submit" id="submit-btn" class="btn" style="width:100%">Submit RSVP</button>
+                        <button type="submit" id="submit-btn" class="btn" style="width:100%">Submit</button>
                         <button type="button" onclick="resetView()" style="background:none; border:none; width:100%; margin-top:15px; cursor:pointer; color:#777; text-decoration:underline;">Cancel</button>
                     </form>
                 </div>
@@ -318,70 +237,133 @@
         </section>
 
         <footer style="background: var(--accent-color); color: white; padding: 40px 20px; text-align: center;">
-            <p>Sarah & Tom • 2027</p>
+            <p id="footer-text">Made with Love</p>
         </footer>
 
     </div>
 
     <script>
-        // *** YOUR GOOGLE SCRIPT URL ***
+        // *** GOOGLE SCRIPT URL ***
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzKVSquR0BL4Y46spi4-1vRAmliqGKgrVA8uPKHUR4gPmx0MqWFARspRUIX73-T4xvNzg/exec";
 
-        // --- 1. COUNTDOWN TIMER ---
-        const weddingDate = new Date("June 19, 2027 16:00:00 GMT-0600").getTime(); // -0600 is MDT (Daylight Savings)
+        // --- 1. APPLY CONFIG SETTINGS ---
+        window.onload = function() {
+            if (typeof CONFIG === 'undefined') return;
 
-        setInterval(function() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
+            // Colors
+            const root = document.documentElement.style;
+            if(CONFIG.colors) {
+                if(CONFIG.colors.main) root.setProperty('--main-color', CONFIG.colors.main);
+                if(CONFIG.colors.accent) root.setProperty('--accent-color', CONFIG.colors.accent);
+                if(CONFIG.colors.background) root.setProperty('--bg-color', CONFIG.colors.background);
+            }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            // Hero Images
+            if(CONFIG.heroImage) {
+                document.getElementById('hero-bg').style.backgroundImage = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('${CONFIG.heroImage}')`;
+            }
+            if(CONFIG.scrollImage1) document.getElementById('scroll-img-1').style.backgroundImage = `url('${CONFIG.scrollImage1}')`;
+            if(CONFIG.scrollImage2) document.getElementById('scroll-img-2').style.backgroundImage = `url('${CONFIG.scrollImage2}')`;
 
-            document.getElementById("d").innerText = days;
-            document.getElementById("h").innerText = hours;
-            document.getElementById("m").innerText = minutes;
-            document.getElementById("s").innerText = seconds;
-        }, 1000);
+            // Text Mapping Helper
+            const setTxt = (id, txt) => { if(document.getElementById(id) && txt) document.getElementById(id).innerText = txt; };
+            const setVal = (id, txt) => { if(document.getElementById(id) && txt) document.getElementById(id).placeholder = txt; };
 
-        // --- 2. HERO SCROLL FADE EFFECT ---
+            // Hero
+            setTxt('hero-title', CONFIG.hero.title);
+            startCountdown(CONFIG.hero.targetDate);
+
+            // Nav
+            setTxt('nav-details', CONFIG.nav.details);
+            setTxt('nav-transport', CONFIG.nav.transport);
+            setTxt('nav-stay', CONFIG.nav.stay);
+            setTxt('nav-registry', CONFIG.nav.registry);
+            setTxt('nav-rsvp', CONFIG.nav.rsvp);
+
+            // Details
+            setTxt('details-title', CONFIG.details.title);
+            setTxt('details-date', CONFIG.details.dateText);
+            setTxt('ceremony-title', CONFIG.details.ceremonyTitle);
+            setTxt('ceremony-venue', CONFIG.details.ceremonyVenue);
+            setTxt('ceremony-time', CONFIG.details.ceremonyTime);
+            setTxt('ceremony-note', CONFIG.details.ceremonyNote);
+            setTxt('reception-title', CONFIG.details.receptionTitle);
+            setTxt('reception-venue', CONFIG.details.receptionVenue);
+            setTxt('reception-time', CONFIG.details.receptionTime);
+            setTxt('reception-note', CONFIG.details.receptionNote);
+
+            // Transport (New)
+            setTxt('transport-title', CONFIG.transport.title);
+            setTxt('transport-body', CONFIG.transport.body);
+            setTxt('shuttle-title', CONFIG.transport.shuttleTitle);
+            setTxt('shuttle-body', CONFIG.transport.shuttleBody);
+            setTxt('drive-title', CONFIG.transport.driveTitle);
+            setTxt('drive-body', CONFIG.transport.driveBody);
+
+            // Stay
+            setTxt('stay-title', CONFIG.stay.title);
+            setTxt('stay-intro', CONFIG.stay.intro);
+            setTxt('hotel1-name', CONFIG.stay.hotel1Name);
+            setTxt('hotel1-price', CONFIG.stay.hotel1Price);
+            setTxt('hotel1-btn', CONFIG.stay.hotel1Btn);
+            if(document.getElementById('hotel1-btn')) document.getElementById('hotel1-btn').href = CONFIG.stay.hotel1Link;
+
+            setTxt('hotel2-name', CONFIG.stay.hotel2Name);
+            setTxt('hotel2-price', CONFIG.stay.hotel2Price);
+            setTxt('hotel2-btn', CONFIG.stay.hotel2Btn);
+            if(document.getElementById('hotel2-btn')) document.getElementById('hotel2-btn').href = CONFIG.stay.hotel2Link;
+
+            // Registry
+            setTxt('registry-title', CONFIG.registry.title);
+            setTxt('registry-body', CONFIG.registry.body);
+            setTxt('registry-btn', CONFIG.registry.btnText);
+            if(document.getElementById('registry-btn')) document.getElementById('registry-btn').href = CONFIG.registry.link;
+
+            // RSVP
+            setTxt('rsvp-title', CONFIG.rsvp.title);
+            setTxt('rsvp-intro', CONFIG.rsvp.intro);
+            setVal('name-search', CONFIG.rsvp.searchPlaceholder);
+            setTxt('btn-find', CONFIG.rsvp.btnFind);
+            setTxt('lbl-attend', CONFIG.rsvp.attendLabel);
+            setTxt('lbl-yes', CONFIG.rsvp.yesLabel);
+            setTxt('lbl-no', CONFIG.rsvp.noLabel);
+            setTxt('lbl-stay', CONFIG.rsvp.stayLabel);
+            setVal('accommodation', CONFIG.rsvp.stayPlaceholder);
+            setTxt('lbl-msg', CONFIG.rsvp.msgLabel);
+            setVal('message', CONFIG.rsvp.msgPlaceholder);
+            setTxt('submit-btn', CONFIG.rsvp.btnSubmit);
+            setTxt('footer-text', CONFIG.hero.title + " • " + CONFIG.hero.date);
+        };
+
+        // --- 2. COUNTDOWN ---
+        function startCountdown(dateString) {
+            const target = new Date(dateString).getTime();
+            setInterval(function() {
+                const now = new Date().getTime();
+                const d = target - now;
+                if(d < 0) return; 
+                document.getElementById("d").innerText = Math.floor(d / (1000 * 60 * 60 * 24));
+                document.getElementById("h").innerText = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById("m").innerText = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById("s").innerText = Math.floor((d % (1000 * 60)) / 1000);
+            }, 1000);
+        }
+
+        // --- 3. HERO FADE EFFECT ---
         window.addEventListener('scroll', function() {
-            const scrollPosition = window.scrollY;
-            const hero = document.querySelector('.hero-content');
-            
-            // Fade out the text/timer as you scroll down
-            if (scrollPosition < 600) {
-                hero.style.opacity = 1 - (scrollPosition / 500);
-                hero.style.transform = `translateY(${scrollPosition * 0.4}px)`; // Parallax slide
+            const scroll = window.scrollY;
+            if (scroll < 600) {
+                const hero = document.querySelector('.hero-content');
+                hero.style.opacity = 1 - (scroll / 500);
+                hero.style.transform = `translateY(${scroll * 0.4}px)`;
             }
         });
 
-        // --- 3. CONFIG & SETTINGS ---
-        window.onload = function() {
-            // Apply config.js if it exists
-            if (typeof CONFIG !== 'undefined') {
-                const r = document.documentElement.style;
-                if(CONFIG.mainColor) r.setProperty('--main-color', CONFIG.mainColor);
-                if(CONFIG.accentColor) r.setProperty('--accent-color', CONFIG.accentColor);
-                if(CONFIG.venueName) document.getElementById('venue-display').innerText = CONFIG.venueName;
-                if(CONFIG.registryLink) document.getElementById('registry-btn').href = CONFIG.registryLink;
-                
-                // Hero Image Handling
-                const heroBg = document.getElementById('hero-bg');
-                if(CONFIG.heroImage) {
-                    heroBg.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('${CONFIG.heroImage}')`;
-                    heroBg.classList.remove('default-bg');
-                }
-            }
-        };
-
-        // --- 4. RSVP LOGIC ---
+        // --- 4. RSVP FUNCTIONS ---
         function searchGuest() {
             const q = document.getElementById('name-search').value;
             if(!q) return alert("Please enter a name");
-            
-            const btn = document.querySelector('#search-view button');
+            const btn = document.getElementById('btn-find');
             const originalText = btn.innerText;
             btn.innerText = "Searching..."; btn.disabled = true;
 
@@ -394,15 +376,14 @@
                 })
                 .catch(e => {
                     btn.innerText = originalText; btn.disabled = false;
-                    alert("Network error. Please try again.");
+                    alert("Network error.");
                 });
         }
 
         function showResults(guests) {
             const list = document.getElementById('results-list');
             list.innerHTML = "";
-            if(guests.length===0) return alert("No name found. Try just your first or last name.");
-
+            if(guests.length===0) return alert("No name found.");
             document.getElementById('search-view').classList.add('hidden');
             document.getElementById('list-view').classList.remove('hidden');
 
@@ -420,7 +401,6 @@
         function openForm(g) {
             document.getElementById('list-view').classList.add('hidden');
             document.getElementById('form-view').classList.remove('hidden');
-            
             document.getElementById('greeting').innerText = `Hi, ${g.firstName}!`;
             document.getElementById('row-index').value = g.rowIndex;
             document.getElementById('verified-name').value = g.firstName;
@@ -436,13 +416,10 @@
 
             const radios = document.getElementsByName('rsvp');
             const lockMsg = document.getElementById('lock-msg');
-            
-            // Reset state
             radios.forEach(r => { r.checked=false; r.disabled=false; });
             document.getElementById('plus-one-name').disabled = false;
             lockMsg.style.display = 'none';
 
-            // If already RSVP'd
             if(g.rsvp) {
                 lockMsg.innerText = `You have already RSVP'd: ${g.rsvp}. You can still update your accommodation or message below.`;
                 lockMsg.style.display = 'block';
@@ -459,7 +436,6 @@
             const btn = document.getElementById('submit-btn');
             const originalText = btn.innerText;
             btn.innerText = "Saving..."; btn.disabled = true;
-            
             let rsvpVal = null;
             document.getElementsByName('rsvp').forEach(r => { if(r.checked) rsvpVal = r.value; });
 
@@ -475,21 +451,10 @@
             fetch(SCRIPT_URL + "?action=submit", { method: 'POST', body: JSON.stringify(payload) })
                 .then(r => r.json())
                 .then(d => {
-                    if(d.status==='success') { 
-                        alert("Saved successfully!"); 
-                        window.location.reload(); 
-                    }
-                    else { 
-                        alert("Error: " + d.message); 
-                        btn.innerText = originalText;
-                        btn.disabled = false; 
-                    }
+                    if(d.status==='success') { alert("Saved successfully!"); window.location.reload(); }
+                    else { alert("Error: " + d.message); btn.innerText = originalText; btn.disabled = false; }
                 })
-                .catch(err => {
-                    alert("Network error.");
-                    btn.innerText = originalText;
-                    btn.disabled = false; 
-                });
+                .catch(err => { alert("Network error."); btn.innerText = originalText; btn.disabled = false; });
         }
 
         function resetView() {
