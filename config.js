@@ -8,8 +8,8 @@ const CONFIG = {
     heroImage: "hero.jpg", 
     
     // Text
-    dateText: "August 24, 2026",
-    venueName: "The Mountain Overlook",
+    dateText: "June 19, 2027",
+    venueName: "Granby Ranch Ski Mountain",
     
     // Links
     registryLink: "https://www.zola.com"
