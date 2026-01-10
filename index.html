@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding RSVP</title>
+    <style>
+        /* Simple styling for the demo - replace with your wedding theme CSS */
+        body { font-family: sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; }
+        .hidden { display: none; }
+        .card { border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 8px; cursor: pointer; transition: background 0.3s;}
+        .card:hover { background-color: #f9f9f9; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-left: 10px;}
+        .tag-yes { background: #d4edda; color: #155724; }
+        .tag-no { background: #f8d7da; color: #721c24; }
+        .tag-pending { background: #fff3cd; color: #856404; }
+        
+        input, textarea, select { width: 100%; padding: 10px; margin: 5px 0 15px; box-sizing: border-box; }
+        button { background: #333; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+        button:disabled { background: #ccc; }
+        #rsvp-form-container { border-top: 2px solid #333; margin-top: 20px; padding-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div id="search-section">
+        <h2>Find Your Invitation</h2>
+        <p>Please enter your first or last name to unlock your RSVP.</p>
+        <input type="text" id="name-search" placeholder="e.g. John Doe">
+        <button onclick="searchGuest()">Search</button>
+    </div>
+
+    <div id="results-section" class="hidden">
+        <h3>Select your name:</h3>
+        <div id="results-list"></div>
+        <button onclick="resetSearch()" style="margin-top:10px; background:#999;">Back to Search</button>
+    </div>
+
+    <div id="rsvp-form-container" class="hidden">
+        <h2 id="guest-greeting"></h2>
+        <p id="lock-message" style="color: #666; font-style: italic;"></p>
+
+        <form id="rsvp-form" onsubmit="submitRSVP(event)">
+            <input type="hidden" id="row-index">
+            <input type="hidden" id="guest-first-name">
+
+            <div id="rsvp-radio-group">
+                <label>Will you be attending?</label><br>
+                <input type="radio" name="rsvp_status" value="Yes" id="r-yes" style="width:auto;"> <label for="r-yes">Joyfully Accept</label><br>
+                <input type="radio" name="rsvp_status" value="No" id="r-no" style="width:auto;"> <label for="r-no">Regretfully Decline</label>
+            </div>
+
+            <div id="plus-one-wrapper" class="hidden">
+                <label>Plus One Name</label>
+                <input type="text" id="plus-one-name" placeholder="Enter full name of guest">
+            </div>
+
+            <label>Where are you staying? (Hotel/Airbnb)</label>
+            <input type="text" id="accommodation" placeholder="Let us know so we can coordinate shuttles!">
+
+            <label>Message to the Couple</label>
+            <textarea id="message" rows="3" placeholder="Leave a note..."></textarea>
+
+            <button type="submit" id="submit-btn">Submit RSVP</button>
+        </form>
+    </div>
+
+    <script>
+        // *** PASTE YOUR GOOGLE SCRIPT DEPLOYMENT URL HERE ***
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzKVSquR0BL4Y46spi4-1vRAmliqGKgrVA8uPKHUR4gPmx0MqWFARspRUIX73-T4xvNzg/exec";
+
+        let currentGuestData = {};
+
+        // 1. SEARCH FUNCTION
+        function searchGuest() {
+            const query = document.getElementById('name-search').value;
+            if(!query) return alert("Please enter a name");
+            
+            const btn = document.querySelector('button');
+            btn.textContent = "Searching...";
+            btn.disabled = true;
+
+            fetch(`${SCRIPT_URL}?action=search&q=${encodeURIComponent(query)}`)
+                .then(res => res.json())
+                .then(data => {
+                    displayResults(data);
+                    btn.textContent = "Search";
+                    btn.disabled = false;
+                })
+                .catch(err => {
+                    alert("Error searching database");
+                    console.error(err);
+                });
+        }
+
+        // 2. DISPLAY MATCHES
+        function displayResults(guests) {
+            const list = document.getElementById('results-list');
+            list.innerHTML = "";
+            document.getElementById('search-section').classList.add('hidden');
+            document.getElementById('results-section').classList.remove('hidden');
+
+            if(guests.length === 0) {
+                list.innerHTML = "<p>No names found. Please try again or contact the couple.</p>";
+                return;
+            }
+
+            guests.forEach(guest => {
+                const div = document.createElement('div');
+                div.className = 'card';
+                
+                // Show current status tag
+                let statusTag = `<span class="tag tag-pending">Pending</span>`;
+                if(guest.rsvp === 'Yes') statusTag = `<span class="tag tag-yes">Attending</span>`;
+                if(guest.rsvp === 'No') statusTag = `<span class="tag tag-no">Declined</span>`;
+
+                div.innerHTML = `<strong>${guest.firstName} ${guest.lastName}</strong> ${statusTag}`;
+                
+                div.onclick = () => loadForm(guest);
+                list.appendChild(div);
+            });
+        }
+
+        // 3. LOAD FORM WITH GUEST DATA
+        function loadForm(guest) {
+            currentGuestData = guest;
+            document.getElementById('results-section').classList.add('hidden');
+            document.getElementById('rsvp-form-container').classList.remove('hidden');
+
+            // Populate Greeting
+            document.getElementById('guest-greeting').textContent = `Hi, ${guest.firstName}!`;
+            document.getElementById('row-index').value = guest.rowIndex;
+            document.getElementById('guest-first-name').value = guest.firstName; // Security check
+
+            // Populate Editable Fields
+            document.getElementById('accommodation').value = guest.accommodation || "";
+            document.getElementById('message').value = guest.message || "";
+            
+            // PLUS ONE LOGIC
+            const plusOneWrapper = document.getElementById('plus-one-wrapper');
+            if(guest.hasPlusOne === true || guest.hasPlusOne === "TRUE") {
+                plusOneWrapper.classList.remove('hidden');
+                document.getElementById('plus-one-name').value = guest.plusOneName || "";
+            } else {
+                plusOneWrapper.classList.add('hidden');
+            }
+
+            // RSVP LOGIC (READ ONLY vs EDIT)
+            const radios = document.getElementsByName('rsvp_status');
+            const lockMsg = document.getElementById('lock-message');
+            
+            if(guest.rsvp) {
+                // ALREADY RSVP'D
+                lockMsg.textContent = `You have already RSVP'd: ${guest.rsvp}. You can update your accommodation and message below.`;
+                // Disable radios
+                radios.forEach(r => r.disabled = true);
+                // Check the correct box visually
+                if(guest.rsvp === 'Yes') document.getElementById('r-yes').checked = true;
+                if(guest.rsvp === 'No') document.getElementById('r-no').checked = true;
+                
+                // Disable Plus One name if it was already submitted
+                if(guest.plusOneName) document.getElementById('plus-one-name').disabled = true;
+
+            } else {
+                // NEW RSVP
+                lockMsg.textContent = "";
+                radios.forEach(r => r.disabled = false);
+                document.getElementById('plus-one-name').disabled = false;
+            }
+        }
+
+        // 4. SUBMIT FORM
+        function submitRSVP(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            btn.textContent = "Saving...";
+            btn.disabled = true;
+
+            // Get RSVP Selection
+            let rsvpVal = null;
+            document.getElementsByName('rsvp_status').forEach(r => {
+                if(r.checked) rsvpVal = r.value;
+            });
+
+            // Prepare Payload
+            const payload = {
+                rowIndex: document.getElementById('row-index').value,
+                firstName: document.getElementById('guest-first-name').value,
+                rsvp: rsvpVal,
+                plusOneName: document.getElementById('plus-one-name').value,
+                accommodation: document.getElementById('accommodation').value,
+                message: document.getElementById('message').value
+            };
+
+            fetch(SCRIPT_URL + "?action=submit", {
+                method: 'POST',
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.status === 'success') {
+                    alert("Saved successfully!");
+                    window.location.reload(); // Reload to start over
+                } else {
+                    alert("Error saving: " + data.message);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Network error. Please try again.");
+                btn.disabled = false;
+                btn.textContent = "Submit RSVP";
+            });
+        }
+
+        function resetSearch() {
+            document.getElementById('results-section').classList.add('hidden');
+            document.getElementById('search-section').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
