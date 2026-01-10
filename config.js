@@ -5,7 +5,7 @@ const CONFIG = {
     accentColor: "#223346",
     
     // Images (Use the file name if uploaded to GitHub, or a full URL)
-    heroImage: "hero.jpg", 
+    heroImage: "hero.JPG", 
     
     // Text
     dateText: "June 19, 2027",
