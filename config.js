@@ -12,8 +12,8 @@ const CONFIG = {
     
     magazine: {
         about: "907A3642.JPG",
-        photo1: "", 
-        photo2: "https://images.unsplash.com/photo-1520854221256-17451cc330e7?auto=format&fit=crop&w=800&q=80"
+        photo1: "arm.JPG", 
+        photo2: "Handout.JPG"
     },
 
     // --- HERO ---
