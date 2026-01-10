@@ -8,25 +8,27 @@ const CONFIG = {
     },
 
     // --- IMAGES ---
-    // You can use "hero.jpg" if uploaded to GitHub, or full URLs
-    heroImage: "hero.JPG", 
+    heroImage: "hero.jpg", 
     
-    // These are the elegant "break" images between sections
-    scrollImage1: "Handout.JPG", // Between Details & Transport
-    scrollImage2: "arm.JPG", // Between Transport & Stay
+    // Magazine Style Vertical Photos (Portrait orientation works best)
+    // You can use file names (e.g., "photo1.jpg") or URLs
+    magazine: {
+        photo1: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800&q=80", // Next to Transport
+        photo2: "https://images.unsplash.com/photo-1520854221256-17451cc330e7?auto=format&fit=crop&w=800&q=80"  // Next to Stay
+    },
 
     // --- HERO SECTION ---
     hero: {
-        title: "JJG & CCC",
+        title: "Sarah & Tom",
         date: "June 19, 2027",
-        targetDate: "June 19, 2027 16:00:00 GMT-0600" // Date for Countdown
+        targetDate: "June 19, 2027 16:00:00 GMT-0600" 
     },
 
     // --- NAVIGATION ---
     nav: {
         details: "Details",
-        transport: "Getting There", // New Link
-        stay: "Travel & Stay",
+        transport: "Getting There",
+        stay: "Stay",
         registry: "Registry",
         rsvp: "RSVP"
     },
@@ -36,47 +38,80 @@ const CONFIG = {
         title: "The Details",
         dateText: "Saturday, June 19, 2027",
         
-        // Card 1: Ceremony
-        ceremonyTitle: "Ceremony",
-        ceremonyVenue: "The Mountain Overlook",
-        ceremonyTime: "4:00 PM",
-        ceremonyNote: "Please arrive by 3:30 PM for a welcome drink.",
-
-        // Card 2: Reception
-        receptionTitle: "Reception",
-        receptionVenue: "Pine Ridge Lodge",
-        receptionTime: "5:30 PM",
-        receptionNote: "Cocktails, Dinner & Dancing to follow."
+        ceremony: {
+            title: "Ceremony",
+            venue: "The Mountain Overlook",
+            time: "4:00 PM",
+            note: "Please arrive by 3:30 PM for a welcome drink."
+        },
+        reception: {
+            title: "Reception",
+            venue: "Pine Ridge Lodge",
+            time: "5:30 PM",
+            note: "Cocktails, Dinner & Dancing to follow."
+        }
     },
 
-    // --- SECTION: TRANSPORTATION (NEW) ---
+    // --- SECTION: TRANSPORTATION (Flexible List) ---
     transport: {
-        title: "Getting There",
-        body: "Shuttles will be provided from the main hotels to the ceremony site. Parking at the venue is limited, so we encourage using the shuttle!",
+        title: "Transportation",
+        intro: "Shuttles will be provided from the main hotels. Parking at the venue is limited.",
         
-        // Shuttle Schedule Card
-        shuttleTitle: "Shuttle Schedule",
-        shuttleBody: "Departs Grand Alpine Hotel: 3:15 PM\nDeparts Mountain Inn: 3:30 PM",
-        
-        // Driving Card
-        driveTitle: "Driving?",
-        driveBody: "If you choose to drive, take Hwy 82 to Maroon Creek Road. Valet parking is complimentary."
+        // Add as many transport options as you like below:
+        options: [
+            {
+                type: "Car or Shuttle",
+                desc: "Rent a car at the airport OR book a Home James shuttle for roundtrips from Denver Airport to Granby. Reserve a rental from Avalanche Car Rental in Granby or download the Granby Connect app.",
+                link: "https://www.homejames.com", 
+                btn: "Book Shuttle"
+            },
+            {
+                type: "Train",
+                desc: "Take the train from DIA to Union Station. Then take the scenic Amtrak train right to Granby. Call 800-USA-RAIL or visit amtrak.com.",
+                link: "https://www.amtrak.com",
+                btn: "Visit Amtrak"
+            },
+            {
+                type: "Bus",
+                desc: "Take the train from DIA to Union Station, then take the BUSTANG Outrider (charter bus) to Granby.",
+                link: "https://ridebustang.com",
+                btn: "Bus Schedule"
+            }
+        ]
     },
 
-    // --- SECTION: TRAVEL / STAY ---
+    // --- SECTION: STAY (Flexible List) ---
     stay: {
         title: "Travel & Stay",
-        intro: "We have reserved room blocks at these nearby hotels. Please mention the Smith/Jones wedding.",
+        intro: "Your guests can book lodging via their favorite online booking platform or directly from our website Granby Ranch.",
         
-        hotel1Name: "Grand Alpine Hotel",
-        hotel1Price: "$189 / Night",
-        hotel1Link: "#",
-        hotel1Btn: "Book Room",
+        // Add as many hotels/rentals as you like below:
+        recommendations: [
+            {
+                name: "Our Favorite VRBO",
+                desc: "Property #1460059. Perfect for getting ready/brunch! The owner will waive the minimum night stay for our couples.",
+                link: "http://vrbo.com/1460059",
+                btn: "View VRBO"
+            },
+            {
+                name: "Granby Penthouse",
+                desc: "Ski-In/Ski-Out Granby Penthouse w/ Mountain Views!",
+                link: "#",
+                btn: "View on Evolve"
+            },
+            {
+                name: "Base Camp Escape",
+                desc: "Ski-In/Ski-Out Granby Base Camp Escape w/ Balcony.",
+                link: "#",
+                btn: "View on Evolve"
+            }
+        ],
 
-        hotel2Name: "Mountain Inn",
-        hotel2Price: "$149 / Night",
-        hotel2Link: "#",
-        hotel2Btn: "Book Room"
+        // Links for activities
+        activityLinks: [
+            { text: "Summer in Granby Blog", link: "https://www.destinationgranby.com/blog/post/summer-in-granby/" },
+            { text: "Grand County Summer Activities", link: "https://www.visitgrandcounty.com/play/summer-activities" }
+        ]
     },
 
     // --- SECTION: REGISTRY ---
@@ -94,7 +129,6 @@ const CONFIG = {
         searchPlaceholder: "First or Last Name (e.g. Smith)",
         btnFind: "Find Invitation",
         
-        // Form Labels
         attendLabel: "Will you be attending?",
         yesLabel: "Joyfully Accept",
         noLabel: "Regretfully Decline",
