@@ -12,8 +12,8 @@ const CONFIG = {
     heroImage: "hero.jpg", 
     
     // These are the elegant "break" images between sections
-    scrollImage1: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1600&q=80", // Between Details & Transport
-    scrollImage2: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80", // Between Transport & Stay
+    scrollImage1: "silly.gpt", // Between Details & Transport
+    scrollImage2: "arm.gpt", // Between Transport & Stay
 
     // --- HERO SECTION ---
     hero: {
