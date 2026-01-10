@@ -13,13 +13,13 @@ const CONFIG = {
     // Magazine Style Vertical Photos (Portrait orientation works best)
     // You can use file names (e.g., "photo1.jpg") or URLs
     magazine: {
-        photo1: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800&q=80", // Next to Transport
-        photo2: "https://images.unsplash.com/photo-1520854221256-17451cc330e7?auto=format&fit=crop&w=800&q=80"  // Next to Stay
+        photo1: "arm.JPG", // Next to Transport
+        photo2: "Handout.JPG"  // Next to Stay
     },
 
     // --- HERO SECTION ---
     hero: {
-        title: "Sarah & Tom",
+        title: "JJG & CCC",
         date: "June 19, 2027",
         targetDate: "June 19, 2027 16:00:00 GMT-0600" 
     },
