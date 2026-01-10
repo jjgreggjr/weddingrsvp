@@ -12,7 +12,7 @@ const CONFIG = {
     
     magazine: {
         about: "907A3642.JPG",
-        photo1: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800&q=80", 
+        photo1: "", 
         photo2: "https://images.unsplash.com/photo-1520854221256-17451cc330e7?auto=format&fit=crop&w=800&q=80"
     },
 
@@ -43,7 +43,7 @@ const CONFIG = {
     party: {
         title: "The Wedding Party",
         // LEFT SIDE (White/Olive)
-        brideSideTitle: "The Ladies",
+        brideSideTitle: "The Goiois",
         bride: [
             {
                 name: "Jessica Smith",
@@ -59,7 +59,7 @@ const CONFIG = {
             }
         ],
         // RIGHT SIDE (Navy/White)
-        groomSideTitle: "The Gents",
+        groomSideTitle: "The Boiois",
         groom: [
             {
                 name: "Mike Jones",
