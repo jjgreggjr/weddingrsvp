@@ -54,38 +54,76 @@
         .btn { display: inline-block; background: var(--main-color); color: white; padding: 15px 30px; text-decoration: none; border-radius: 4px; transition: 0.3s; cursor: pointer; border: none; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; margin-top: 15px; }
         .btn:hover { background: var(--accent-color); transform: translateY(-2px); }
 
-        /* --- NEW: WEDDING PARTY GRID --- */
-        .party-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
+        /* --- NEW: SPLIT PARTY SCROLLER --- */
+        .party-split-container {
+            display: flex;
+            flex-wrap: wrap;
+            height: 700px; /* Fixed height for the scroll area */
+            width: 100%;
+            margin-top: 40px;
         }
+        .party-col {
+            flex: 1;
+            min-width: 320px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        /* BRIDE SIDE STYLING */
+        .party-col.bride { background: var(--white); color: #333; }
+        .party-col.bride h3 { color: var(--main-color); }
+        .party-col.bride .party-nav-item { color: #888; border-bottom: 1px solid transparent; }
+        .party-col.bride .party-nav-item:hover { color: var(--main-color); border-color: var(--main-color); }
+
+        /* GROOM SIDE STYLING */
+        .party-col.groom { background: var(--accent-color); color: var(--white); }
+        .party-col.groom h3 { color: var(--white); }
+        .party-col.groom .party-nav-item { color: #aaa; border-bottom: 1px solid transparent; }
+        .party-col.groom .party-nav-item:hover { color: var(--white); border-color: var(--white); }
+        .party-col.groom .party-role { color: #ccc; } /* Lighter text for dark background */
+
+        /* HEADER AREA */
+        .party-header { padding: 30px; text-align: center; z-index: 2; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .party-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 10px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; }
+
+        /* SCROLL AREA */
+        .party-scroller {
+            flex: 1;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory; /* The magic snap effect */
+            scroll-behavior: smooth;
+            padding: 40px;
+        }
+        /* Hide scrollbar for cleaner look */
+        .party-scroller::-webkit-scrollbar { width: 6px; }
+        .party-scroller::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.1); border-radius: 3px;}
+
+        /* CARDS */
         .party-card {
+            height: 100%;
+            min-height: 400px; /* Ensure it takes up space */
+            scroll-snap-align: center; /* Snap to center */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            margin-bottom: 20px; /* Space between cards so snap feels distinct */
         }
         .party-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%; /* Circle */
+            width: 180px; height: 180px;
+            border-radius: 50%;
             object-fit: cover;
-            margin: 0 auto 20px auto;
-            border: 3px solid var(--white);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border: 4px solid rgba(255,255,255,0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         .party-role {
-            color: var(--main-color);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: bold;
-            margin-bottom: 5px;
+            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px;
+            color: var(--main-color); /* Default, overridden in groom section */
         }
-        .party-bio {
-            font-size: 0.95rem;
-            color: #666;
-            font-style: italic;
-        }
+        .party-bio { font-style: italic; max-width: 300px; margin: 0 auto; opacity: 0.9; }
 
         /* RSVP */
         .rsvp-section { background: var(--white); padding-bottom: 100px;}
@@ -104,6 +142,9 @@
             .mag-image { width: 100%; height: 300px; }
             .mag-content { padding: 40px 20px; }
             .hero-content h1 { font-size: 2.5rem; }
+            /* Stack party columns on mobile */
+            .party-split-container { height: auto; display: block; }
+            .party-col { height: 600px; margin-bottom: 20px;}
         }
     </style>
 </head>
@@ -125,7 +166,6 @@
         <nav>
             <a href="#about" id="nav-story">Our Story</a>
             <a href="#party" id="nav-party">Wedding Party</a>
-            
             <a href="#details" id="nav-details">Details</a>
             <a href="#transport" id="nav-transport">Transport</a>
             <a href="#stay" id="nav-stay">Travel</a>
@@ -141,9 +181,28 @@
             </div>
         </div>
 
-        <section id="party" style="background-color: #f4f4f4;">
-            <h2 id="party-title">The Wedding Party</h2>
-            <div id="party-grid" class="party-grid"></div>
+        <section id="party" style="padding: 0; max-width: 100%;">
+            <div class="party-split-container">
+                
+                <div class="party-col bride">
+                    <div class="party-header">
+                        <h3 id="party-bride-title">The Ladies</h3>
+                        <div class="party-nav" id="bride-nav"></div>
+                    </div>
+                    <div class="party-scroller" id="bride-scroller">
+                        </div>
+                </div>
+
+                <div class="party-col groom">
+                    <div class="party-header">
+                        <h3 id="party-groom-title">The Gents</h3>
+                        <div class="party-nav" id="groom-nav"></div>
+                    </div>
+                    <div class="party-scroller" id="groom-scroller">
+                        </div>
+                </div>
+
+            </div>
         </section>
 
         <section id="details">
@@ -272,25 +331,19 @@
             setTxt('hero-title', CONFIG.hero.title);
             startCountdown(CONFIG.hero.targetDate);
 
-            // --- POPULATE ABOUT US ---
+            // --- ABOUT US ---
             setTxt('about-title', CONFIG.about.title);
             setTxt('about-body', CONFIG.about.body);
 
-            // --- POPULATE WEDDING PARTY GRID ---
-            setTxt('party-title', CONFIG.party.title);
-            const partyGrid = document.getElementById('party-grid');
-            if(CONFIG.party.people) {
-                CONFIG.party.people.forEach(person => {
-                    const card = document.createElement('div');
-                    card.className = "party-card";
-                    card.innerHTML = `
-                        <img src="${person.image}" class="party-img" alt="${person.name}">
-                        <h3 style="margin:0; font-size:1.2rem;">${person.name}</h3>
-                        <div class="party-role">${person.role}</div>
-                        <p class="party-bio">${person.bio}</p>
-                    `;
-                    partyGrid.appendChild(card);
-                });
+            // --- SPLIT WEDDING PARTY LOGIC ---
+            if(CONFIG.party) {
+                // Bride Side
+                setTxt('party-bride-title', CONFIG.party.brideSideTitle || "Bride's Party");
+                generatePartyColumn(CONFIG.party.bride, 'bride-scroller', 'bride-nav', 'b-card');
+
+                // Groom Side
+                setTxt('party-groom-title', CONFIG.party.groomSideTitle || "Groom's Party");
+                generatePartyColumn(CONFIG.party.groom, 'groom-scroller', 'groom-nav', 'g-card');
             }
 
             // DETAILS
@@ -370,6 +423,36 @@
             setTxt('submit-btn', CONFIG.rsvp.btnSubmit);
             setTxt('footer-text', CONFIG.hero.title + " • " + CONFIG.hero.date);
         };
+
+        // --- NEW HELPER: GENERATE PARTY COLUMNS ---
+        function generatePartyColumn(peopleArray, scrollId, navId, prefix) {
+            const scroller = document.getElementById(scrollId);
+            const nav = document.getElementById(navId);
+            if(!peopleArray || !scroller || !nav) return;
+
+            peopleArray.forEach((person, index) => {
+                const cardId = `${prefix}-${index}`;
+                
+                // Create Nav Link
+                const navItem = document.createElement('div');
+                navItem.className = 'party-nav-item';
+                navItem.innerText = person.name.split(" ")[0]; // Just first name for nav
+                navItem.onclick = () => document.getElementById(cardId).scrollIntoView({behavior: "smooth", block: "center"});
+                nav.appendChild(navItem);
+
+                // Create Card
+                const card = document.createElement('div');
+                card.className = "party-card";
+                card.id = cardId;
+                card.innerHTML = `
+                    <img src="${person.image}" class="party-img" alt="${person.name}">
+                    <h3 style="margin:0; font-size:1.4rem;">${person.name}</h3>
+                    <div class="party-role">${person.role}</div>
+                    <p class="party-bio">${person.bio}</p>
+                `;
+                scroller.appendChild(card);
+            });
+        }
 
         function startCountdown(dateString) {
             const target = new Date(dateString).getTime();
