@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Website</title>
+    <title>Sarah & Tom | 06.19.2027</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
     <script src="config.js"></script>
 
     <style>
-        /* --- VARIABLES (DEFAULTS) --- */
+        /* --- VARIABLES --- */
         :root {
             --main-color: #7b7f68;
             --accent-color: #223346;
@@ -42,12 +42,9 @@
         .time-number { font-size: 2.5rem; font-weight: 700; font-family: 'Playfair Display', serif; line-height: 1; }
         .time-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; opacity: 0.9; }
 
-        /* --- MAIN CONTENT --- */
+        /* --- CONTENT --- */
         .page-content {
-            position: relative;
-            margin-top: 100vh;
-            background: var(--bg-color);
-            z-index: 10;
+            position: relative; margin-top: 100vh; background: var(--bg-color); z-index: 10;
             box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
         }
 
@@ -59,20 +56,30 @@
         nav a { color: var(--main-color); text-decoration: none; margin: 0 15px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; font-size: 0.85rem; transition: color 0.3s; }
         nav a:hover { color: var(--accent-color); }
 
+        /* --- MAGAZINE LAYOUT --- */
+        .magazine-row {
+            display: flex;
+            align-items: center;
+            min-height: 600px;
+            overflow: hidden;
+        }
+        .mag-image {
+            flex: 1;
+            height: 600px;
+            background-size: cover;
+            background-position: center;
+        }
+        .mag-content {
+            flex: 1;
+            padding: 60px;
+            background: var(--bg-color);
+        }
+        /* Alternating Layout */
+        .magazine-row.reverse { flex-direction: row-reverse; }
+
         /* SECTIONS */
         section { padding: 80px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
         
-        /* PARALLAX IMAGE STRIPS */
-        .parallax-strip {
-            height: 400px;
-            background-attachment: fixed; /* THE MAGIC EFFECT */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            position: relative;
-        }
-
-        /* GRID & CARDS */
         .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
         .info-card { 
             background: var(--white); padding: 40px; border: 1px solid #e0e0e0; 
@@ -80,15 +87,16 @@
         }
         
         .btn { 
-            display: inline-block; background: var(--main-color); color: white; padding: 15px 35px; 
+            display: inline-block; background: var(--main-color); color: white; padding: 15px 30px; 
             text-decoration: none; border-radius: 4px; transition: 0.3s; cursor: pointer; border: none; 
-            font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; margin-top: 15px;
+            font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; margin-top: 15px;
         }
         .btn:hover { background: var(--accent-color); transform: translateY(-2px); }
 
-        /* FORM */
+        /* RSVP */
+        .rsvp-section { background: var(--white); padding-bottom: 100px;}
         .rsvp-wrapper { max-width: 600px; margin: 0 auto; text-align: left; }
-        input, textarea, select { width: 100%; padding: 15px; margin: 8px 0 25px; border: 1px solid #ccc; border-radius: 4px; background: #fafafa; font-family: inherit; font-size: 1rem; }
+        input, textarea { width: 100%; padding: 15px; margin: 8px 0 25px; border: 1px solid #ccc; border-radius: 4px; background: #fafafa; font-family: inherit; }
         input:focus { outline: 2px solid var(--main-color); border-color: transparent; }
         .hidden { display: none; }
         .card-result { border: 1px solid #eee; padding: 20px; margin-bottom: 10px; cursor: pointer; background: #fafafa; border-radius: 6px; }
@@ -97,10 +105,12 @@
         .tag.yes { background: #d4edda; color: #155724; }
         .tag.no { background: #f8d7da; color: #721c24; }
 
+        /* MOBILE */
         @media (max-width: 768px) {
-            .parallax-strip { background-attachment: scroll; height: 250px; } /* Disable fixed attachment on mobile for performance */
+            .magazine-row, .magazine-row.reverse { flex-direction: column; height: auto; }
+            .mag-image { width: 100%; height: 300px; }
+            .mag-content { padding: 40px 20px; }
             .hero-content h1 { font-size: 2.5rem; }
-            section { padding: 50px 20px; }
         }
     </style>
 </head>
@@ -123,7 +133,7 @@
         <nav>
             <a href="#details" id="nav-details">Details</a>
             <a href="#transport" id="nav-transport">Transport</a>
-            <a href="#travel" id="nav-stay">Travel</a>
+            <a href="#stay" id="nav-stay">Travel</a>
             <a href="#registry" id="nav-registry">Registry</a>
             <a href="#rsvp" id="nav-rsvp">RSVP</a>
         </nav>
@@ -147,41 +157,31 @@
             </div>
         </section>
 
-        <div class="parallax-strip" id="scroll-img-1"></div>
-
-        <section id="transport">
-            <h2 id="transport-title">Transportation</h2>
-            <p id="transport-body" style="max-width: 600px; margin: 0 auto 30px auto;">Transport info...</p>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3 id="shuttle-title">Shuttle</h3>
-                    <p id="shuttle-body" style="white-space: pre-line;">Info...</p>
-                </div>
-                <div class="info-card">
-                    <h3 id="drive-title">Driving</h3>
-                    <p id="drive-body">Info...</p>
-                </div>
+        <div class="magazine-row">
+            <div class="mag-image" id="mag-img-1"></div>
+            <div class="mag-content">
+                <section id="transport" style="padding: 0; text-align: left;">
+                    <h2 id="transport-title">Transportation</h2>
+                    <p id="transport-intro" style="margin-bottom: 30px;">Loading...</p>
+                    
+                    <div id="transport-list-container"></div>
+                </section>
             </div>
-        </section>
+        </div>
 
-        <div class="parallax-strip" id="scroll-img-2"></div>
+        <div class="magazine-row reverse">
+            <div class="mag-image" id="mag-img-2"></div>
+            <div class="mag-content">
+                <section id="stay" style="padding: 0; text-align: left;">
+                    <h2 id="stay-title">Travel & Stay</h2>
+                    <p id="stay-intro" style="margin-bottom: 30px;">Loading...</p>
+                    
+                    <div id="stay-list-container"></div>
 
-        <section id="travel" style="background-color: #f4f4f4;">
-            <h2 id="stay-title">Travel & Stay</h2>
-            <p id="stay-intro">Loading...</p>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3 id="hotel1-name">Hotel 1</h3>
-                    <p id="hotel1-price">$000</p>
-                    <a href="#" id="hotel1-btn" class="btn">Book</a>
-                </div>
-                <div class="info-card">
-                    <h3 id="hotel2-name">Hotel 2</h3>
-                    <p id="hotel2-price">$000</p>
-                    <a href="#" id="hotel2-btn" class="btn">Book</a>
-                </div>
+                    <div id="activity-links" style="margin-top: 30px; font-weight: bold;"></div>
+                </section>
             </div>
-        </section>
+        </div>
 
         <section id="registry">
             <h2 id="registry-title">Registry</h2>
@@ -243,33 +243,30 @@
     </div>
 
     <script>
-        // *** GOOGLE SCRIPT URL ***
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzKVSquR0BL4Y46spi4-1vRAmliqGKgrVA8uPKHUR4gPmx0MqWFARspRUIX73-T4xvNzg/exec";
 
-        // --- 1. APPLY CONFIG SETTINGS ---
         window.onload = function() {
             if (typeof CONFIG === 'undefined') return;
 
-            // Colors
+            // --- 1. APPLY COLORS & HERO ---
             const root = document.documentElement.style;
             if(CONFIG.colors) {
                 if(CONFIG.colors.main) root.setProperty('--main-color', CONFIG.colors.main);
                 if(CONFIG.colors.accent) root.setProperty('--accent-color', CONFIG.colors.accent);
                 if(CONFIG.colors.background) root.setProperty('--bg-color', CONFIG.colors.background);
             }
-
-            // Hero Images
-            if(CONFIG.heroImage) {
-                document.getElementById('hero-bg').style.backgroundImage = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('${CONFIG.heroImage}')`;
+            if(CONFIG.heroImage) document.getElementById('hero-bg').style.backgroundImage = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('${CONFIG.heroImage}')`;
+            
+            // --- 2. APPLY MAGAZINE IMAGES ---
+            if(CONFIG.magazine) {
+                if(CONFIG.magazine.photo1) document.getElementById('mag-img-1').style.backgroundImage = `url('${CONFIG.magazine.photo1}')`;
+                if(CONFIG.magazine.photo2) document.getElementById('mag-img-2').style.backgroundImage = `url('${CONFIG.magazine.photo2}')`;
             }
-            if(CONFIG.scrollImage1) document.getElementById('scroll-img-1').style.backgroundImage = `url('${CONFIG.scrollImage1}')`;
-            if(CONFIG.scrollImage2) document.getElementById('scroll-img-2').style.backgroundImage = `url('${CONFIG.scrollImage2}')`;
 
-            // Text Mapping Helper
+            // --- 3. GENERATE DYNAMIC CONTENT ---
             const setTxt = (id, txt) => { if(document.getElementById(id) && txt) document.getElementById(id).innerText = txt; };
             const setVal = (id, txt) => { if(document.getElementById(id) && txt) document.getElementById(id).placeholder = txt; };
 
-            // Hero
             setTxt('hero-title', CONFIG.hero.title);
             startCountdown(CONFIG.hero.targetDate);
 
@@ -283,43 +280,68 @@
             // Details
             setTxt('details-title', CONFIG.details.title);
             setTxt('details-date', CONFIG.details.dateText);
-            setTxt('ceremony-title', CONFIG.details.ceremonyTitle);
-            setTxt('ceremony-venue', CONFIG.details.ceremonyVenue);
-            setTxt('ceremony-time', CONFIG.details.ceremonyTime);
-            setTxt('ceremony-note', CONFIG.details.ceremonyNote);
-            setTxt('reception-title', CONFIG.details.receptionTitle);
-            setTxt('reception-venue', CONFIG.details.receptionVenue);
-            setTxt('reception-time', CONFIG.details.receptionTime);
-            setTxt('reception-note', CONFIG.details.receptionNote);
+            setTxt('ceremony-title', CONFIG.details.ceremony.title);
+            setTxt('ceremony-venue', CONFIG.details.ceremony.venue);
+            setTxt('ceremony-time', CONFIG.details.ceremony.time);
+            setTxt('ceremony-note', CONFIG.details.ceremony.note);
+            setTxt('reception-title', CONFIG.details.reception.title);
+            setTxt('reception-venue', CONFIG.details.reception.venue);
+            setTxt('reception-time', CONFIG.details.reception.time);
+            setTxt('reception-note', CONFIG.details.reception.note);
 
-            // Transport (New)
+            // --- GENERATE TRANSPORT LIST ---
             setTxt('transport-title', CONFIG.transport.title);
-            setTxt('transport-body', CONFIG.transport.body);
-            setTxt('shuttle-title', CONFIG.transport.shuttleTitle);
-            setTxt('shuttle-body', CONFIG.transport.shuttleBody);
-            setTxt('drive-title', CONFIG.transport.driveTitle);
-            setTxt('drive-body', CONFIG.transport.driveBody);
+            setTxt('transport-intro', CONFIG.transport.intro);
+            const transportContainer = document.getElementById('transport-list-container');
+            if(CONFIG.transport.options) {
+                CONFIG.transport.options.forEach(opt => {
+                    const item = document.createElement('div');
+                    item.style.marginBottom = "30px";
+                    item.innerHTML = `
+                        <h3 style="margin-bottom: 5px; color: var(--main-color);">${opt.type}</h3>
+                        <p style="margin-top:0; font-size:0.95rem;">${opt.desc}</p>
+                        ${opt.link ? `<a href="${opt.link}" target="_blank" style="color:var(--accent-color); font-weight:bold; text-decoration:underline;">${opt.btn} &rarr;</a>` : ''}
+                    `;
+                    transportContainer.appendChild(item);
+                });
+            }
 
-            // Stay
+            // --- GENERATE STAY LIST ---
             setTxt('stay-title', CONFIG.stay.title);
             setTxt('stay-intro', CONFIG.stay.intro);
-            setTxt('hotel1-name', CONFIG.stay.hotel1Name);
-            setTxt('hotel1-price', CONFIG.stay.hotel1Price);
-            setTxt('hotel1-btn', CONFIG.stay.hotel1Btn);
-            if(document.getElementById('hotel1-btn')) document.getElementById('hotel1-btn').href = CONFIG.stay.hotel1Link;
+            const stayContainer = document.getElementById('stay-list-container');
+            if(CONFIG.stay.recommendations) {
+                CONFIG.stay.recommendations.forEach(place => {
+                    const item = document.createElement('div');
+                    item.className = "info-card";
+                    item.style.marginBottom = "20px";
+                    item.style.padding = "20px";
+                    item.innerHTML = `
+                        <h3 style="margin: 0 0 10px 0;">${place.name}</h3>
+                        <p style="margin: 0 0 15px 0; font-size:0.9rem;">${place.desc}</p>
+                        ${place.link ? `<a href="${place.link}" target="_blank" class="btn" style="margin-top:0; padding:10px 20px; font-size:0.8rem;">${place.btn}</a>` : ''}
+                    `;
+                    stayContainer.appendChild(item);
+                });
+            }
 
-            setTxt('hotel2-name', CONFIG.stay.hotel2Name);
-            setTxt('hotel2-price', CONFIG.stay.hotel2Price);
-            setTxt('hotel2-btn', CONFIG.stay.hotel2Btn);
-            if(document.getElementById('hotel2-btn')) document.getElementById('hotel2-btn').href = CONFIG.stay.hotel2Link;
+            // Activity Links
+            if(CONFIG.stay.activityLinks) {
+                const actDiv = document.getElementById('activity-links');
+                CONFIG.stay.activityLinks.forEach(l => {
+                    const a = document.createElement('a');
+                    a.href = l.link; a.target = "_blank"; a.innerText = l.text;
+                    a.style.display = "block"; a.style.color = "var(--main-color)"; a.style.marginTop = "5px";
+                    actDiv.appendChild(a);
+                });
+            }
 
-            // Registry
+            // Registry & RSVP (Standard)
             setTxt('registry-title', CONFIG.registry.title);
             setTxt('registry-body', CONFIG.registry.body);
             setTxt('registry-btn', CONFIG.registry.btnText);
             if(document.getElementById('registry-btn')) document.getElementById('registry-btn').href = CONFIG.registry.link;
 
-            // RSVP
             setTxt('rsvp-title', CONFIG.rsvp.title);
             setTxt('rsvp-intro', CONFIG.rsvp.intro);
             setVal('name-search', CONFIG.rsvp.searchPlaceholder);
@@ -335,10 +357,10 @@
             setTxt('footer-text', CONFIG.hero.title + " • " + CONFIG.hero.date);
         };
 
-        // --- 2. COUNTDOWN ---
+        // --- COUNTDOWN, FADE, RSVP LOGIC (Same as before) ---
         function startCountdown(dateString) {
             const target = new Date(dateString).getTime();
-            setInterval(function() {
+            setInterval(() => {
                 const now = new Date().getTime();
                 const d = target - now;
                 if(d < 0) return; 
@@ -349,8 +371,7 @@
             }, 1000);
         }
 
-        // --- 3. HERO FADE EFFECT ---
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', () => {
             const scroll = window.scrollY;
             if (scroll < 600) {
                 const hero = document.querySelector('.hero-content');
@@ -359,7 +380,6 @@
             }
         });
 
-        // --- 4. RSVP FUNCTIONS ---
         function searchGuest() {
             const q = document.getElementById('name-search').value;
             if(!q) return alert("Please enter a name");
