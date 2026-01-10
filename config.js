@@ -45,10 +45,13 @@ const CONFIG = {
         body: "It all started five years ago at a coffee shop in Denver. Tom spilled his latte, Sarah offered him a napkin, and the rest is history. We have spent the last few years hiking every peak in Colorado, adopting our golden retriever, and building a life we love.",
     },
 
-    // --- SECTION: WEDDING PARTY ---
+// --- SECTION: WEDDING PARTY ---
     party: {
         title: "The Wedding Party",
-        people: [
+        
+        // LEFT SIDE (White Background / Olive Text)
+        brideSideTitle: "The Ladies",
+        bride: [
             {
                 name: "Jessica Smith",
                 role: "Maid of Honor",
@@ -56,18 +59,28 @@ const CONFIG = {
                 image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=80"
             },
             {
+                name: "Emily Davis",
+                role: "Bridesmaid",
+                bio: "Met Sarah in nursing school. The kindest soul you will ever meet.",
+                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80"
+            }
+        ],
+
+        // RIGHT SIDE (Navy Background / White Text)
+        groomSideTitle: "The Gents",
+        groom: [
+            {
                 name: "Mike Jones",
                 role: "Best Man",
                 bio: "Tom's college roommate. Once ate 50 chicken wings in one sitting. A true legend.",
                 image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80"
             },
             {
-                name: "Emily Davis",
-                role: "Bridesmaid",
-                bio: "Met Sarah in nursing school. The kindest soul you will ever meet.",
-                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80"
+                name: "Chris Johnson",
+                role: "Groomsman",
+                bio: "Tom's brother. He claims he's the better skier, but we all know the truth.",
+                image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80"
             }
-            // Copy and paste the block above to add more people!
         ]
     },
 
