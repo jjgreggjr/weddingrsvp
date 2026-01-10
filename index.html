@@ -5,23 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding RSVP</title>
     <style>
-        /* Simple styling for the demo - replace with your wedding theme CSS */
-        body { font-family: sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; }
+        /* Simple styling - we can make this pretty later */
+        body { font-family: sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; background-color: #f4f4f4; }
         .hidden { display: none; }
+        
+        /* Container styling */
+        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+
+        h2 { margin-top: 0; }
+        
+        /* Card styling for names */
         .card { border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 8px; cursor: pointer; transition: background 0.3s;}
-        .card:hover { background-color: #f9f9f9; }
-        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-left: 10px;}
+        .card:hover { background-color: #f9f9f9; border-color: #bbb; }
+        
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-left: 10px; font-weight: bold;}
         .tag-yes { background: #d4edda; color: #155724; }
         .tag-no { background: #f8d7da; color: #721c24; }
         .tag-pending { background: #fff3cd; color: #856404; }
         
-        input, textarea, select { width: 100%; padding: 10px; margin: 5px 0 15px; box-sizing: border-box; }
-        button { background: #333; color: white; padding: 10px 20px; border: none; cursor: pointer; }
-        button:disabled { background: #ccc; }
-        #rsvp-form-container { border-top: 2px solid #333; margin-top: 20px; padding-top: 20px; }
+        /* Form elements */
+        input, textarea, select { width: 100%; padding: 12px; margin: 8px 0 20px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        
+        button { background: #333; color: white; padding: 12px 24px; border: none; cursor: pointer; border-radius: 4px; font-size: 16px; width: 100%; }
+        button:hover { background: #555; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        
+        .secondary-btn { background: #999; margin-top: 10px; }
+        
+        #rsvp-form-container { border-top: 2px solid #eee; margin-top: 20px; padding-top: 20px; }
+        label { font-weight: bold; display: block; margin-top: 10px;}
+        
+        /* Radio button fix */
+        .radio-group { margin-bottom: 20px; }
+        .radio-group input { width: auto; margin-right: 5px; }
+        .radio-group label { display: inline; font-weight: normal; margin-right: 15px; }
     </style>
 </head>
 <body>
+
+<div class="container">
 
     <div id="search-section">
         <h2>Find Your Invitation</h2>
@@ -33,21 +55,26 @@
     <div id="results-section" class="hidden">
         <h3>Select your name:</h3>
         <div id="results-list"></div>
-        <button onclick="resetSearch()" style="margin-top:10px; background:#999;">Back to Search</button>
+        <button class="secondary-btn" onclick="resetSearch()">Back to Search</button>
     </div>
 
     <div id="rsvp-form-container" class="hidden">
         <h2 id="guest-greeting"></h2>
-        <p id="lock-message" style="color: #666; font-style: italic;"></p>
+        <p id="lock-message" style="color: #666; font-style: italic; background: #f0f0f0; padding: 10px; border-radius: 4px; display:none;"></p>
 
         <form id="rsvp-form" onsubmit="submitRSVP(event)">
             <input type="hidden" id="row-index">
             <input type="hidden" id="guest-first-name">
 
             <div id="rsvp-radio-group">
-                <label>Will you be attending?</label><br>
-                <input type="radio" name="rsvp_status" value="Yes" id="r-yes" style="width:auto;"> <label for="r-yes">Joyfully Accept</label><br>
-                <input type="radio" name="rsvp_status" value="No" id="r-no" style="width:auto;"> <label for="r-no">Regretfully Decline</label>
+                <label>Will you be attending?</label>
+                <div class="radio-group">
+                    <input type="radio" name="rsvp_status" value="Yes" id="r-yes"> 
+                    <label for="r-yes">Joyfully Accept</label>
+                    
+                    <input type="radio" name="rsvp_status" value="No" id="r-no"> 
+                    <label for="r-no">Regretfully Decline</label>
+                </div>
             </div>
 
             <div id="plus-one-wrapper" class="hidden">
@@ -62,46 +89,70 @@
             <textarea id="message" rows="3" placeholder="Leave a note..."></textarea>
 
             <button type="submit" id="submit-btn">Submit RSVP</button>
+            <button type="button" class="secondary-btn" onclick="resetSearch()">Cancel</button>
         </form>
     </div>
 
+</div>
+
     <script>
-        // *** PASTE YOUR GOOGLE SCRIPT DEPLOYMENT URL HERE ***
+        // ******************************************************
+        // IMPORTANT: PASTE YOUR GOOGLE SCRIPT URL BELOW
+        // ******************************************************
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzKVSquR0BL4Y46spi4-1vRAmliqGKgrVA8uPKHUR4gPmx0MqWFARspRUIX73-T4xvNzg/exec";
 
         let currentGuestData = {};
 
-        // 1. SEARCH FUNCTION
+        // 1. SEARCH FUNCTION (Fixed with error handling)
         function searchGuest() {
             const query = document.getElementById('name-search').value;
             if(!query) return alert("Please enter a name");
             
             const btn = document.querySelector('button');
+            const originalText = btn.textContent;
             btn.textContent = "Searching...";
             btn.disabled = true;
 
             fetch(`${SCRIPT_URL}?action=search&q=${encodeURIComponent(query)}`)
                 .then(res => res.json())
                 .then(data => {
+                    // ERROR HANDLING: Check if Google sent an error instead of a list
+                    if (data.status === 'error') {
+                        alert("Google Sheet Error: " + data.message + "\n\nTip: Check that your Sheet tab is named 'Guests'");
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                        return;
+                    }
+
+                    // If we get here, 'data' should be our list of guests
                     displayResults(data);
-                    btn.textContent = "Search";
+                    btn.textContent = originalText;
                     btn.disabled = false;
                 })
                 .catch(err => {
-                    alert("Error searching database");
-                    console.error(err);
+                    alert("Network Error: Could not connect to the database.\n\nPlease check your internet connection or try again later.");
+                    console.error("Fetch error:", err);
+                    btn.textContent = originalText;
+                    btn.disabled = false;
                 });
         }
 
         // 2. DISPLAY MATCHES
         function displayResults(guests) {
+            // Safety check: Ensure guests is actually an array
+            if (!Array.isArray(guests)) {
+                alert("Unexpected data received from server. See console for details.");
+                console.error("Expected array, got:", guests);
+                return;
+            }
+
             const list = document.getElementById('results-list');
             list.innerHTML = "";
             document.getElementById('search-section').classList.add('hidden');
             document.getElementById('results-section').classList.remove('hidden');
 
             if(guests.length === 0) {
-                list.innerHTML = "<p>No names found. Please try again or contact the couple.</p>";
+                list.innerHTML = "<p>No names found. Try searching just your first or last name.</p>";
                 return;
             }
 
@@ -130,7 +181,7 @@
             // Populate Greeting
             document.getElementById('guest-greeting').textContent = `Hi, ${guest.firstName}!`;
             document.getElementById('row-index').value = guest.rowIndex;
-            document.getElementById('guest-first-name').value = guest.firstName; // Security check
+            document.getElementById('guest-first-name').value = guest.firstName;
 
             // Populate Editable Fields
             document.getElementById('accommodation').value = guest.accommodation || "";
@@ -138,7 +189,10 @@
             
             // PLUS ONE LOGIC
             const plusOneWrapper = document.getElementById('plus-one-wrapper');
-            if(guest.hasPlusOne === true || guest.hasPlusOne === "TRUE") {
+            // Check for various forms of "True" (boolean or string)
+            const hasPlusOne = String(guest.hasPlusOne).toLowerCase() === 'true';
+            
+            if(hasPlusOne) {
                 plusOneWrapper.classList.remove('hidden');
                 document.getElementById('plus-one-name').value = guest.plusOneName || "";
             } else {
@@ -149,11 +203,14 @@
             const radios = document.getElementsByName('rsvp_status');
             const lockMsg = document.getElementById('lock-message');
             
-            if(guest.rsvp) {
-                // ALREADY RSVP'D
+            // If they have already RSVP'd
+            if(guest.rsvp && guest.rsvp !== "") {
                 lockMsg.textContent = `You have already RSVP'd: ${guest.rsvp}. You can update your accommodation and message below.`;
+                lockMsg.style.display = 'block';
+                
                 // Disable radios
                 radios.forEach(r => r.disabled = true);
+                
                 // Check the correct box visually
                 if(guest.rsvp === 'Yes') document.getElementById('r-yes').checked = true;
                 if(guest.rsvp === 'No') document.getElementById('r-no').checked = true;
@@ -163,8 +220,11 @@
 
             } else {
                 // NEW RSVP
-                lockMsg.textContent = "";
-                radios.forEach(r => r.disabled = false);
+                lockMsg.style.display = 'none';
+                radios.forEach(r => {
+                    r.disabled = false;
+                    r.checked = false; // Reset selection
+                });
                 document.getElementById('plus-one-name').disabled = false;
             }
         }
@@ -173,6 +233,7 @@
         function submitRSVP(e) {
             e.preventDefault();
             const btn = document.getElementById('submit-btn');
+            const originalText = btn.textContent;
             btn.textContent = "Saving...";
             btn.disabled = true;
 
@@ -181,6 +242,14 @@
             document.getElementsByName('rsvp_status').forEach(r => {
                 if(r.checked) rsvpVal = r.value;
             });
+
+            // Validation: Must select Yes or No if not already locked
+            if(!rsvpVal && !document.getElementById('r-yes').disabled) {
+                alert("Please select whether you are attending or not.");
+                btn.textContent = originalText;
+                btn.disabled = false;
+                return;
+            }
 
             // Prepare Payload
             const payload = {
@@ -192,6 +261,8 @@
                 message: document.getElementById('message').value
             };
 
+            // Using no-cors mode is not suitable here because we need the response
+            // The Google Script must be deployed as "Anyone" for this to work
             fetch(SCRIPT_URL + "?action=submit", {
                 method: 'POST',
                 body: JSON.stringify(payload)
@@ -199,23 +270,27 @@
             .then(res => res.json())
             .then(data => {
                 if(data.status === 'success') {
-                    alert("Saved successfully!");
-                    window.location.reload(); // Reload to start over
+                    alert("Saved successfully! We can't wait to see you.");
+                    window.location.reload(); 
                 } else {
                     alert("Error saving: " + data.message);
+                    btn.textContent = originalText;
+                    btn.disabled = false;
                 }
             })
             .catch(err => {
                 console.error(err);
                 alert("Network error. Please try again.");
+                btn.textContent = originalText;
                 btn.disabled = false;
-                btn.textContent = "Submit RSVP";
             });
         }
 
         function resetSearch() {
             document.getElementById('results-section').classList.add('hidden');
+            document.getElementById('rsvp-form-container').classList.add('hidden');
             document.getElementById('search-section').classList.remove('hidden');
+            document.getElementById('name-search').value = "";
         }
     </script>
 </body>
