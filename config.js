@@ -2,13 +2,13 @@ const CONFIG = {
     // ... (Keep your existing colors, hero, etc.) ...
 
     // --- IMAGES ---
-    heroImage: "hero.jpg", 
+    heroImage: "hero.JPG", 
     magazine: {
-        photo1: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800&q=80", 
-        photo2: "https://images.unsplash.com/photo-1520854221256-17451cc330e7?auto=format&fit=crop&w=800&q=80",
+        photo1: "Handout.JPG", 
+        photo2: "arm.JPG",
         
         // NEW: The image for your "About Us" story
-        about: "https://images.unsplash.com/photo-1522673607200-1645062cd495?auto=format&fit=crop&w=800&q=80"
+        about: "907A3642.JPG"
     },
 
     // --- NAVIGATION ---
