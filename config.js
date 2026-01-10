@@ -17,7 +17,7 @@ const CONFIG = {
 
     // --- HERO SECTION ---
     hero: {
-        title: "Sarah & Tom",
+        title: "JJ & CCC",
         date: "June 19, 2027",
         targetDate: "June 19, 2027 16:00:00 GMT-0600" // Date for Countdown
     },
