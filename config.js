@@ -12,7 +12,7 @@ const CONFIG = {
     heroImage: "hero.JPG", 
     
     // These are the elegant "break" images between sections
-    scrollImage1: "silly.JPG", // Between Details & Transport
+    scrollImage1: "Handout.JPG", // Between Details & Transport
     scrollImage2: "arm.JPG", // Between Transport & Stay
 
     // --- HERO SECTION ---
