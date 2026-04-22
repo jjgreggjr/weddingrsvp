@@ -6,270 +6,270 @@
     <title>CCC & JMG | 06.19.2027</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Oswald:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <script src="config.js"></script>
 
     <style>
-        /* --- VARIABLES --- */
+        /* =========================================================
+           LIFT & LODGE — summer mountain wedding theme
+           pine · wood · wheat gold · cream · slate
+           ========================================================= */
+
         :root {
-            --main-color: #7b7f68;
-            --accent-color: #223346;
-            --warm-accent: #d4bfa8;
-            --bg-color: #f9f9f7;
-            --white: #ffffff;
-            --hero-overlay: rgba(0,0,0,0.4);
+            --pine:       #3d5c3a;
+            --pine-dark:  #2c4229;
+            --wood:       #a86f3f;
+            --gold:       #d4a94a;
+            --sky:        #a8c5dc;
+            --cream:      #fbf6e7;
+            --cream-deep: #f3e8cd;
+            --slate:      #2f3540;
+            --white:      #ffffff;
+            --text:       #2f3540;
+            --muted:      #7a7969;
+
+            /* aliases so existing classes keep working */
+            --main-color:   var(--pine);
+            --accent-color: var(--slate);
+            --warm-accent:  var(--gold);
+            --bg-color:     var(--cream);
+            --hero-overlay: rgba(47,53,64,0.55);
         }
 
-        html { scroll-behavior: smooth; }
-        body, html { margin: 0; padding: 0; font-family: 'Lato', sans-serif; color: #333; line-height: 1.6; height: 100%; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--accent-color); margin-top: 0; }
-        h2 { font-weight: 600; font-size: 2.1rem; letter-spacing: 0.5px; }
-        h3 { font-weight: 500; }
         * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body, html { margin: 0; padding: 0; font-family: 'Lato', sans-serif; color: var(--text); line-height: 1.7; height: 100%; background: var(--cream); }
 
-        /* HERO */
-        .hero-container { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background-color: var(--accent-color); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); }
-        .hero-content h1 { font-size: 3.5rem; margin: 0; color: var(--white); font-style: italic; text-shadow: 0 2px 10px rgba(0,0,0,0.3); animation: heroFadeIn 1.6s ease-out both; }
-        @keyframes heroFadeIn {
-            0%   { opacity: 0; transform: translateY(24px); letter-spacing: 0.3em; }
-            100% { opacity: 1; transform: translateY(0);    letter-spacing: normal; }
+        /* ---------- TYPOGRAPHY ---------- */
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--slate); margin-top: 0; line-height: 1.2; }
+        h2 { font-weight: 600; font-size: 2.6rem; font-style: italic; letter-spacing: -0.3px; }
+        h3 { font-weight: 500; font-size: 1.45rem; }
+        p  { margin-top: 0; }
+
+        .tower-label {
+            display: inline-flex; align-items: center;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase; letter-spacing: 5px;
+            font-size: 0.78rem; font-weight: 500;
+            color: var(--wood); margin-bottom: 14px;
         }
-        #countdown { animation: fadeInUp 1s ease-out 0.8s both; }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(16px); }
-            to   { opacity: 1; transform: translateY(0); }
+        .tower-label::before {
+            content: ''; display: inline-block;
+            width: 10px; height: 10px; background: var(--gold);
+            transform: rotate(45deg); margin-right: 14px; flex-shrink: 0;
         }
-        
-        /* COUNTDOWN */
-        #countdown { display: flex; gap: 20px; margin-top: 30px; justify-content: center; }
-        .time-box { display: flex; flex-direction: column; align-items: center; }
-        .time-number { font-size: 2.5rem; font-weight: 700; font-family: 'Playfair Display', serif; line-height: 1; }
-        .time-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; opacity: 0.9; }
+        .tower-label.light { color: var(--gold); }
 
-        /* CONTENT */
-        .page-content { position: relative; margin-top: 100vh; background: var(--bg-color); z-index: 10; box-shadow: 0 -10px 30px rgba(0,0,0,0.1); }
+        /* ---------- HERO ---------- */
+        .hero-container { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background-color: var(--slate); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--cream); }
+        .hero-content { padding: 0 20px; max-width: 900px; position: relative; }
+        .hero-meta { font-family: 'Oswald', sans-serif; font-size: 0.78rem; letter-spacing: 7px; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; opacity: 0; animation: fadeDown 1.2s 0.3s ease-out forwards; }
+        .hero-content h1 { font-size: 5.5rem; margin: 0; color: var(--cream); font-style: italic; font-weight: 700; text-shadow: 0 3px 24px rgba(0,0,0,0.5); opacity: 0; animation: heroReveal 1.8s 0.5s ease-out forwards; }
+        .hero-flourish { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 22px 0 0; font-family: 'Oswald', sans-serif; font-size: 0.82rem; letter-spacing: 5px; text-transform: uppercase; color: var(--cream); opacity: 0; animation: fadeUp 1.4s 1s ease-out forwards; }
+        .hero-flourish::before, .hero-flourish::after { content: ''; width: 40px; height: 1px; background: var(--gold); }
+        @keyframes heroReveal { from { opacity: 0; letter-spacing: 0.25em; transform: translateY(20px); } to { opacity: 1; letter-spacing: normal; transform: translateY(0); } }
+        @keyframes fadeUp     { from { opacity: 0; transform: translateY(14px); }  to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeDown   { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* NAV */
-        nav { background: var(--white); padding: 20px 0; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #eee; text-align: center; display: flex; justify-content: center; flex-wrap: wrap; }
-        nav a { color: var(--main-color); text-decoration: none; margin: 0 15px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; font-size: 0.85rem; transition: color 0.3s; }
-        nav a:hover { color: var(--accent-color); }
+        /* ---------- COUNTDOWN ---------- */
+        #countdown { display: flex; gap: 18px; margin-top: 42px; justify-content: center; opacity: 0; animation: fadeUp 1.2s 1.3s ease-out forwards; }
+        .time-box { display: flex; flex-direction: column; align-items: center; min-width: 78px; padding: 14px 12px; border: 1px solid rgba(212,169,74,0.35); background: rgba(47,53,64,0.35); backdrop-filter: blur(8px); }
+        .time-number { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 600; line-height: 1; font-style: italic; color: var(--cream); }
+        .time-label { font-family: 'Oswald', sans-serif; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 3px; margin-top: 8px; color: var(--gold); }
 
-        /* MAGAZINE LAYOUT */
-        .magazine-row { display: flex; align-items: center; min-height: 600px; overflow: hidden; }
-        .mag-image { flex: 1; height: 600px; background-size: cover; background-position: center; filter: saturate(0.92) contrast(1.02); transition: filter 0.6s ease; }
-        .mag-image:hover { filter: saturate(1.04) contrast(1.04); }
-        .mag-content { flex: 1; padding: 60px; background: var(--bg-color); }
-        .magazine-row.reverse { flex-direction: row-reverse; }
-
-        /* SECTIONS */
-        section { padding: 80px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-        .info-card { background: var(--white); padding: 40px; border: 1px solid #e0e0e0; border-top: 4px solid var(--main-color); box-shadow: 0 4px 15px rgba(0,0,0,0.03); border-radius: 4px; }
-        .btn { display: inline-block; background: var(--main-color); color: white; padding: 15px 30px; text-decoration: none; border-radius: 4px; transition: 0.3s; cursor: pointer; border: none; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; margin-top: 15px; }
-        .btn:hover { background: var(--accent-color); transform: translateY(-2px); }
-
-        /* --- WEDDING PARTY: HORIZONTAL SPLIT --- */
-        .party-split-container {
-            display: flex;
-            flex-wrap: wrap;
-            width: 100%;
-            height: 600px; /* Fixed height container */
-        }
-        .party-col {
-            flex: 1;
-            min-width: 320px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            position: relative;
+        /* ---------- PAGE CONTENT + LIFT CABLE ---------- */
+        .page-content { position: relative; margin-top: 100vh; background: var(--cream); z-index: 10; box-shadow: 0 -12px 40px rgba(47,53,64,0.25); }
+        .page-content::before {
+            content: ''; position: absolute; top: 60px; bottom: 0; left: 58px; width: 2px;
+            background: repeating-linear-gradient(to bottom, var(--wood) 0, var(--wood) 8px, transparent 8px, transparent 18px);
+            opacity: 0.4; pointer-events: none; z-index: 1;
         }
 
-        /* BRIDE SIDE STYLING */
-        .party-col.bride { background: var(--white); color: #333; }
-        .party-col.bride h3 { color: var(--main-color); }
-        .party-col.bride .party-nav-item { color: #aaa; border-bottom: 2px solid transparent; }
-        .party-col.bride .party-nav-item:hover, .party-col.bride .party-nav-item.active { color: var(--main-color); border-color: var(--main-color); }
+        /* ---------- NAV ---------- */
+        nav { background: rgba(251,246,231,0.92); backdrop-filter: blur(8px); padding: 14px 20px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(168,111,63,0.18); text-align: center; display: flex; justify-content: center; flex-wrap: wrap; }
+        nav a { color: var(--pine); text-decoration: none; margin: 4px 14px; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2.5px; font-weight: 500; font-size: 0.78rem; transition: color 0.3s; position: relative; }
+        nav a:hover { color: var(--wood); }
+        nav a::after { content: ''; position: absolute; left: 50%; bottom: -4px; width: 0; height: 1px; background: var(--wood); transition: width 0.3s ease, left 0.3s ease; }
+        nav a:hover::after { width: 100%; left: 0; }
 
-        /* GROOM SIDE STYLING */
-        .party-col.groom { background: var(--accent-color); color: var(--white); }
-        .party-col.groom h3 { color: var(--white); }
-        .party-col.groom .party-nav-item { color: #888; border-bottom: 2px solid transparent; }
-        .party-col.groom .party-nav-item:hover, .party-col.groom .party-nav-item.active { color: var(--white); border-color: var(--white); }
-        .party-col.groom .party-role { color: #ddd; } 
+        /* ---------- SECTIONS ---------- */
+        section { padding: 100px 50px 100px 120px; max-width: 1000px; margin: 0 auto; }
+        .chapter-head { margin-bottom: 32px; }
+        .chapter-intro { font-size: 1.05rem; max-width: 680px; line-height: 1.8; opacity: 0.88; }
 
-        /* HEADER & NAV */
-        .party-header { padding: 30px 20px 10px 20px; text-align: center; z-index: 2; flex-shrink: 0; }
-        .party-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 10px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; }
+        /* ---------- MAGAZINE LAYOUT ---------- */
+        .magazine-row { display: flex; align-items: stretch; min-height: 560px; overflow: hidden; padding-left: 100px; background: var(--cream); position: relative; }
+        .magazine-row.reverse { flex-direction: row-reverse; padding-left: 40px; padding-right: 100px; }
+        .mag-image { flex: 1; min-height: 520px; background-size: cover; background-position: center; filter: saturate(0.88) sepia(0.1) contrast(1.04); margin: 40px 0; box-shadow: 0 10px 30px rgba(47,53,64,0.18); transition: filter 0.6s ease; position: relative; }
+        .mag-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(212,169,74,0.1), transparent 55%); pointer-events: none; }
+        .mag-image:hover { filter: saturate(1) sepia(0.04) contrast(1.05); }
+        .mag-content { flex: 1; padding: 60px 70px; display: flex; flex-direction: column; justify-content: center; }
+        .magazine-row h2 { font-size: 2.4rem; }
+
+        /* ---------- CARDS ---------- */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 34px; }
+        .info-card { background: var(--white); padding: 34px 28px; border: 1px solid rgba(61,92,58,0.1); border-top: 4px solid var(--wood); box-shadow: 0 3px 12px rgba(47,53,64,0.07); border-radius: 2px; transition: transform 0.35s ease, box-shadow 0.35s ease, border-top-color 0.35s ease; }
+        .info-card:hover { transform: translateY(-5px); box-shadow: 0 12px 28px rgba(47,53,64,0.14); border-top-color: var(--gold); }
+        .info-card h3 { color: var(--pine); font-style: italic; font-size: 1.5rem; }
+
+        /* ---------- BUTTONS ---------- */
+        .btn { display: inline-block; background: var(--pine); color: var(--cream); padding: 16px 34px; text-decoration: none; font-family: 'Oswald', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 3.5px; text-transform: uppercase; border: none; cursor: pointer; border-radius: 2px; transition: all 0.35s ease; margin-top: 15px; box-shadow: 0 3px 10px rgba(47,53,64,0.15); position: relative; overflow: hidden; }
+        .btn:hover { background: var(--wood); color: var(--cream); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(47,53,64,0.22); }
+
+        /* ---------- WEDDING PARTY SPLIT ---------- */
+        .party-split-container { display: flex; flex-wrap: wrap; width: 100%; height: 620px; background: var(--cream-deep); }
+        .party-col { flex: 1; min-width: 320px; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+        .party-col.bride { background: var(--cream); color: var(--text); }
+        .party-col.bride h3 { color: var(--pine); }
+        .party-col.bride .party-nav-item { color: var(--muted); border-bottom: 2px solid transparent; }
+        .party-col.bride .party-nav-item:hover, .party-col.bride .party-nav-item.active { color: var(--pine); border-color: var(--pine); }
+        .party-col.groom { background: var(--slate); color: var(--cream); }
+        .party-col.groom h3 { color: var(--cream); }
+        .party-col.groom .party-nav-item { color: rgba(251,246,231,0.5); border-bottom: 2px solid transparent; }
+        .party-col.groom .party-nav-item:hover, .party-col.groom .party-nav-item.active { color: var(--gold); border-color: var(--gold); }
+        .party-col.groom .party-role { color: var(--gold); }
+
+        .party-header { padding: 32px 20px 10px; text-align: center; z-index: 2; flex-shrink: 0; }
+        .party-header h3 { font-size: 1.9rem; font-style: italic; margin: 0 0 6px; }
+        .party-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 8px; font-family: 'Oswald', sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; }
         .party-nav-item { padding-bottom: 3px; transition: 0.3s; }
+        .party-hint { margin: 12px 0 0; font-size: 0.65rem; font-family: 'Oswald', sans-serif; letter-spacing: 3px; text-transform: uppercase; opacity: 0.5; }
 
-        /* SCROLL AREA (HORIZONTAL) */
-        .party-scroller {
-            flex: 1;
-            display: flex; /* Horizontal Layout */
-            flex-direction: row;
-            overflow-x: auto;
-            overflow-y: hidden;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            align-items: center; /* Vertically center cards */
-        }
-        .party-scroller::-webkit-scrollbar { height: 6px; }
-        .party-scroller::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.2); border-radius: 3px;}
+        .party-scroller { flex: 1; display: flex; flex-direction: row; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-behavior: smooth; align-items: center; }
+        .party-scroller::-webkit-scrollbar { height: 4px; }
+        .party-scroller::-webkit-scrollbar-thumb { background: rgba(168,111,63,0.3); border-radius: 3px; }
 
-        /* CARDS */
-        .party-card {
-            min-width: 100%; /* Take full width of the column */
-            scroll-snap-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px 40px;
-        }
-        .party-img {
-            width: 180px; height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 4px solid rgba(255,255,255,0.2);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .party-role {
-            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px;
-            color: var(--main-color);
-        }
-        .party-bio { font-style: italic; max-width: 350px; margin: 0 auto; opacity: 0.9; line-height: 1.5;}
+        .party-card { min-width: 100%; scroll-snap-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px 40px; }
+        .party-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 3px solid var(--gold); box-shadow: 0 8px 22px rgba(47,53,64,0.2); transition: transform 0.5s ease, box-shadow 0.5s ease; }
+        .party-img:hover { transform: scale(1.04); box-shadow: 0 12px 28px rgba(47,53,64,0.28); }
+        .party-role { font-family: 'Oswald', sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 500; margin-bottom: 10px; color: var(--wood); }
+        .party-bio { font-style: italic; max-width: 360px; margin: 0 auto; opacity: 0.88; line-height: 1.6; }
 
-        /* RSVP */
-        .rsvp-section { background: var(--white); padding-bottom: 100px;}
-        .rsvp-wrapper { max-width: 600px; margin: 0 auto; text-align: left; }
-        input, textarea { width: 100%; padding: 15px; margin: 8px 0 25px; border: 1px solid #ccc; border-radius: 4px; background: #fafafa; font-family: inherit; }
-        input:focus { outline: 2px solid var(--main-color); border-color: transparent; }
-        .hidden { display: none; }
-        .card-result { border: 1px solid #eee; padding: 20px; margin-bottom: 10px; cursor: pointer; background: #fafafa; border-radius: 6px; }
-        .card-result:hover { background: #eee; }
-        .tag { float: right; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; text-transform: uppercase; font-weight: bold; }
-        .tag.yes { background: #d4edda; color: #155724; }
-        .tag.no { background: #f8d7da; color: #721c24; }
+        .party-scroll-btn { position: absolute; top: 58%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer; z-index: 3; font-size: 1.5rem; line-height: 1; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 12px rgba(47,53,64,0.2); transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease; font-family: Georgia, serif; padding: 0; }
+        .party-scroll-btn.prev { left: 10px; }
+        .party-scroll-btn.next { right: 10px; }
+        .party-scroll-btn:hover { transform: translateY(-50%) scale(1.1); box-shadow: 0 6px 18px rgba(47,53,64,0.3); }
+        .party-col.bride .party-scroll-btn { background: var(--gold); color: var(--slate); }
+        .party-col.bride .party-scroll-btn:hover { background: var(--wood); color: var(--cream); }
+        .party-col.groom .party-scroll-btn { background: rgba(251,246,231,0.15); color: var(--gold); border: 1px solid rgba(212,169,74,0.4); }
+        .party-col.groom .party-scroll-btn:hover { background: var(--gold); color: var(--slate); border-color: var(--gold); }
 
-        /* FORM SECTIONS */
-        .form-section { background: #fafafa; padding: 25px 20px; border-radius: 6px; margin-bottom: 20px; border: 1px solid #e8e8e8; }
-        .form-section + .form-section { border-top: 3px solid var(--main-color); }
-        .section-heading { margin: 0 0 15px 0; color: var(--main-color); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 2px; font-family: 'Lato', sans-serif; font-weight: 700; }
-        .form-label { display: block; font-weight: bold; margin-top: 15px; margin-bottom: 5px; font-size: 0.9rem; }
-        .radio-row { display: flex; gap: 20px; margin-bottom: 10px; flex-wrap: wrap; }
-        .radio-row label { display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: normal; font-size: 0.95rem; }
-        .radio-row input[type="radio"] { width: auto; margin: 0; }
-        .locked-notice { text-align: center; padding: 40px 20px; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 8px; color: #856404; }
-        .contact-box { background: #fff; padding: 15px 18px 5px; border-radius: 4px; border-left: 3px solid var(--main-color); margin: 15px 0; }
-        .contact-note-text { margin: 0 0 12px 0; font-size: 0.82rem; color: #666; font-style: italic; line-height: 1.5; }
-        .contact-box .form-label:first-of-type { margin-top: 0; }
-        .field-note { margin: -15px 0 15px 0; font-size: 0.8rem; color: #888; font-style: italic; line-height: 1.4; }
-        .section-note { margin: 0 0 15px 0; font-size: 0.85rem; color: #666; font-style: italic; line-height: 1.5; }
-        .field-error { margin: -18px 0 15px 0; font-size: 0.8rem; color: #c0392b; min-height: 1.2em; font-weight: 500; }
-        input.invalid, textarea.invalid { border-color: #c0392b !important; background: #fff5f5 !important; }
+        /* ---------- ALTITUDE (SLATE PANEL) ---------- */
+        #altitude { max-width: none; padding: 0; background: var(--slate); color: var(--cream); margin: 0; position: relative; }
+        .altitude-inner { max-width: 1000px; margin: 0 auto; padding: 100px 50px 100px 120px; text-align: center; position: relative; }
+        #altitude h2 { color: var(--cream); font-size: 2.8rem; }
+        .altitude-stat-block { margin: 30px 0 40px; }
+        .altitude-stat { font-family: 'Playfair Display', serif; font-size: 6rem; font-weight: 500; line-height: 1; font-style: italic; letter-spacing: 1px; color: var(--gold); }
+        .altitude-stat-unit { font-size: 1.6rem; letter-spacing: 3px; margin-left: 10px; font-style: normal; opacity: 0.9; vertical-align: top; position: relative; top: 14px; color: var(--cream); font-family: 'Oswald', sans-serif; }
+        .altitude-stat-label { font-family: 'Oswald', sans-serif; font-size: 0.72rem; letter-spacing: 5px; text-transform: uppercase; margin-top: 12px; opacity: 0.7; }
+        #altitude-intro { margin: 0 auto 40px; max-width: 620px; line-height: 1.8; opacity: 0.92; font-size: 1.02rem; color: var(--cream); }
+        .altitude-tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; text-align: left; }
+        .altitude-tip { background: rgba(212,169,74,0.08); padding: 22px 24px 22px 58px; border-radius: 2px; position: relative; font-size: 0.93rem; line-height: 1.6; border: 1px solid rgba(212,169,74,0.2); transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease; }
+        .altitude-tip:hover { background: rgba(212,169,74,0.15); transform: translateY(-2px); border-color: rgba(212,169,74,0.4); }
+        .altitude-tip::before { content: attr(data-num); position: absolute; left: 18px; top: 20px; width: 28px; height: 28px; background: var(--gold); color: var(--slate); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 600; font-family: 'Oswald', sans-serif; }
 
-        /* SCROLL INDICATOR */
+        /* ---------- IMPORTANT CALLOUT ---------- */
+        .important-callout { background: var(--cream-deep); border-left: 4px solid var(--wood); padding: 20px 24px; margin: 14px 0 28px; border-radius: 2px; position: relative; box-shadow: 0 2px 10px rgba(168,111,63,0.12); }
+        .important-callout::before { content: "IMPORTANT"; display: block; font-family: 'Oswald', sans-serif; font-size: 0.74rem; font-weight: 600; letter-spacing: 4px; color: var(--wood); margin-bottom: 10px; }
+        .important-callout p { margin: 0; font-size: 0.95rem; line-height: 1.65; white-space: pre-line; }
+
+        /* ---------- SECTION DIVIDER ---------- */
+        .section-divider { display: flex; align-items: center; justify-content: center; padding: 50px 20px 20px 120px; max-width: 600px; margin: 0 auto; gap: 18px; }
+        .section-divider .line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--wood), transparent); opacity: 0.5; }
+        .section-divider .mark { width: 10px; height: 10px; background: var(--gold); transform: rotate(45deg); opacity: 0.85; }
+
+        /* ---------- FADE-IN ---------- */
+        .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.85s ease, transform 0.85s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ---------- SCROLL INDICATOR ---------- */
         .scroll-indicator { position: absolute; bottom: 40px; left: 50%; margin-left: -14px; width: 28px; height: 28px; cursor: pointer; opacity: 0.85; transition: opacity 0.4s ease; animation: bounce 2.2s infinite ease-in-out; }
-        .scroll-indicator::before { content: ''; display: block; width: 18px; height: 18px; margin: 3px auto 0; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+        .scroll-indicator::before { content: ''; display: block; width: 18px; height: 18px; margin: 3px auto 0; border: solid var(--cream); border-width: 0 2px 2px 0; transform: rotate(45deg); }
         .scroll-indicator.faded { opacity: 0; pointer-events: none; }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(14px); } }
 
-        /* FADE-IN ON SCROLL */
-        .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.9s ease, transform 0.9s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        /* ---------- RSVP (SUMMIT) ---------- */
+        .rsvp-section { background: var(--slate); color: var(--cream); padding: 100px 50px 120px 120px; max-width: none; margin: 0; }
+        .rsvp-section h2 { color: var(--cream); text-align: center; }
+        .rsvp-section #rsvp-intro { text-align: center; max-width: 600px; margin: 0 auto 30px; opacity: 0.85; }
+        .rsvp-summit-badge { display: inline-flex; align-items: center; gap: 14px; font-family: 'Oswald', sans-serif; font-size: 0.8rem; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin: 0 auto 14px; justify-content: center; width: 100%; }
+        .rsvp-summit-badge::before, .rsvp-summit-badge::after { content: ''; width: 40px; height: 1px; background: var(--gold); }
+        .rsvp-wrapper { max-width: 640px; margin: 0 auto; text-align: left; }
 
-        /* SECTION DIVIDER */
-        .section-divider { display: flex; align-items: center; justify-content: center; padding: 60px 20px 20px; max-width: 500px; margin: 0 auto; gap: 18px; }
-        .section-divider .line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--main-color), transparent); opacity: 0.5; }
-        .section-divider .mark { width: 9px; height: 9px; background: var(--main-color); transform: rotate(45deg); opacity: 0.75; }
+        input, textarea { width: 100%; padding: 14px 16px; margin: 8px 0 22px; border: 1px solid rgba(47,53,64,0.15); border-radius: 2px; background: var(--white); font-family: inherit; font-size: 1rem; color: var(--text); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+        input:focus, textarea:focus { outline: none; border-color: var(--wood); box-shadow: 0 0 0 3px rgba(168,111,63,0.15); }
+        .hidden { display: none; }
 
-        /* ALTITUDE SECTION */
-        #altitude { max-width: none; padding: 0; background: var(--accent-color); color: white; margin: 0; }
-        .altitude-inner { max-width: 900px; margin: 0 auto; padding: 90px 20px; text-align: center; }
-        #altitude h2 { color: white; }
-        .altitude-stat-block { margin: 30px 0 40px; }
-        .altitude-stat { font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 300; line-height: 1; font-style: italic; letter-spacing: 1px; }
-        .altitude-stat-unit { font-size: 1.6rem; letter-spacing: 3px; margin-left: 10px; font-style: normal; opacity: 0.85; vertical-align: top; position: relative; top: 12px; }
-        .altitude-stat-label { font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase; margin-top: 10px; opacity: 0.7; }
-        #altitude-intro { margin: 0 auto 40px; max-width: 620px; line-height: 1.7; opacity: 0.92; font-size: 1.02rem; }
-        .altitude-tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; text-align: left; }
-        .altitude-tip { background: rgba(255,255,255,0.07); padding: 20px 22px 20px 56px; border-radius: 6px; position: relative; font-size: 0.92rem; line-height: 1.55; border: 1px solid rgba(255,255,255,0.12); transition: background 0.3s ease, transform 0.3s ease; }
-        .altitude-tip:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
-        .altitude-tip::before { content: attr(data-num); position: absolute; left: 16px; top: 20px; width: 26px; height: 26px; background: var(--warm-accent); color: var(--accent-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; font-family: 'Lato', sans-serif; }
+        .card-result { border: 1px solid rgba(212,169,74,0.3); padding: 20px; margin-bottom: 10px; cursor: pointer; background: rgba(251,246,231,0.06); border-radius: 2px; color: var(--cream); transition: background 0.25s ease, border-color 0.25s ease; }
+        .card-result:hover { background: rgba(251,246,231,0.12); border-color: var(--gold); }
+        .tag { float: right; font-size: 0.7rem; padding: 3px 10px; border-radius: 2px; text-transform: uppercase; font-weight: 600; letter-spacing: 1.5px; font-family: 'Oswald', sans-serif; }
+        .tag.yes { background: rgba(61,92,58,0.85); color: var(--cream); }
+        .tag.no  { background: rgba(196,122,74,0.85); color: var(--cream); }
 
-        /* PARTY SCROLL BUTTONS + HINT */
-        .party-hint { margin: 12px 0 0; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.55; font-weight: 500; }
-        .party-scroll-btn { position: absolute; top: 58%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; border: none; cursor: pointer; z-index: 3; font-size: 1.4rem; line-height: 1; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px rgba(0,0,0,0.15); transition: transform 0.2s ease, box-shadow 0.2s ease; font-family: Georgia, serif; padding: 0; }
-        .party-scroll-btn.prev { left: 10px; }
-        .party-scroll-btn.next { right: 10px; }
-        .party-scroll-btn:hover { transform: translateY(-50%) scale(1.08); box-shadow: 0 5px 14px rgba(0,0,0,0.22); }
-        .party-col.bride .party-scroll-btn { background: white; color: var(--main-color); }
-        .party-col.groom .party-scroll-btn { background: rgba(255,255,255,0.12); color: white; border: 1px solid rgba(255,255,255,0.25); }
-        .party-col.groom .party-scroll-btn:hover { background: rgba(255,255,255,0.22); }
+        .form-section { background: rgba(251,246,231,0.05); padding: 26px 24px; border-radius: 2px; margin-bottom: 22px; border: 1px solid rgba(212,169,74,0.2); }
+        .section-heading { margin: 0 0 16px; color: var(--gold); font-family: 'Oswald', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 600; }
+        .form-label { display: block; font-family: 'Oswald', sans-serif; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; margin: 16px 0 8px; font-size: 0.78rem; color: var(--cream); opacity: 0.85; }
+        .radio-row { display: flex; gap: 22px; margin-bottom: 8px; flex-wrap: wrap; }
+        .radio-row label { display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 400; font-size: 0.95rem; color: var(--cream); }
+        .radio-row input[type="radio"] { width: auto; margin: 0; accent-color: var(--gold); }
 
-        /* IMPORTANT CALLOUT */
-        .important-callout { background: #fdfbf7; border-left: 4px solid var(--main-color); padding: 18px 22px; margin: 10px 0 25px 0; border-radius: 4px; position: relative; box-shadow: 0 2px 8px rgba(123,127,104,0.08); }
-        .important-callout::before { content: "IMPORTANT"; display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 3px; color: var(--main-color); margin-bottom: 10px; font-family: 'Lato', sans-serif; }
-        .important-callout p { margin: 0; font-size: 0.92rem; line-height: 1.6; white-space: pre-line; }
+        .locked-notice { text-align: center; padding: 40px 20px; background: rgba(168,111,63,0.15); border: 1px solid var(--wood); border-radius: 2px; color: var(--cream); }
 
-        /* CHAR COUNTER */
-        .char-counter { margin: -18px 0 12px 0; font-size: 0.75rem; color: #999; text-align: right; letter-spacing: 0.5px; }
-        .char-counter.near-limit { color: #c08040; }
-        .char-counter.at-limit { color: #c0392b; font-weight: 600; }
+        .contact-box { background: rgba(251,246,231,0.04); padding: 18px 20px 8px; border-radius: 2px; border-left: 3px solid var(--gold); margin: 18px 0; }
+        .contact-note-text { margin: 0 0 14px; font-size: 0.83rem; color: var(--cream); opacity: 0.75; font-style: italic; line-height: 1.55; }
+        .contact-box .form-label:first-of-type { margin-top: 0; }
 
-        /* BUTTON WARM-ACCENT HOVER */
-        .btn { position: relative; overflow: hidden; }
-        .btn:hover { background: var(--accent-color); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(34,51,70,0.18); }
+        .field-note { margin: -14px 0 15px; font-size: 0.8rem; color: rgba(251,246,231,0.6); font-style: italic; line-height: 1.4; }
+        .section-note { margin: 0 0 18px; font-size: 0.86rem; color: rgba(251,246,231,0.75); font-style: italic; line-height: 1.6; }
+        .field-error { margin: -18px 0 15px; font-size: 0.8rem; color: #ffb4a0; min-height: 1.2em; font-weight: 500; }
+        input.invalid, textarea.invalid { border-color: #ffb4a0 !important; background: rgba(255,180,160,0.12) !important; }
 
-        /* PARTY IMAGE POLISH */
-        .party-img { transition: transform 0.6s ease, box-shadow 0.6s ease; }
-        .party-img:hover { transform: scale(1.04); box-shadow: 0 8px 22px rgba(0,0,0,0.18); }
+        .results-heading { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; color: var(--gold); text-align: center; margin: 0 0 20px; }
+        .results-heading-sub { font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(251,246,231,0.6); text-align: center; margin: -15px 0 24px; }
 
-        /* CARD HOVER */
-        .info-card { transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; }
-        .info-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-top-color: var(--warm-accent); }
+        .char-counter { margin: -18px 0 14px; font-size: 0.75rem; color: rgba(251,246,231,0.55); text-align: right; letter-spacing: 1px; font-family: 'Oswald', sans-serif; }
+        .char-counter.near-limit { color: var(--gold); }
+        .char-counter.at-limit { color: #ffb4a0; font-weight: 600; }
 
-        /* SOFTER NAV UNDERLINE */
-        nav a { position: relative; }
-        nav a::after { content: ''; position: absolute; left: 50%; bottom: -4px; width: 0; height: 1px; background: var(--accent-color); transition: width 0.3s ease, left 0.3s ease; }
-        nav a:hover::after { width: 100%; left: 0; }
+        /* ---------- FOOTER ---------- */
+        footer { background: var(--slate) !important; color: var(--cream) !important; padding: 50px 20px 70px !important; border-top: 1px solid rgba(212,169,74,0.2); }
+        footer p { font-family: 'Oswald', sans-serif; letter-spacing: 4px; text-transform: uppercase; font-size: 0.78rem; color: var(--gold); margin: 0; }
 
-        /* RESULTS HEADING */
-        .results-heading { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: var(--accent-color); text-align: center; margin: 0 0 20px 0; }
-        .results-heading-sub { font-size: 0.85rem; color: #888; text-align: center; margin: -15px 0 20px 0; font-style: italic; }
-
+        /* ---------- MOBILE ---------- */
         @media (max-width: 768px) {
-            .magazine-row, .magazine-row.reverse { flex-direction: column; height: auto; }
-            .mag-image { width: 100%; height: 280px; }
-            .mag-content { padding: 40px 20px; }
-            .hero-content h1 { font-size: 2.3rem; }
-            .hero-content { padding: 0 20px; }
+            .page-content::before { left: 18px; }
+            section { padding: 70px 22px 70px 54px; }
+            .magazine-row, .magazine-row.reverse { flex-direction: column; height: auto; padding: 0 22px 0 54px; }
+            .mag-image { width: 100%; min-height: 260px; margin: 24px 0 0; }
+            .mag-content { padding: 30px 0 40px; }
+            .hero-content h1 { font-size: 3rem; }
+            .hero-meta { letter-spacing: 4px; font-size: 0.72rem; }
+            .hero-flourish { letter-spacing: 3px; font-size: 0.75rem; }
+            .hero-flourish::before, .hero-flourish::after { width: 25px; }
 
-            /* Party Mobile */
             .party-split-container { height: auto; display: block; }
-            .party-col { height: 480px; margin-bottom: 0; }
+            .party-col { height: 500px; margin-bottom: 0; }
 
-            /* Nav Mobile */
-            nav { padding: 14px 0; }
-            nav a { margin: 4px 8px; font-size: 0.72rem; letter-spacing: 0.5px; }
+            nav { padding: 12px 0; padding-left: 54px; }
+            nav a { margin: 4px 8px; font-size: 0.7rem; letter-spacing: 1.5px; }
 
-            /* Countdown Mobile */
-            #countdown { gap: 14px; margin-top: 24px; }
-            .time-number { font-size: 2rem; }
-            .time-label { font-size: 0.68rem; letter-spacing: 1.5px; }
+            #countdown { gap: 10px; margin-top: 28px; }
+            .time-box { min-width: 62px; padding: 10px 8px; }
+            .time-number { font-size: 1.8rem; }
+            .time-label { font-size: 0.62rem; letter-spacing: 2px; }
 
-            /* Section + card Mobile */
-            section { padding: 50px 18px; }
-            .info-card { padding: 25px 20px; }
-            .info-grid { gap: 18px; margin-top: 28px; }
-            .form-section { padding: 20px 15px; }
-            .contact-box { padding: 15px 14px 2px; }
+            h2 { font-size: 2rem; }
+            #altitude h2 { font-size: 2.2rem; }
+            .altitude-stat { font-size: 4.2rem; }
+            .altitude-inner { padding: 70px 22px 70px 54px; }
+            .info-card { padding: 26px 22px; }
+            .info-grid { gap: 16px; margin-top: 28px; }
+            .form-section { padding: 22px 18px; }
+            .contact-box { padding: 14px 14px 2px; }
             .rsvp-wrapper { padding: 0 4px; }
-            .radio-row { gap: 14px; }
-
-            /* Scroll indicator smaller on mobile */
+            .rsvp-section { padding: 70px 22px 80px 54px; }
+            .radio-row { gap: 16px; }
+            .section-divider { padding-left: 54px; max-width: 400px; }
             .scroll-indicator { bottom: 28px; }
         }
     </style>
@@ -278,7 +278,9 @@
 
     <div class="hero-container" id="hero-bg">
         <div class="hero-content">
+            <div class="hero-meta">Granby, Colorado · Summer 2027</div>
             <h1 id="hero-title">CCC & JMG</h1>
+            <div class="hero-flourish"><span>June 19, 2027</span></div>
             <div id="countdown">
                 <div class="time-box"><span class="time-number" id="d">00</span><span class="time-label">Days</span></div>
                 <div class="time-box"><span class="time-number" id="h">00</span><span class="time-label">Hours</span></div>
@@ -303,14 +305,69 @@
         <div class="magazine-row fade-in" id="about">
             <div class="mag-image" id="mag-about"></div>
             <div class="mag-content">
+                <span class="tower-label">Tower 01</span>
                 <h2 id="about-title">Our Story</h2>
                 <p id="about-body">Loading story...</p>
             </div>
         </div>
 
-        <section id="party" class="fade-in" style="padding: 0; max-width: 100%;">
+        <div class="magazine-row fade-in" id="venue">
+            <div class="mag-image" id="mag-venue"></div>
+            <div class="mag-content">
+                <span class="tower-label">Tower 02</span>
+                <h2 id="venue-title">The Venue</h2>
+                <p id="venue-body">Loading...</p>
+            </div>
+        </div>
+
+        <section id="details" class="fade-in">
+            <span class="tower-label">Tower 03</span>
+            <h2 id="details-title">The Details</h2>
+            <p id="details-date" class="chapter-intro">Date Loading...</p>
+            <div class="info-grid" id="events-container"></div>
+        </section>
+
+        <div class="magazine-row fade-in">
+            <div class="mag-image" id="mag-img-1"></div>
+            <div class="mag-content">
+                <section id="transport" style="padding: 0; max-width: none;">
+                    <span class="tower-label">Tower 04</span>
+                    <h2 id="transport-title">Transportation</h2>
+                    <p id="transport-intro" style="margin-bottom: 30px;">Loading...</p>
+                    <div id="transport-list-container"></div>
+                </section>
+            </div>
+        </div>
+
+        <section id="stay" class="fade-in">
+            <span class="tower-label">Tower 05</span>
+            <h2 id="stay-title">Travel & Stay</h2>
+            <p id="stay-intro" class="chapter-intro" style="margin-bottom: 18px;">Loading...</p>
+            <div class="important-callout" id="stay-important"><p id="stay-important-body"></p></div>
+            <div id="stay-list-container" class="info-grid"></div>
+            <div id="activity-links" style="margin-top: 36px; font-weight: bold;"></div>
+        </section>
+
+        <section id="altitude" class="fade-in altitude-section">
+            <div class="altitude-inner">
+                <span class="tower-label light">Tower 06</span>
+                <h2 id="altitude-title">A Note on the Altitude</h2>
+                <div class="altitude-stat-block">
+                    <div class="altitude-stat"><span id="altitude-stat-num">7,935</span><span class="altitude-stat-unit">FT</span></div>
+                    <div class="altitude-stat-label" id="altitude-stat-label">Elevation at Granby Ranch</div>
+                </div>
+                <p id="altitude-intro">Loading...</p>
+                <div id="altitude-tips" class="altitude-tips-grid"></div>
+            </div>
+        </section>
+
+        <section id="party" class="fade-in" style="padding: 0; max-width: none;">
+            <div style="max-width: 1000px; margin: 0 auto; padding: 80px 50px 20px 120px;">
+                <span class="tower-label">Tower 07</span>
+                <h2 style="margin-bottom: 8px;">The Wedding Party</h2>
+            </div>
             <div class="party-split-container">
-                
+
                 <div class="party-col bride">
                     <div class="party-header">
                         <h3 id="party-bride-title">The Ladies</h3>
@@ -336,67 +393,15 @@
             </div>
         </section>
 
-        <div class="section-divider fade-in" aria-hidden="true"><span class="line"></span><span class="mark"></span><span class="line"></span></div>
-
-        <div class="magazine-row fade-in" id="venue">
-            <div class="mag-image" id="mag-venue"></div>
-            <div class="mag-content">
-                <h2 id="venue-title">The Venue</h2>
-                <p id="venue-body">Loading...</p>
-            </div>
-        </div>
-
-        <section id="details" class="fade-in">
-            <h2 id="details-title">The Details</h2>
-            <p id="details-date">Date Loading...</p>
-            <div class="info-grid" id="events-container"></div>
-        </section>
-
-        <div class="magazine-row fade-in">
-            <div class="mag-image" id="mag-img-1"></div>
-            <div class="mag-content">
-                <section id="transport" style="padding: 0; text-align: left;">
-                    <h2 id="transport-title">Transportation</h2>
-                    <p id="transport-intro" style="margin-bottom: 30px;">Loading...</p>
-                    <div id="transport-list-container"></div>
-                </section>
-            </div>
-        </div>
-
-        <section id="altitude" class="fade-in altitude-section">
-            <div class="altitude-inner">
-                <h2 id="altitude-title">A Note on the Altitude</h2>
-                <div class="altitude-stat-block">
-                    <div class="altitude-stat"><span id="altitude-stat-num">7,935</span><span class="altitude-stat-unit">FT</span></div>
-                    <div class="altitude-stat-label" id="altitude-stat-label">Elevation at Granby Ranch</div>
-                </div>
-                <p id="altitude-intro">Loading...</p>
-                <div id="altitude-tips" class="altitude-tips-grid"></div>
-            </div>
-        </section>
-
-        <div class="magazine-row reverse fade-in">
-            <div class="mag-image" id="mag-img-2"></div>
-            <div class="mag-content">
-                <section id="stay" style="padding: 0; text-align: left;">
-                    <h2 id="stay-title">Travel & Stay</h2>
-                    <p id="stay-intro" style="margin-bottom: 18px;">Loading...</p>
-                    <div class="important-callout" id="stay-important"><p id="stay-important-body"></p></div>
-                    <div id="stay-list-container"></div>
-                    <div id="activity-links" style="margin-top: 30px; font-weight: bold;"></div>
-                </section>
-            </div>
-        </div>
-
-        <div class="section-divider fade-in" aria-hidden="true"><span class="line"></span><span class="mark"></span><span class="line"></span></div>
-
         <section id="registry" class="fade-in">
+            <span class="tower-label">Tower 08</span>
             <h2 id="registry-title">Registry</h2>
             <p id="registry-body">Loading...</p>
             <a id="registry-btn" href="#" target="_blank" class="btn">View Registry</a>
         </section>
 
         <section id="rsvp" class="rsvp-section fade-in">
+            <div class="rsvp-summit-badge">The Summit</div>
             <h2 id="rsvp-title">RSVP</h2>
             <p id="rsvp-intro">Search name...</p>
             <div class="rsvp-wrapper">
@@ -532,9 +537,10 @@
             
             // IMAGES
             if(CONFIG.magazine) {
-                if(CONFIG.magazine.photo1) document.getElementById('mag-img-1').style.backgroundImage = `url('${CONFIG.magazine.photo1}')`;
-                if(CONFIG.magazine.photo2) document.getElementById('mag-img-2').style.backgroundImage = `url('${CONFIG.magazine.photo2}')`;
-                if(CONFIG.magazine.about) document.getElementById('mag-about').style.backgroundImage = `url('${CONFIG.magazine.about}')`;
+                const setBg = (id, url) => { const el = document.getElementById(id); if(el && url) el.style.backgroundImage = `url('${url}')`; };
+                setBg('mag-img-1', CONFIG.magazine.photo1);
+                setBg('mag-img-2', CONFIG.magazine.photo2);
+                setBg('mag-about', CONFIG.magazine.about);
             }
 
             // NAV & TEXT
@@ -640,12 +646,10 @@
                 CONFIG.stay.recommendations.forEach(place => {
                     const item = document.createElement('div');
                     item.className = "info-card";
-                    item.style.marginBottom = "20px";
-                    item.style.padding = "20px";
                     item.innerHTML = `
                         <h3 style="margin: 0 0 10px 0;">${place.name}</h3>
-                        <p style="margin: 0 0 15px 0; font-size:0.9rem;">${place.desc}</p>
-                        ${place.link ? `<a href="${place.link}" target="_blank" class="btn" style="margin-top:0; padding:10px 20px; font-size:0.8rem;">${place.btn}</a>` : ''}
+                        <p style="margin: 0 0 18px 0; font-size:0.92rem; line-height:1.6;">${place.desc}</p>
+                        ${place.link ? `<a href="${place.link}" target="_blank" class="btn" style="margin-top:0; padding:12px 22px; font-size:0.72rem;">${place.btn}</a>` : ''}
                     `;
                     stayContainer.appendChild(item);
                 });
