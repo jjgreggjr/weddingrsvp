@@ -63,16 +63,16 @@
         /* ---------- HERO ---------- */
         .hero-container { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background-color: var(--slate); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--cream); }
         .hero-content { padding: 0 20px; max-width: 900px; position: relative; }
-        .hero-meta { font-family: 'Oswald', sans-serif; font-size: 0.78rem; letter-spacing: 7px; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; opacity: 0; animation: fadeDown 1.2s 0.3s ease-out forwards; }
-        .hero-content h1 { font-size: 5.5rem; margin: 0; color: var(--cream); font-style: italic; font-weight: 700; text-shadow: 0 3px 24px rgba(0,0,0,0.5); opacity: 0; animation: heroReveal 1.8s 0.5s ease-out forwards; }
-        .hero-flourish { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 22px 0 0; font-family: 'Oswald', sans-serif; font-size: 0.82rem; letter-spacing: 5px; text-transform: uppercase; color: var(--cream); opacity: 0; animation: fadeUp 1.4s 1s ease-out forwards; }
+        .hero-meta { font-family: 'Oswald', sans-serif; font-size: 0.78rem; letter-spacing: 7px; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; animation: fadeDown 1.2s 0.3s ease-out both; }
+        .hero-content h1 { font-size: 5.5rem; margin: 0; color: var(--cream); font-style: italic; font-weight: 700; text-shadow: 0 3px 24px rgba(0,0,0,0.5); animation: heroReveal 1.8s 0.5s ease-out both; }
+        .hero-flourish { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 22px 0 0; font-family: 'Oswald', sans-serif; font-size: 0.82rem; letter-spacing: 5px; text-transform: uppercase; color: var(--cream); animation: fadeUp 1.4s 1s ease-out both; }
         .hero-flourish::before, .hero-flourish::after { content: ''; width: 40px; height: 1px; background: var(--gold); }
         @keyframes heroReveal { from { opacity: 0; letter-spacing: 0.25em; transform: translateY(20px); } to { opacity: 1; letter-spacing: normal; transform: translateY(0); } }
         @keyframes fadeUp     { from { opacity: 0; transform: translateY(14px); }  to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeDown   { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: translateY(0); } }
 
         /* ---------- COUNTDOWN ---------- */
-        #countdown { display: flex; gap: 18px; margin-top: 42px; justify-content: center; opacity: 0; animation: fadeUp 1.2s 1.3s ease-out forwards; }
+        #countdown { display: flex; gap: 18px; margin-top: 42px; justify-content: center; animation: fadeUp 1.2s 1.3s ease-out both; }
         .time-box { display: flex; flex-direction: column; align-items: center; min-width: 78px; padding: 14px 12px; border: 1px solid rgba(212,169,74,0.35); background: rgba(47,53,64,0.35); backdrop-filter: blur(8px); }
         .time-number { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 600; line-height: 1; font-style: italic; color: var(--cream); }
         .time-label { font-family: 'Oswald', sans-serif; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 3px; margin-top: 8px; color: var(--gold); }
@@ -101,6 +101,7 @@
         .magazine-row { display: flex; align-items: stretch; min-height: 560px; overflow: hidden; padding-left: 100px; background: var(--cream); position: relative; }
         .magazine-row.reverse { flex-direction: row-reverse; padding-left: 40px; padding-right: 100px; }
         .mag-image { flex: 1; min-height: 520px; background-size: cover; background-position: center; filter: saturate(0.88) sepia(0.1) contrast(1.04); margin: 40px 0; box-shadow: 0 10px 30px rgba(47,53,64,0.18); transition: filter 0.6s ease; position: relative; }
+        #mag-img-1 { background-position: 30% center; }
         .mag-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(212,169,74,0.1), transparent 55%); pointer-events: none; }
         .mag-image:hover { filter: saturate(1) sepia(0.04) contrast(1.05); }
         .mag-content { flex: 1; padding: 60px 70px; display: flex; flex-direction: column; justify-content: center; }
@@ -115,6 +116,8 @@
         /* ---------- BUTTONS ---------- */
         .btn { display: inline-block; background: var(--pine); color: var(--cream); padding: 16px 34px; text-decoration: none; font-family: 'Oswald', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 3.5px; text-transform: uppercase; border: none; cursor: pointer; border-radius: 2px; transition: all 0.35s ease; margin-top: 15px; box-shadow: 0 3px 10px rgba(47,53,64,0.15); position: relative; overflow: hidden; }
         .btn:hover { background: var(--wood); color: var(--cream); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(47,53,64,0.22); }
+        .btn.disabled { background: #b5b0a1; color: var(--cream); cursor: not-allowed; pointer-events: none; opacity: 0.75; box-shadow: none; }
+        .btn.disabled:hover { background: #b5b0a1; transform: none; box-shadow: none; }
 
         /* ---------- WEDDING PARTY SPLIT ---------- */
         .party-split-container { display: flex; flex-wrap: wrap; width: 100%; height: 620px; background: var(--cream-deep); }
@@ -153,6 +156,10 @@
         .party-col.bride .party-scroll-btn:hover { background: var(--wood); color: var(--cream); }
         .party-col.groom .party-scroll-btn { background: rgba(251,246,231,0.15); color: var(--gold); border: 1px solid rgba(212,169,74,0.4); }
         .party-col.groom .party-scroll-btn:hover { background: var(--gold); color: var(--slate); border-color: var(--gold); }
+
+        /* ---------- PARTY PLACEHOLDER ---------- */
+        .party-placeholder { max-width: 780px; margin: 20px auto 80px; padding: 60px 30px; text-align: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.25rem; color: var(--muted); border-top: 1px dashed rgba(168,111,63,0.4); border-bottom: 1px dashed rgba(168,111,63,0.4); }
+        .party-placeholder::before { content: '✦'; display: block; color: var(--gold); font-size: 1.5rem; margin-bottom: 14px; font-style: normal; }
 
         /* ---------- ALTITUDE (SLATE PANEL) ---------- */
         #altitude { max-width: none; padding: 0; background: var(--slate); color: var(--cream); margin: 0; position: relative; }
@@ -366,6 +373,7 @@
                 <span class="tower-label">Tower 07</span>
                 <h2 style="margin-bottom: 8px;">The Wedding Party</h2>
             </div>
+            <div class="party-placeholder" id="party-placeholder" style="display: none;"></div>
             <div class="party-split-container">
 
                 <div class="party-col bride">
@@ -561,11 +569,21 @@
 
             // PARTY
             if(CONFIG.party) {
-                setTxt('party-bride-title', CONFIG.party.brideSideTitle || "Bride's Party");
-                generatePartyColumn(CONFIG.party.bride, 'bride-scroller', 'bride-nav', 'b-card');
+                if(CONFIG.party.placeholder) {
+                    const container = document.querySelector('.party-split-container');
+                    const ph = document.getElementById('party-placeholder');
+                    if(container) container.style.display = 'none';
+                    if(ph) {
+                        ph.innerText = CONFIG.party.placeholder;
+                        ph.style.display = 'block';
+                    }
+                } else {
+                    setTxt('party-bride-title', CONFIG.party.brideSideTitle || "Bride's Party");
+                    generatePartyColumn(CONFIG.party.bride, 'bride-scroller', 'bride-nav', 'b-card');
 
-                setTxt('party-groom-title', CONFIG.party.groomSideTitle || "Groom's Party");
-                generatePartyColumn(CONFIG.party.groom, 'groom-scroller', 'groom-nav', 'g-card');
+                    setTxt('party-groom-title', CONFIG.party.groomSideTitle || "Groom's Party");
+                    generatePartyColumn(CONFIG.party.groom, 'groom-scroller', 'groom-nav', 'g-card');
+                }
             }
 
             // DETAILS
@@ -667,8 +685,18 @@
             // REGISTRY & RSVP
             setTxt('registry-title', CONFIG.registry.title);
             setTxt('registry-body', CONFIG.registry.body);
-            setTxt('registry-btn', CONFIG.registry.btnText);
-            if(document.getElementById('registry-btn')) document.getElementById('registry-btn').href = CONFIG.registry.link;
+            const registryBtn = document.getElementById('registry-btn');
+            if(registryBtn) {
+                if(CONFIG.registry.comingSoon) {
+                    registryBtn.innerText = CONFIG.registry.comingSoonText || 'Registry coming soon...';
+                    registryBtn.classList.add('disabled');
+                    registryBtn.removeAttribute('href');
+                    registryBtn.setAttribute('aria-disabled', 'true');
+                } else {
+                    registryBtn.innerText = CONFIG.registry.btnText || 'View Registry';
+                    if(CONFIG.registry.link) registryBtn.href = CONFIG.registry.link;
+                }
+            }
 
             setTxt('rsvp-title', CONFIG.rsvp.title);
             setTxt('rsvp-intro', CONFIG.rsvp.intro);
@@ -753,8 +781,10 @@
             const scroll = window.scrollY;
             if (scroll < 600) {
                 const hero = document.querySelector('.hero-content');
-                hero.style.opacity = 1 - (scroll / 500);
-                hero.style.transform = `translateY(${scroll * 0.4}px)`;
+                if (hero) {
+                    hero.style.opacity = 1 - (scroll / 500);
+                    hero.style.transform = `translateY(${scroll * 0.3}px)`;
+                }
             }
             const indicator = document.getElementById('scroll-indicator');
             if(indicator) {

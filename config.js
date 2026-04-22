@@ -42,6 +42,9 @@ const CONFIG = {
 
     party: {
         title: "The Wedding Party",
+        // Set to a string to hide bride/groom columns and show a coming-soon note instead.
+        // Remove or set to "" to re-enable the full party section.
+        placeholder: "Our bridal and groom parties are coming soon — we're still putting the finishing touches on our lineup. Check back later!",
         // LEFT SIDE (White/Olive)
         brideSideTitle: "The Goiois",
         bride: [
@@ -216,7 +219,7 @@ const CONFIG = {
         tips: [
             "Start hydrating a week before you arrive. Double your normal water intake and keep it up all weekend.",
             "Go easy on alcohol and caffeine — both hit harder up here and dehydrate you faster. 😉",
-            "Sleep low, party light on night one. Plan an easy Friday.",
+            "Sleep well, party light on night one. Plan an easy Friday.",
             "Sunscreen and lip balm — the sun is stronger at altitude, even when it's cool out.",
             "If you feel a headache, dizziness, or nausea, rest and drink water.",
             "Talk to your doctor about ibuprofen or prescription acetazolamide if you're sensitive to altitude."
@@ -288,7 +291,10 @@ const CONFIG = {
         title: "Registry",
         body: "Your presence is the greatest gift. However, should you wish to help us celebrate with a gift, a registry is held at:",
         btnText: "View Registry",
-        link: "https://www.zola.com"
+        link: "https://www.zola.com",
+        // Set comingSoon: false once the registry is live. While true, the button is greyed out + non-clickable.
+        comingSoon: true,
+        comingSoonText: "Registry coming soon..."
     },
 
     rsvp: {
