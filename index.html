@@ -180,6 +180,16 @@
         .important-callout::before { content: "IMPORTANT"; display: block; font-family: 'Oswald', sans-serif; font-size: 0.74rem; font-weight: 600; letter-spacing: 4px; color: var(--wood); margin-bottom: 10px; }
         .important-callout p { margin: 0; font-size: 0.95rem; line-height: 1.65; white-space: pre-line; }
 
+        /* ---------- WALK RADIUS MAP ---------- */
+        .walk-map { margin: 8px 0 30px; background: var(--white); border: 1px solid rgba(61,92,58,0.12); border-radius: 3px; box-shadow: 0 4px 16px rgba(47,53,64,0.09); overflow: hidden; }
+        .walk-map img { display: block; width: 100%; height: auto; }
+        .walk-map-caption { position: relative; padding: 24px 30px 26px; border-top: 4px solid var(--gold); }
+        .walk-map-badge { display: inline-flex; align-items: center; gap: 8px; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2.5px; font-size: 0.72rem; font-weight: 600; color: var(--cream); background: var(--pine); padding: 8px 15px; border-radius: 2px; margin-bottom: 14px; box-shadow: 0 3px 8px rgba(47,53,64,0.18); }
+        .walk-map-badge::before { content: '🥾'; font-size: 0.95rem; }
+        .walk-map-caption p { margin: 0; font-size: 0.95rem; line-height: 1.75; color: var(--text); }
+        .walk-map-legend { display: flex; align-items: center; gap: 10px; margin-top: 16px; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.66rem; color: var(--muted); }
+        .walk-map-legend::before { content: ''; flex: 0 0 36px; height: 0; border-top: 3px solid rgba(192,57,43,0.85); }
+
         /* ---------- SECTION DIVIDER ---------- */
         .section-divider { display: flex; align-items: center; justify-content: center; padding: 50px 20px 20px 120px; max-width: 600px; margin: 0 auto; gap: 18px; }
         .section-divider .line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--wood), transparent); opacity: 0.5; }
@@ -352,6 +362,7 @@
             <h2 id="stay-title">Travel & Stay</h2>
             <p id="stay-intro" class="chapter-intro" style="margin-bottom: 18px;">Loading...</p>
             <div class="important-callout" id="stay-important"><p id="stay-important-body"></p></div>
+            <div id="walk-map-container"></div>
             <div id="stay-list-container" class="info-grid"></div>
             <div id="activity-links" style="margin-top: 36px; font-weight: bold;"></div>
         </section>
@@ -667,6 +678,20 @@
             } else {
                 const callout = document.getElementById('stay-important');
                 if(callout) callout.style.display = 'none';
+            }
+            const walkMapContainer = document.getElementById('walk-map-container');
+            if(walkMapContainer && CONFIG.stay.walkMap && CONFIG.stay.walkMap.image) {
+                const wm = CONFIG.stay.walkMap;
+                walkMapContainer.innerHTML = `
+                    <figure class="walk-map">
+                        <img src="${wm.image}" alt="Map showing a roughly 25-minute walking radius around the wedding reception at Granby Ranch">
+                        <figcaption class="walk-map-caption">
+                            ${wm.badge ? `<span class="walk-map-badge">${wm.badge}</span>` : ''}
+                            ${wm.caption ? `<p>${wm.caption}</p>` : ''}
+                            ${wm.legend ? `<div class="walk-map-legend">${wm.legend}</div>` : ''}
+                        </figcaption>
+                    </figure>
+                `;
             }
             const stayContainer = document.getElementById('stay-list-container');
             if(CONFIG.stay.recommendations) {

@@ -20,7 +20,7 @@ const CONFIG = {
     hero: {
         title: "CCC & JMG",
         date: "June 19, 2027",
-        targetDate: "June 19, 2027 16:00:00 GMT-0600" 
+        targetDate: "June 19, 2027 15:30:00 GMT-0600"
     },
 
     // --- NAV ---
@@ -190,7 +190,7 @@ const CONFIG = {
                 time: "3:00 PM",
                 venue: "Granby Ranch",
                 address: "1000 Village Rd, Granby, CO 80446",
-                dressCode: "Semi-formal",
+                dressCode: "Formal attire",
                 note: "Please arrive by 2:30 PM.",
                 hosts: "Lisa & Erik Olson"
             },
@@ -200,7 +200,7 @@ const CONFIG = {
                 time: "Following the ceremony",
                 venue: "Granby Ranch",
                 address: "1000 Village Rd, Granby, CO 80446",
-                dressCode: "Semi-formal",
+                dressCode: "Formal attire",
                 note: "Cocktails, dinner & dancing.",
                 hosts: "Lisa & Erik Olson"
             },
@@ -294,7 +294,13 @@ const CONFIG = {
         activityLinks: [
             { text: "Summer in Granby Blog", link: "https://www.destinationgranby.com/blog/post/summer-in-granby/" },
             { text: "Grand County Summer Activities", link: "https://www.visitgrandcounty.com/play/summer-activities" }
-        ]
+        ],
+        walkMap: {
+            image: "walking-radius-map.png",
+            badge: "Within a 25-Minute Walk",
+            caption: "This outline shows roughly everything within a 25-minute walk of the reception — just so you can picture it. You don't need to stay inside the circle! Plenty of homes a little farther out are still close by, and our shuttle will run at the end of the reception to get everyone back to their lodging either way.",
+            legend: "Red outline ≈ a 25-minute walk to the reception"
+        }
     },
 
     registry: {
@@ -329,7 +335,7 @@ const CONFIG = {
             },
             {
                 q: "Is there a dress code?",
-                a: "We're asking that all guests come dressed in semi-formal attire for the wedding. Please wear comfortable shoes, as the wedding takes place outside and there's a short walk from the chair lift to the ceremony. Shuttles will be provided to and from Granby Ranch for the welcome party."
+                a: "We're asking that all guests come dressed in formal attire for the wedding. Please wear comfortable shoes, as the wedding takes place outside and there's a short walk from the chair lift to the ceremony. Shuttles will be provided to and from Granby Ranch for the welcome party."
             },
             {
                 q: "Can I bring a guest?",
