@@ -31,6 +31,7 @@ const CONFIG = {
         transport: "Getting There",
         stay: "Stay",
         registry: "Registry",
+        faq: "FAQ",
         rsvp: "RSVP"
     },
 
@@ -179,6 +180,7 @@ const CONFIG = {
                 time: "5:00 – 10:00 PM",
                 venue: "Strawberry Creek Ranch",
                 address: "4012 County Rd 57, Granby, CO 80446",
+                dressCode: "Cocktail attire — western flair encouraged",
                 note: "All guests welcome — come meet, eat, and kick off the weekend with us.",
                 hosts: "Jim & Emily Gregg"
             },
@@ -188,6 +190,7 @@ const CONFIG = {
                 time: "3:00 PM",
                 venue: "Granby Ranch",
                 address: "1000 Village Rd, Granby, CO 80446",
+                dressCode: "Semi-formal",
                 note: "Please arrive by 2:30 PM.",
                 hosts: "Lisa & Erik Olson"
             },
@@ -197,6 +200,7 @@ const CONFIG = {
                 time: "Following the ceremony",
                 venue: "Granby Ranch",
                 address: "1000 Village Rd, Granby, CO 80446",
+                dressCode: "Semi-formal",
                 note: "Cocktails, dinner & dancing.",
                 hosts: "Lisa & Erik Olson"
             },
@@ -228,11 +232,11 @@ const CONFIG = {
 
     transport: {
         title: "Transportation",
-        intro: "We encourage guests to book transportation early due to limited parking at the venue.",
+        intro: "There's plenty of parking at the venue. A couple of things are worth knowing, though: Grand County has no rideshare services like Uber or Lyft, and the Granby Connect ride app only runs until 9 PM — so we recommend renting a car or staying close to the ceremony and reception site. There will be parking at the ceremony, and guests staying nearby will be offered free overnight parking plus a free shuttle back home at the end of the night.",
         options: [
             {
                 type: "Car or Shuttle",
-                desc: "Rent a car at the airport OR book a Home James shuttle for roundtrips from the Denver Airport to Granby. Reserve a car rental from Avalanche Car Rental in Granby or download the Granby Connect ride-share app.",
+                desc: "Rent a car at the airport OR book a Home James shuttle for roundtrips from the Denver Airport to Granby. Reserve a car rental from Avalanche Car Rental in Granby or download the Granby Connect ride-share app (runs until 9 PM).",
                 link: "https://www.ridehomejames.com", 
                 btn: "Home James Shuttle"
             },
@@ -256,6 +260,12 @@ const CONFIG = {
         intro: "Book early — we don't have a hotel block. Rooms and rentals fill up fast for summer weekends, so we highly recommend booking as soon as you've RSVP'd yes.",
         importantNote: "Stay on the Granby Ranch property itself, not in the town of Granby. The town is a 15-minute drive from the ranch and the roads are dark at night. The ceremony, reception, and most of the weekend are all on the ranch — being able to walk back to your room is a game-changer.\n\nThe ranch address is 1000 Village Rd, Granby, CO 80446. When you search any of the booking sites below, filter results to lodging ON the ranch or at Granby Ranch Resort — not anywhere in town.",
         recommendations: [
+            {
+                name: "Granby Ranch Lodging",
+                desc: "Book lodging right on the ranch — every option here is on the Granby Ranch property, exactly where you'll want to be for the weekend.",
+                link: "https://granbyranch.com/lodging/",
+                btn: "Book on Granby Ranch"
+            },
             {
                 name: "Google Hotels",
                 desc: "Browse everything near Granby Ranch in one place.",
@@ -303,7 +313,32 @@ const CONFIG = {
         searchPlaceholder: "First or Last Name (e.g. Smith)",
         btnFind: "Find Invitation",
         btnSubmit: "Save RSVP",
-        lockedMessage: "RSVPs are closed. Please text us if you need to make a change.",
+        // Set locked: true to hide the search form and show lockedMessage instead.
+        // Flip to false once invitations have gone out to open RSVPs.
+        locked: true,
+        lockedMessage: "RSVPs aren't open just yet — this section will open as soon as invitations go out. Check back soon; we can't wait to celebrate with you!",
         contactNote: "We're collecting your email and phone so we can send booking reminders, travel tips, and a few weekend updates."
+    },
+
+    faq: {
+        title: "FAQ",
+        items: [
+            {
+                q: "Is there public transportation or rideshare?",
+                a: "Grand County has no Ubers, Lyfts, or taxis. We'll provide a shuttle from the reception back to your lodging in Granby Ranch. If you're staying off-site and plan to indulge, please plan to have a designated driver (or be prepared to walk!)."
+            },
+            {
+                q: "Is there a dress code?",
+                a: "We're asking that all guests come dressed in semi-formal attire for the wedding. Please wear comfortable shoes, as the wedding takes place outside and there's a short walk from the chair lift to the ceremony. Shuttles will be provided to and from Granby Ranch for the welcome party."
+            },
+            {
+                q: "Can I bring a guest?",
+                a: "Unless your formal invitation specifies otherwise, we ask that you don't bring a guest. We'll only have seating arranged for the guests who RSVP. Thanks for understanding!"
+            },
+            {
+                q: "I have a food allergy — can I make a special request?",
+                a: "Of course! Our caterer is happy to accommodate all food allergies. Just let us know when you RSVP."
+            }
+        ]
     }
 };

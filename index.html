@@ -306,6 +306,7 @@
             <a href="#transport" id="nav-transport">Transport</a>
             <a href="#stay" id="nav-stay">Travel</a>
             <a href="#registry" id="nav-registry">Registry</a>
+            <a href="#faq" id="nav-faq">FAQ</a>
             <a href="#rsvp" id="nav-rsvp">RSVP</a>
         </nav>
 
@@ -406,6 +407,12 @@
             <h2 id="registry-title">Registry</h2>
             <p id="registry-body">Loading...</p>
             <a id="registry-btn" href="#" target="_blank" class="btn">View Registry</a>
+        </section>
+
+        <section id="faq" class="fade-in">
+            <span class="tower-label">Tower 09</span>
+            <h2 id="faq-title">FAQ</h2>
+            <div class="info-grid" id="faq-container"></div>
         </section>
 
         <section id="rsvp" class="rsvp-section fade-in">
@@ -558,6 +565,7 @@
             setTxt('nav-transport', CONFIG.nav.transport);
             setTxt('nav-stay', CONFIG.nav.stay);
             setTxt('nav-registry', CONFIG.nav.registry);
+            setTxt('nav-faq', CONFIG.nav.faq);
             setTxt('nav-rsvp', CONFIG.nav.rsvp);
 
             setTxt('hero-title', CONFIG.hero.title);
@@ -600,6 +608,7 @@
                         ${ev.time ? `<p style="margin:5px 0;"><strong>${ev.time}</strong></p>` : ''}
                         ${ev.venue ? `<p style="margin:10px 0 0 0;">${ev.venue}</p>` : ''}
                         ${ev.address ? `<p style="margin:2px 0; font-size:0.85rem; color:#666;">${ev.address}</p>` : ''}
+                        ${ev.dressCode ? `<p style="margin:8px 0 0 0; font-size:0.78rem; color:var(--wood); font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:1.5px;">Dress code: ${ev.dressCode}</p>` : ''}
                         ${ev.note ? `<small style="color:#666; display:block; margin-top:10px;">${ev.note}</small>` : ''}
                         ${ev.hosts ? `<p style="margin:14px 0 0 0; font-size:0.78rem; color:#999; font-style:italic; letter-spacing:0.5px;">Hosted by ${ev.hosts}</p>` : ''}
                     `;
@@ -704,9 +713,33 @@
             setTxt('btn-find', CONFIG.rsvp.btnFind);
             setTxt('submit-btn', CONFIG.rsvp.btnSubmit);
             setTxt('locked-msg', CONFIG.rsvp.lockedMessage);
+            if(CONFIG.rsvp.locked) {
+                document.getElementById('search-view').classList.add('hidden');
+                document.getElementById('locked-view').classList.remove('hidden');
+                const rsvpIntro = document.getElementById('rsvp-intro');
+                if(rsvpIntro) rsvpIntro.style.display = 'none';
+            }
             if(CONFIG.rsvp.contactNote) {
                 document.querySelectorAll('.contact-note-text').forEach(el => el.innerText = CONFIG.rsvp.contactNote);
             }
+
+            // FAQ
+            if(CONFIG.faq) {
+                setTxt('faq-title', CONFIG.faq.title);
+                const faqContainer = document.getElementById('faq-container');
+                if(faqContainer && CONFIG.faq.items) {
+                    CONFIG.faq.items.forEach(item => {
+                        const card = document.createElement('div');
+                        card.className = "info-card";
+                        card.innerHTML = `
+                            <h3>${item.q}</h3>
+                            <p style="margin:10px 0 0 0; line-height:1.7;">${item.a}</p>
+                        `;
+                        faqContainer.appendChild(card);
+                    });
+                }
+            }
+
             setTxt('footer-text', CONFIG.hero.title + " • " + CONFIG.hero.date);
 
             checkFormLock();
