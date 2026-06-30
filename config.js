@@ -261,18 +261,6 @@ const CONFIG = {
         importantNote: "Stay on the Granby Ranch property itself, not in the town of Granby. The town is a 15-minute drive from the ranch and the roads are dark at night. The ceremony, reception, and most of the weekend are all on the ranch — being able to walk back to your room is a game-changer.\n\nThe ranch address is 1000 Village Rd, Granby, CO 80446. When you search any of the booking sites below, filter results to lodging ON the ranch or at Granby Ranch Resort — not anywhere in town.",
         recommendations: [
             {
-                name: "Google Hotels",
-                desc: "Browse everything near Granby Ranch in one place.",
-                link: "https://www.google.com/travel/search?q=stay%20near%20granby%20ranch%20colorado&g2lb=4965990%2C72471280%2C72560029%2C72573224%2C72647020%2C72686036%2C72803964%2C72882230%2C72958624%2C73059275%2C73064764&hl=en-US&gl=us&ssta=1&ts=CAESCgoCCAMKAggDEAAafwphEjUyJTB4ODc0MDE0NzQ5YjE4NTZiNzoweGM3NTQ4MzMxNDk5MGE3ZmY6DEdyYW5ieSBSYW5jaBooChIJqsKTclwEREARZMKuTJV6WsASEgmswY4UawdEQBFkwq6YLHlawBIaEhQKBwjqDxAFGB0SBwjqDxAFGB4YATICCAEqCQoFOgNVU0QaAA&qs=CAE4BkIJEZhmgm7_vItkQgkRwluHr1VDV8JCCRFJGG57IrazSkgAWmYyZKoBYQoNL2cvMTFoNnlyX2c1cBABKggiBHN0YXkoADIfEAEiGzzK1O4O3f3Sw-Lblq2P3B8L0wlJvamP5-6aJTIjEAIiH3N0YXkgbmVhciBncmFuYnkgcmFuY2ggY29sb3JhZG8&ap=KigKEgmqwpNyXAREQBFkwq5MlXpawBISCazBjhRrB0RAEWTCrpgseVrAMAI&ictx=111",
-                btn: "Search Hotels"
-            },
-            {
-                name: "Expedia",
-                desc: "Dates pre-filled for the wedding weekend (June 18–20, 2027).",
-                link: "https://www.expedia.com/Hotel-Search?regionId=&locale=en_US&siteid=1&sort=RECOMMENDED&startDate=2027-06-18&endDate=2027-06-20&destination=&categorySearch=any_option&useRewards=false&pwaOverlay=map&latLong=40.04695%2C-105.90263&mapBounds=40.04022%2C-105.92101&mapBounds=40.05368%2C-105.88425",
-                btn: "Browse on Expedia"
-            },
-            {
                 name: "Airbnb",
                 desc: "Houses and cabins near Granby Ranch, dates pre-filled.",
                 link: "https://www.airbnb.com/s/Granby-Ranch--Granby--CO/homes?adults=1&place_id=ChIJTdZHTFsuaocRkKI5V1HN_hE&checkin=2027-06-18&checkout=2027-06-20&date_picker_type=calendar&query=Granby%20Ranch%2C%20Granby%2C%20CO&search_mode=regular_search",
@@ -283,6 +271,18 @@ const CONFIG = {
                 desc: "Vacation rentals near the ranch.",
                 link: "https://www.vrbo.com/search?latLong=40.0467%2C-105.9044&mapBounds=40.03714%2C-105.91502&mapBounds=40.05626%2C-105.89378&sort=RECOMMENDED",
                 btn: "Browse on VRBO"
+            },
+            {
+                name: "Google Hotels",
+                desc: "Browse everything near Granby Ranch in one place.",
+                link: "https://www.google.com/travel/search?q=stay%20near%20granby%20ranch%20colorado&g2lb=4965990%2C72471280%2C72560029%2C72573224%2C72647020%2C72686036%2C72803964%2C72882230%2C72958624%2C73059275%2C73064764&hl=en-US&gl=us&ssta=1&ts=CAESCgoCCAMKAggDEAAafwphEjUyJTB4ODc0MDE0NzQ5YjE4NTZiNzoweGM3NTQ4MzMxNDk5MGE3ZmY6DEdyYW5ieSBSYW5jaBooChIJqsKTclwEREARZMKuTJV6WsASEgmswY4UawdEQBFkwq6YLHlawBIaEhQKBwjqDxAFGB0SBwjqDxAFGB4YATICCAEqCQoFOgNVU0QaAA&qs=CAE4BkIJEZhmgm7_vItkQgkRwluHr1VDV8JCCRFJGG57IrazSkgAWmYyZKoBYQoNL2cvMTFoNnlyX2c1cBABKggiBHN0YXkoADIfEAEiGzzK1O4O3f3Sw-Lblq2P3B8L0wlJvamP5-6aJTIjEAIiH3N0YXkgbmVhciBncmFuYnkgcmFuY2ggY29sb3JhZG8&ap=KigKEgmqwpNyXAREQBFkwq5MlXpawBISCazBjhRrB0RAEWTCrpgseVrAMAI&ictx=111",
+                btn: "Search Hotels"
+            },
+            {
+                name: "Expedia",
+                desc: "Dates pre-filled for the wedding weekend (June 18–20, 2027).",
+                link: "https://www.expedia.com/Hotel-Search?regionId=&locale=en_US&siteid=1&sort=RECOMMENDED&startDate=2027-06-18&endDate=2027-06-20&destination=&categorySearch=any_option&useRewards=false&pwaOverlay=map&latLong=40.04695%2C-105.90263&mapBounds=40.04022%2C-105.92101&mapBounds=40.05368%2C-105.88425",
+                btn: "Browse on Expedia"
             },
             {
                 name: "Granby Ranch Lodging",
