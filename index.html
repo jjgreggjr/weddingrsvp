@@ -311,16 +311,30 @@
         /* ---- Desktop winding-road stage (viewBox 1000 x 3400) ---- */
         .road-stage { position: relative; width: 100%; max-width: 1000px; margin: 48px auto 0; aspect-ratio: 1000 / 3400; }
         .road-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-        /* thin, hand-drawn "trail on a map" strokes — soft halo under a pencil line */
+        /* topographic contour lines behind the trail */
+        .road-contours path { fill: none; stroke-width: 1.3; }
+        .road-contours .c-a { stroke: var(--wood); opacity: 0.13; }
+        .road-contours .c-b { stroke: var(--pine); opacity: 0.11; }
+        /* the marked trail: a soft cream casing carves a clean channel through the
+           contours, under a dashed route line — solid-dash past, dotted future */
         .road-ink { fill: none; stroke-linecap: round; stroke-linejoin: round; }
-        .road-ink.halo { stroke-width: 8; opacity: 0.14; }
-        .road-ink.line { stroke-width: 3.4; opacity: 0.92; }
+        .road-ink.casing { stroke: var(--cream); stroke-width: 11; opacity: 0.94; }
+        .road-ink.line   { stroke-width: 3.8; stroke-dasharray: 12 11; opacity: 0.95; }
         .road-ink.jj    { stroke: var(--pine); }
         .road-ink.court { stroke: var(--wood); }
-        .road-ink.both  { stroke: #bf902f; }
-        .road-ink.both.halo { stroke: var(--gold); opacity: 0.22; }
-        .road-tail { fill: none; stroke: #bf902f; stroke-width: 3.4; stroke-linecap: round; stroke-dasharray: 0.1 13; opacity: 0.9; }
-        .road-mtn { fill: var(--pine); opacity: 0.05; }
+        .road-ink.both  { stroke: #b8862a; }
+        .road-tail { fill: none; stroke: #b8862a; stroke-width: 3.8; stroke-linecap: round; stroke-dasharray: 0.1 13; opacity: 0.92; }
+        /* compass rose */
+        .map-compass circle { fill: none; }
+        .map-compass .cr-1 { stroke: var(--wood); stroke-width: 1.6; opacity: 0.5; }
+        .map-compass .cr-2 { stroke: var(--wood); stroke-width: 0.8; opacity: 0.3; }
+        .map-compass .cs-ew { fill: var(--wood); opacity: 0.3; }
+        .map-compass .cs-ns { fill: var(--gold); opacity: 0.72; }
+        .map-compass text { fill: var(--wood); font-family: 'Oswald', sans-serif; font-size: 21px; font-weight: 600; opacity: 0.7; }
+        /* destination flag + dashed ring */
+        .map-dest .dest-ring { fill: none; stroke: var(--gold); stroke-width: 2; stroke-dasharray: 5 7; opacity: 0.85; }
+        .map-dest .flag-pole { stroke: var(--slate); stroke-width: 2.5; stroke-linecap: round; }
+        .map-dest .flag-pennant { fill: #b8862a; }
 
         .road-nodes { position: absolute; inset: 0; }
         .road-node { position: absolute; width: 0; height: 0; outline: none; }
@@ -363,8 +377,7 @@
         .road-node.finish .road-card { background: var(--slate); border-top-color: var(--gold); }
         .road-node.finish .road-date { color: var(--gold); }
         .road-node.finish .road-fact, .road-node.finish .road-desc { color: var(--cream); opacity: 1; }
-        .road-node.finish .road-marker { width: 40px; height: 40px; background: var(--gold); box-shadow: 0 0 0 6px rgba(212,169,74,0.22), 0 4px 14px rgba(47,53,64,0.4); }
-        .road-node.finish .road-marker::after { content: '♥'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--slate); font-size: 0.95rem; line-height: 1; }
+        .road-node.finish .road-marker { width: 28px; height: 28px; background: var(--gold); box-shadow: 0 0 0 5px rgba(212,169,74,0.22), 0 4px 14px rgba(47,53,64,0.4); }
 
         /* ---- Mobile vertical trail ---- */
         .road-mobile { display: none; }
@@ -443,29 +456,39 @@
                 <!-- DESKTOP: winding road. Road art is fixed (viewBox 1000 x 3400);
                      event cards + hover photos are generated from CONFIG.journey. -->
                 <div class="road-stage">
-                    <svg class="road-svg" viewBox="0 0 1000 3400" role="img" aria-label="A winding trail timeline of Courtney and JJ's story">
+                    <svg class="road-svg" viewBox="0 0 1000 3400" role="img" aria-label="A topographic trail-map timeline of Courtney and JJ's story">
                         <defs>
-                            <!-- gentle hand-drawn / pencil wobble -->
-                            <filter id="road-pencil" x="-6%" y="-3%" width="112%" height="106%">
-                                <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="2" seed="11" result="n"></feTurbulence>
-                                <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
-                            </filter>
+                            <clipPath id="map-clip"><rect x="0" y="0" width="1000" height="3400"></rect></clipPath>
                         </defs>
-                        <!-- faint mountains behind the trailheads -->
-                        <polygon class="road-mtn" points="80,470 300,60 520,470"></polygon>
-                        <polygon class="road-mtn" points="470,470 700,120 930,470"></polygon>
-                        <g filter="url(#road-pencil)">
+                        <!-- topographic contour lines (generated in JS) -->
+                        <g class="road-contours" id="road-contours" clip-path="url(#map-clip)"></g>
+                        <!-- cream casings first, so every route sits in a clean channel -->
+                        <g class="road-trails">
+                            <path class="road-ink casing" d="M300,150 C315,235 250,250 245,320 C240,380 215,385 210,440 C205,510 250,530 300,565 C355,605 345,690 340,730 C336,795 270,815 262,880 C255,940 250,965 250,1010 C250,1085 340,1120 415,1160 C460,1183 488,1212 500,1230"></path>
+                            <path class="road-ink casing" d="M700,250 C718,330 792,360 795,430 C797,505 788,560 795,620 C800,700 705,720 700,790 C696,860 702,930 700,980 C698,1055 585,1150 520,1200 C508,1210 505,1222 500,1230"></path>
+                            <path class="road-ink casing" d="M500,1230 C570,1290 560,1360 470,1385 C360,1415 300,1420 300,1500 C300,1560 250,1585 285,1650 C340,1730 700,1680 690,1770 C684,1838 742,1868 705,1930 C630,2010 310,1955 310,2040 C310,2108 258,2120 292,2190 C345,2280 702,2222 700,2310 C699,2380 744,2410 705,2470 C630,2545 320,2500 320,2580 C320,2648 270,2668 302,2732 C350,2812 692,2762 690,2840 C688,2914 560,2946 505,2996 C490,3020 482,3042 480,3060"></path>
                             <!-- JJ's trail (pine), left trailhead into the merge -->
-                            <path class="road-ink jj halo" d="M300,150 C315,235 250,250 245,320 C240,380 215,385 210,440 C205,510 250,530 300,565 C355,605 345,690 340,730 C336,795 270,815 262,880 C255,940 250,965 250,1010 C250,1085 340,1120 415,1160 C460,1183 488,1212 500,1230"></path>
                             <path class="road-ink jj line" d="M300,150 C315,235 250,250 245,320 C240,380 215,385 210,440 C205,510 250,530 300,565 C355,605 345,690 340,730 C336,795 270,815 262,880 C255,940 250,965 250,1010 C250,1085 340,1120 415,1160 C460,1183 488,1212 500,1230"></path>
                             <!-- Courtney's trail (wood), right trailhead into the merge -->
-                            <path class="road-ink court halo" d="M700,250 C718,330 792,360 795,430 C797,505 788,560 795,620 C800,700 705,720 700,790 C696,860 702,930 700,980 C698,1055 585,1150 520,1200 C508,1210 505,1222 500,1230"></path>
                             <path class="road-ink court line" d="M700,250 C718,330 792,360 795,430 C797,505 788,560 795,620 C800,700 705,720 700,790 C696,860 702,930 700,980 C698,1055 585,1150 520,1200 C508,1210 505,1222 500,1230"></path>
-                            <!-- the shared trail (gold), zig-zagging First Date down to the Proposal -->
-                            <path class="road-ink both halo" d="M500,1230 C570,1290 560,1360 470,1385 C360,1415 300,1420 300,1500 C300,1560 250,1585 285,1650 C340,1730 700,1680 690,1770 C684,1838 742,1868 705,1930 C630,2010 310,1955 310,2040 C310,2108 258,2120 292,2190 C345,2280 702,2222 700,2310 C699,2380 744,2410 705,2470 C630,2545 320,2500 320,2580 C320,2648 270,2668 302,2732 C350,2812 692,2762 690,2840 C688,2914 560,2946 505,2996 C490,3020 482,3042 480,3060"></path>
+                            <!-- the shared trail (gold), switchbacking First Date down to the Proposal -->
                             <path class="road-ink both line" d="M500,1230 C570,1290 560,1360 470,1385 C360,1415 300,1420 300,1500 C300,1560 250,1585 285,1650 C340,1730 700,1680 690,1770 C684,1838 742,1868 705,1930 C630,2010 310,1955 310,2040 C310,2108 258,2120 292,2190 C345,2280 702,2222 700,2310 C699,2380 744,2410 705,2470 C630,2545 320,2500 320,2580 C320,2648 270,2668 302,2732 C350,2812 692,2762 690,2840 C688,2914 560,2946 505,2996 C490,3020 482,3042 480,3060"></path>
                             <!-- dotted trail onward to the wedding -->
                             <path class="road-tail" d="M480,3060 C470,3140 585,3150 545,3230 C520,3285 512,3305 520,3330"></path>
+                        </g>
+                        <!-- compass rose -->
+                        <g class="map-compass" transform="translate(898,158)">
+                            <circle class="cr-1" r="46"></circle>
+                            <circle class="cr-2" r="37"></circle>
+                            <path class="cs-ew" d="M-44,0 L0,-6 L44,0 L0,6 Z"></path>
+                            <path class="cs-ns" d="M0,-44 L6,0 L0,44 L-6,0 Z"></path>
+                            <text x="0" y="-52" text-anchor="middle">N</text>
+                        </g>
+                        <!-- destination flag -->
+                        <g class="map-dest">
+                            <circle class="dest-ring" cx="520" cy="3330" r="40"></circle>
+                            <line class="flag-pole" x1="520" y1="3330" x2="520" y2="3280"></line>
+                            <path class="flag-pennant" d="M520,3282 L560,3292 L520,3302 Z"></path>
                         </g>
                     </svg>
                     <div class="road-nodes" id="road-nodes"></div>
@@ -967,6 +990,39 @@
             return `<span class="ph-ico" aria-hidden="true">📷</span><span class="ph-txt">Photo coming soon</span>`;
         }
 
+        // Faint topographic contour lines — concentric wobbly rings around a few
+        // "peaks", drawn deterministically (no randomness) so they never shift.
+        function buildMapContours() {
+            const g = document.getElementById('road-contours');
+            if(!g) return;
+            const peaks = [
+                { cx: 300, cy: 250,  rings: 6, r0: 44, dr: 40, sx: 1.05, sy: 0.82, amp: 9,  freq: 6, tone: 'a' },
+                { cx: 720, cy: 370,  rings: 6, r0: 40, dr: 38, sx: 0.95, sy: 0.90, amp: 8,  freq: 7, tone: 'b' },
+                { cx: 175, cy: 1520, rings: 4, r0: 48, dr: 44, sx: 0.80, sy: 1.10, amp: 11, freq: 5, tone: 'b' },
+                { cx: 845, cy: 2320, rings: 4, r0: 48, dr: 44, sx: 0.82, sy: 1.10, amp: 11, freq: 6, tone: 'a' },
+                { cx: 150, cy: 2760, rings: 3, r0: 46, dr: 42, sx: 0.85, sy: 1.05, amp: 10, freq: 5, tone: 'a' },
+                { cx: 520, cy: 3320, rings: 4, r0: 54, dr: 34, sx: 1.10, sy: 0.90, amp: 7,  freq: 6, tone: 'a' }
+            ];
+            const N = 64;
+            let out = '';
+            peaks.forEach((p, pi) => {
+                for(let k = 0; k < p.rings; k++) {
+                    const r = p.r0 + k * p.dr;
+                    const phase = pi * 1.3 + k * 0.7;
+                    let d = '';
+                    for(let i = 0; i <= N; i++) {
+                        const a = (i / N) * Math.PI * 2;
+                        const rr = r + p.amp * Math.sin(p.freq * a + phase);
+                        const x = (p.cx + Math.cos(a) * rr * p.sx).toFixed(1);
+                        const y = (p.cy + Math.sin(a) * rr * p.sy).toFixed(1);
+                        d += (i === 0 ? 'M' : 'L') + x + ',' + y + ' ';
+                    }
+                    out += `<path class="c-${p.tone}" d="${d}Z"></path>`;
+                }
+            });
+            g.innerHTML = out;
+        }
+
         function renderJourney() {
             if(!CONFIG.journey) return;
             const j = CONFIG.journey;
@@ -974,6 +1030,8 @@
             const introEl = document.getElementById('journey-intro');
             if(titleEl && j.title) titleEl.innerText = j.title;
             if(introEl && j.intro) introEl.innerText = j.intro;
+
+            buildMapContours();
 
             const events = j.events || [];
             const whoLabel = {
