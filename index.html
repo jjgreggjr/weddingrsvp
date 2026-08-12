@@ -289,6 +289,114 @@
             .section-divider { padding-left: 54px; max-width: 400px; }
             .scroll-indicator { bottom: 28px; }
         }
+
+        /* =========================================================
+           THE ROAD TO US — winding-road love-story timeline
+           Two trailheads (his + hers) wind down and converge into
+           one road; after the proposal it turns to a dotted trail
+           that leads on to the wedding.
+           ========================================================= */
+        #journey { max-width: none; padding: 0; background: linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 52%, var(--cream) 100%); }
+        .journey-inner { max-width: 1120px; margin: 0 auto; padding: 100px 40px 90px 120px; }
+        .journey-lede { max-width: 660px; font-size: 1.02rem; line-height: 1.8; opacity: 0.9; }
+
+        .journey-legend { display: flex; flex-wrap: wrap; gap: 14px 26px; margin: 26px 0 0; align-items: center; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size: 0.72rem; color: var(--muted); }
+        .journey-legend .lg { display: inline-flex; align-items: center; gap: 9px; }
+        .journey-legend .lg-dot { width: 14px; height: 14px; border-radius: 50%; box-shadow: 0 0 0 3px rgba(255,255,255,0.65), 0 2px 5px rgba(47,53,64,0.22); }
+        .journey-legend .lg-dot.jj { background: var(--pine); }
+        .journey-legend .lg-dot.court { background: var(--wood); }
+        .journey-legend .lg-dot.both { background: var(--gold); }
+        .journey-legend .lg-dash { width: 30px; height: 0; border-top: 3px dotted var(--wood); }
+
+        /* ---- Desktop winding-road stage (viewBox 1000 x 3400) ---- */
+        .road-stage { position: relative; width: 100%; max-width: 1000px; margin: 48px auto 0; aspect-ratio: 1000 / 3400; }
+        .road-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+        /* thin, hand-drawn "trail on a map" strokes — soft halo under a pencil line */
+        .road-ink { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+        .road-ink.halo { stroke-width: 8; opacity: 0.14; }
+        .road-ink.line { stroke-width: 3.4; opacity: 0.92; }
+        .road-ink.jj    { stroke: var(--pine); }
+        .road-ink.court { stroke: var(--wood); }
+        .road-ink.both  { stroke: #bf902f; }
+        .road-ink.both.halo { stroke: var(--gold); opacity: 0.22; }
+        .road-tail { fill: none; stroke: #bf902f; stroke-width: 3.4; stroke-linecap: round; stroke-dasharray: 0.1 13; opacity: 0.9; }
+        .road-mtn { fill: var(--pine); opacity: 0.05; }
+
+        .road-nodes { position: absolute; inset: 0; }
+        .road-node { position: absolute; width: 0; height: 0; outline: none; }
+        .road-marker { position: absolute; left: 0; top: 0; width: 22px; height: 22px; transform: translate(-50%,-50%); border-radius: 50%; border: 3px solid var(--cream); cursor: pointer; padding: 0; box-shadow: 0 2px 8px rgba(47,53,64,0.3); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .road-node.jj    .road-marker { background: var(--pine); }
+        .road-node.court .road-marker { background: var(--wood); }
+        .road-node.both  .road-marker { background: var(--gold); }
+        .road-node:hover .road-marker, .road-node:focus-within .road-marker { transform: translate(-50%,-50%) scale(1.18); box-shadow: 0 6px 16px rgba(47,53,64,0.4); }
+
+        .road-card { position: absolute; top: 0; width: 234px; transform: translateY(-50%); background: var(--white); border: 1px solid rgba(61,92,58,0.12); border-top: 4px solid var(--wood); border-radius: 3px; box-shadow: 0 6px 18px rgba(47,53,64,0.12); padding: 16px 20px 18px; transition: box-shadow 0.35s ease, transform 0.35s ease; z-index: 2; }
+        .road-card.side-right { left: 26px; }
+        .road-card.side-left  { right: 26px; }
+        .road-node.jj    .road-card { border-top-color: var(--pine); }
+        .road-node.court .road-card { border-top-color: var(--wood); }
+        .road-node.both  .road-card { border-top-color: var(--gold); }
+        .road-node:hover .road-card, .road-node:focus-within .road-card { box-shadow: 0 12px 30px rgba(47,53,64,0.2); }
+        .road-node:hover, .road-node:focus-within { z-index: 20; }
+
+        .road-badge { display: inline-block; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size: 0.6rem; font-weight: 600; padding: 3px 9px; border-radius: 2px; color: var(--cream); }
+        .road-node.jj    .road-badge, .rm-item.jj    .road-badge { background: var(--pine); color: var(--cream); }
+        .road-node.court .road-badge, .rm-item.court .road-badge { background: var(--wood); color: var(--cream); }
+        .road-node.both  .road-badge, .rm-item.both  .road-badge { background: var(--gold); color: var(--slate); }
+        .road-date, .rm-date { display: block; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size: 0.66rem; color: var(--muted); margin: 10px 0 2px; }
+        .road-fact { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.32rem; color: var(--slate); margin: 3px 0 0; line-height: 1.22; }
+        .road-desc { margin: 9px 0 0; font-size: 0.92rem; line-height: 1.55; color: var(--text); opacity: 0.9; }
+
+        /* hover photo pop-up */
+        .road-photo { position: absolute; bottom: calc(100% + 16px); left: 50%; width: 304px; height: 216px; transform: translateX(-50%) translateY(8px) scale(0.94); background: var(--white); border: 5px solid var(--white); outline: 1px solid rgba(168,111,63,0.4); background-image: repeating-linear-gradient(45deg, rgba(168,111,63,0.10) 0 10px, transparent 10px 20px); border-radius: 3px; box-shadow: 0 18px 36px rgba(47,53,64,0.32); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; text-align: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; z-index: 6; overflow: hidden; }
+        .road-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .road-photo .ph-ico { font-size: 2rem; }
+        .road-photo .ph-txt { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size: 0.64rem; color: var(--wood); }
+        .road-photo::after { content: ''; position: absolute; bottom: -9px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 16px; height: 16px; background: var(--white); box-shadow: 3px 3px 6px rgba(47,53,64,0.14); }
+        .road-node:hover .road-photo, .road-node:focus-within .road-photo { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+        /* top-of-stage nodes drop the photo below so it never spills into the header */
+        .road-node.photo-below .road-photo { bottom: auto; top: calc(100% + 16px); transform: translateX(-50%) translateY(-8px) scale(0.94); }
+        .road-node.photo-below .road-photo::after { bottom: auto; top: -9px; box-shadow: -3px -3px 6px rgba(47,53,64,0.12); }
+        .road-node.photo-below:hover .road-photo, .road-node.photo-below:focus-within .road-photo { transform: translateX(-50%) translateY(0) scale(1); }
+
+        /* wedding destination flourish */
+        .road-node.finish .road-card { background: var(--slate); border-top-color: var(--gold); }
+        .road-node.finish .road-date { color: var(--gold); }
+        .road-node.finish .road-fact, .road-node.finish .road-desc { color: var(--cream); opacity: 1; }
+        .road-node.finish .road-marker { width: 40px; height: 40px; background: var(--gold); box-shadow: 0 0 0 6px rgba(212,169,74,0.22), 0 4px 14px rgba(47,53,64,0.4); }
+        .road-node.finish .road-marker::after { content: '♥'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--slate); font-size: 0.95rem; line-height: 1; }
+
+        /* ---- Mobile vertical trail ---- */
+        .road-mobile { display: none; }
+
+        @media (max-width: 880px) {
+            .road-stage { display: none; }
+            .journey-inner { padding: 70px 22px 70px 54px; }
+            .road-mobile { display: block; position: relative; margin-top: 34px; padding-left: 34px; }
+            .road-mobile::before { content: ''; position: absolute; left: 8px; top: 6px; bottom: 90px; width: 3px; background: repeating-linear-gradient(to bottom, var(--wood) 0 9px, transparent 9px 20px); opacity: 0.55; }
+            .rm-item { position: relative; margin-bottom: 26px; outline: none; }
+            .rm-item.future::before { content: ''; position: absolute; left: -26px; top: -14px; bottom: -14px; width: 3px; background: repeating-linear-gradient(to bottom, var(--wood) 0 3px, transparent 3px 16px); }
+            .rm-dot { position: absolute; left: -33px; top: 6px; width: 17px; height: 17px; border-radius: 50%; border: 3px solid var(--cream); box-shadow: 0 2px 6px rgba(47,53,64,0.28); }
+            .rm-item.jj    .rm-dot { background: var(--pine); }
+            .rm-item.court .rm-dot { background: var(--wood); }
+            .rm-item.both  .rm-dot { background: var(--gold); }
+            .rm-card { background: var(--white); border: 1px solid rgba(61,92,58,0.12); border-top: 4px solid var(--wood); border-radius: 3px; box-shadow: 0 5px 15px rgba(47,53,64,0.1); padding: 15px 18px 17px; }
+            .rm-item.jj    .rm-card { border-top-color: var(--pine); }
+            .rm-item.court .rm-card { border-top-color: var(--wood); }
+            .rm-item.both  .rm-card { border-top-color: var(--gold); }
+            .rm-item.finish .rm-card { background: var(--slate); border-top-color: var(--gold); }
+            .rm-item.finish .rm-date { color: var(--gold); }
+            .rm-item.finish .road-fact, .rm-item.finish .road-desc { color: var(--cream); opacity: 1; }
+            .rm-item.finish .rm-dot { background: var(--gold); width: 21px; height: 21px; left: -35px; }
+            .rm-top { display: flex; align-items: center; gap: 12px; }
+            .rm-top .rm-date { margin: 0; }
+            /* mobile photo: reveals inline on tap/hover */
+            .rm-photo { position: static; transform: none; width: 100%; height: 0; margin-top: 0; opacity: 0; box-shadow: none; transition: height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease; }
+            .rm-photo::after { display: none; }
+            .rm-item:hover .rm-photo, .rm-item:focus-within .rm-photo { height: 122px; opacity: 1; margin-top: 14px; }
+            .rm-divider { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 6px 0 26px -34px; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 3px; font-size: 0.66rem; color: var(--wood); }
+            .rm-divider::before, .rm-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(168,111,63,0.5), transparent); }
+        }
     </style>
 </head>
 <body>
@@ -310,7 +418,7 @@
 
     <div class="page-content">
         <nav>
-            <a href="#about" id="nav-story">Our Story</a>
+            <a href="#journey" id="nav-story">Our Story</a>
             <a href="#party" id="nav-party">Wedding Party</a>
             <a href="#details" id="nav-details">Details</a>
             <a href="#transport" id="nav-transport">Transport</a>
@@ -320,14 +428,53 @@
             <a href="#rsvp" id="nav-rsvp">RSVP</a>
         </nav>
 
-        <div class="magazine-row fade-in" id="about">
-            <div class="mag-image" id="mag-about"></div>
-            <div class="mag-content">
+        <section id="journey" class="fade-in">
+            <div class="journey-inner">
                 <span class="tower-label">Tower 01</span>
-                <h2 id="about-title">Our Story</h2>
-                <p id="about-body">Loading story...</p>
+                <h2 id="journey-title">Our Story</h2>
+                <p id="journey-intro" class="journey-lede">Loading our story...</p>
+                <div class="journey-legend" aria-hidden="true">
+                    <span class="lg"><span class="lg-dot jj"></span> JJ's road</span>
+                    <span class="lg"><span class="lg-dot court"></span> Courtney's road</span>
+                    <span class="lg"><span class="lg-dot both"></span> Together</span>
+                    <span class="lg"><span class="lg-dash"></span> Still to come</span>
+                </div>
+
+                <!-- DESKTOP: winding road. Road art is fixed (viewBox 1000 x 3400);
+                     event cards + hover photos are generated from CONFIG.journey. -->
+                <div class="road-stage">
+                    <svg class="road-svg" viewBox="0 0 1000 3400" role="img" aria-label="A winding trail timeline of Courtney and JJ's story">
+                        <defs>
+                            <!-- gentle hand-drawn / pencil wobble -->
+                            <filter id="road-pencil" x="-6%" y="-3%" width="112%" height="106%">
+                                <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="2" seed="11" result="n"></feTurbulence>
+                                <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+                            </filter>
+                        </defs>
+                        <!-- faint mountains behind the trailheads -->
+                        <polygon class="road-mtn" points="80,470 300,60 520,470"></polygon>
+                        <polygon class="road-mtn" points="470,470 700,120 930,470"></polygon>
+                        <g filter="url(#road-pencil)">
+                            <!-- JJ's trail (pine), left trailhead into the merge -->
+                            <path class="road-ink jj halo" d="M300,150 C315,235 250,250 245,320 C240,380 215,385 210,440 C205,510 250,530 300,565 C355,605 345,690 340,730 C336,795 270,815 262,880 C255,940 250,965 250,1010 C250,1085 340,1120 415,1160 C460,1183 488,1212 500,1230"></path>
+                            <path class="road-ink jj line" d="M300,150 C315,235 250,250 245,320 C240,380 215,385 210,440 C205,510 250,530 300,565 C355,605 345,690 340,730 C336,795 270,815 262,880 C255,940 250,965 250,1010 C250,1085 340,1120 415,1160 C460,1183 488,1212 500,1230"></path>
+                            <!-- Courtney's trail (wood), right trailhead into the merge -->
+                            <path class="road-ink court halo" d="M700,250 C718,330 792,360 795,430 C797,505 788,560 795,620 C800,700 705,720 700,790 C696,860 702,930 700,980 C698,1055 585,1150 520,1200 C508,1210 505,1222 500,1230"></path>
+                            <path class="road-ink court line" d="M700,250 C718,330 792,360 795,430 C797,505 788,560 795,620 C800,700 705,720 700,790 C696,860 702,930 700,980 C698,1055 585,1150 520,1200 C508,1210 505,1222 500,1230"></path>
+                            <!-- the shared trail (gold), zig-zagging First Date down to the Proposal -->
+                            <path class="road-ink both halo" d="M500,1230 C570,1290 560,1360 470,1385 C360,1415 300,1420 300,1500 C300,1560 250,1585 285,1650 C340,1730 700,1680 690,1770 C684,1838 742,1868 705,1930 C630,2010 310,1955 310,2040 C310,2108 258,2120 292,2190 C345,2280 702,2222 700,2310 C699,2380 744,2410 705,2470 C630,2545 320,2500 320,2580 C320,2648 270,2668 302,2732 C350,2812 692,2762 690,2840 C688,2914 560,2946 505,2996 C490,3020 482,3042 480,3060"></path>
+                            <path class="road-ink both line" d="M500,1230 C570,1290 560,1360 470,1385 C360,1415 300,1420 300,1500 C300,1560 250,1585 285,1650 C340,1730 700,1680 690,1770 C684,1838 742,1868 705,1930 C630,2010 310,1955 310,2040 C310,2108 258,2120 292,2190 C345,2280 702,2222 700,2310 C699,2380 744,2410 705,2470 C630,2545 320,2500 320,2580 C320,2648 270,2668 302,2732 C350,2812 692,2762 690,2840 C688,2914 560,2946 505,2996 C490,3020 482,3042 480,3060"></path>
+                            <!-- dotted trail onward to the wedding -->
+                            <path class="road-tail" d="M480,3060 C470,3140 585,3150 545,3230 C520,3285 512,3305 520,3330"></path>
+                        </g>
+                    </svg>
+                    <div class="road-nodes" id="road-nodes"></div>
+                </div>
+
+                <!-- MOBILE: vertical trail (same data) -->
+                <div class="road-mobile" id="road-mobile"></div>
             </div>
-        </div>
+        </section>
 
         <div class="magazine-row fade-in" id="venue">
             <div class="mag-image" id="mag-venue"></div>
@@ -767,6 +914,7 @@
 
             setTxt('footer-text', CONFIG.hero.title + " • " + CONFIG.hero.date);
 
+            renderJourney();
             checkFormLock();
         };
 
@@ -782,6 +930,118 @@
                     }
                 })
                 .catch(e => console.error("Could not check form lock", e));
+        }
+
+        // --- WINDING-ROAD TIMELINE ("The Road to Us") ---
+        // Desktop node positions are pinned to the fixed road art (viewBox 1000 x 3400).
+        // Cards + hover photos are generated from CONFIG.journey.events, matched by id.
+        // The mobile trail is generated from the same events in the array's (chronological) order.
+        const ROAD_LAYOUT = {
+            'jj-born':    { x: 300, y: 150,  side: 'left'  },
+            'court-born': { x: 700, y: 250,  side: 'right' },
+            'jj-ny':      { x: 210, y: 440,  side: 'left'  },
+            'jj-du':      { x: 340, y: 730,  side: 'left'  },
+            'court-du':   { x: 795, y: 620,  side: 'right' },
+            'jj-grad':    { x: 250, y: 1010, side: 'left'  },
+            'court-grad': { x: 700, y: 980,  side: 'right' },
+            'first-date': { x: 500, y: 1230, side: 'right' },
+            'cohab':      { x: 300, y: 1500, side: 'right' },
+            'law-school': { x: 690, y: 1770, side: 'left'  },
+            'transfer':   { x: 310, y: 2040, side: 'right' },
+            'bootstrap':  { x: 700, y: 2310, side: 'left'  },
+            'bar':        { x: 320, y: 2580, side: 'right' },
+            'denver':     { x: 690, y: 2840, side: 'left'  },
+            'proposal':   { x: 480, y: 3060, side: 'right' },
+            'wedding':    { x: 520, y: 3330, side: 'left'  }
+        };
+        const ROAD_VB_W = 1000, ROAD_VB_H = 3400;
+
+        function escapeHTML(s) {
+            return String(s == null ? '' : s).replace(/[&<>"']/g, c => (
+                { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+            ));
+        }
+
+        function journeyPhotoInner(ev) {
+            if(ev.image) return `<img src="${escapeHTML(ev.image)}" alt="${escapeHTML(ev.fact)}">`;
+            return `<span class="ph-ico" aria-hidden="true">📷</span><span class="ph-txt">Photo coming soon</span>`;
+        }
+
+        function renderJourney() {
+            if(!CONFIG.journey) return;
+            const j = CONFIG.journey;
+            const titleEl = document.getElementById('journey-title');
+            const introEl = document.getElementById('journey-intro');
+            if(titleEl && j.title) titleEl.innerText = j.title;
+            if(introEl && j.intro) introEl.innerText = j.intro;
+
+            const events = j.events || [];
+            const whoLabel = {
+                jj:    j.jjName || 'JJ',
+                court: j.courtName || 'Courtney',
+                both:  j.bothName || 'Together'
+            };
+            const stage  = document.getElementById('road-nodes');
+            const mobile = document.getElementById('road-mobile');
+
+            // Once the two roads merge, only the FIRST "together" card wears the badge.
+            let bothBadgeShown = false;
+
+            events.forEach(ev => {
+                const who = (ev.who === 'jj' || ev.who === 'court') ? ev.who : 'both';
+                const finish = ev.future ? ' finish' : '';
+                let showBadge = true;
+                if(who === 'both') {
+                    showBadge = !bothBadgeShown;
+                    bothBadgeShown = true;
+                }
+                const badge = showBadge ? `<span class="road-badge">${escapeHTML(whoLabel[who])}</span>` : '';
+                const date  = ev.date ? `<span class="road-date rm-date">${escapeHTML(ev.date)}</span>` : '';
+                const fact  = `<h4 class="road-fact">${escapeHTML(ev.fact)}</h4>`;
+                const desc  = ev.desc ? `<p class="road-desc">${escapeHTML(ev.desc)}</p>` : '';
+                const photo = journeyPhotoInner(ev);
+
+                // DESKTOP node on the winding road
+                const geo = ROAD_LAYOUT[ev.id];
+                if(stage && geo) {
+                    const node = document.createElement('div');
+                    node.className = `road-node ${who}${finish}` + (geo.y < 380 ? ' photo-below' : '');
+                    node.style.left = (geo.x / ROAD_VB_W * 100) + '%';
+                    node.style.top  = (geo.y / ROAD_VB_H * 100) + '%';
+                    node.tabIndex = 0;
+                    node.innerHTML = `
+                        <span class="road-marker" aria-hidden="true"></span>
+                        <div class="road-card side-${geo.side}">
+                            ${badge}${date}${fact}${desc}
+                            <div class="road-photo">${photo}</div>
+                        </div>`;
+                    stage.appendChild(node);
+                }
+
+                // MOBILE vertical-trail item
+                if(mobile) {
+                    if(ev.id === 'first-date') mobile.appendChild(journeyDivider('Their two roads become one'));
+                    if(ev.future)             mobile.appendChild(journeyDivider('Still to come'));
+                    const item = document.createElement('div');
+                    item.className = `rm-item ${who}${finish}`;
+                    item.tabIndex = 0;
+                    item.innerHTML = `
+                        <span class="rm-dot" aria-hidden="true"></span>
+                        <div class="rm-card">
+                            <div class="rm-top">${badge}${date}</div>
+                            ${fact}${desc}
+                            <div class="road-photo rm-photo">${photo}</div>
+                        </div>`;
+                    mobile.appendChild(item);
+                }
+            });
+        }
+
+        function journeyDivider(text) {
+            const d = document.createElement('div');
+            d.className = 'rm-divider';
+            d.innerHTML = `<span>${escapeHTML(text)}</span>`;
+            return d;
         }
 
         // --- PARTY GENERATOR (Horizontal Scroll) ---

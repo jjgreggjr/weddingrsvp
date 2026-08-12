@@ -41,6 +41,38 @@ const CONFIG = {
         body: "It all started five years ago at a coffee shop in Denver. Tom spilled his latte, Sarah offered him a napkin, and the rest is history. We have spent the last few years hiking every peak in Colorado, adopting our golden retriever, and building a life we love.",
     },
 
+    // --- THE ROAD TO US (winding-road timeline) ---
+    // Two separate roads (jj + court) that converge at 'first-date', then one
+    // shared road down to the proposal, then a dotted trail to the wedding.
+    // Each event's `id` maps to a fixed position on the road art in index.html
+    // (ROAD_LAYOUT) — keep the ids if you want to keep the desktop layout.
+    // Add an `image` URL to any event to replace its "photo coming soon" placeholder.
+    journey: {
+        title: "Our Story",
+        intro: "From New York and Minnesota, to Denver, to Massachusetts, to Saint Louis, and back to Denver — this is a timeline of Courtney and JJ.",
+        jjName: "JJ",
+        courtName: "Courtney",
+        bothName: "Together",
+        events: [
+            { id: "jj-born",    who: "jj",    date: "1993",         fact: "Born in Colorado",         desc: "",                                                                                              image: "" },
+            { id: "court-born", who: "court", date: "1996",         fact: "Born in Minnesota",        desc: "",                                                                                              image: "" },
+            { id: "jj-ny",      who: "jj",    date: "1998",         fact: "Moved to New York",        desc: "",                                                                                              image: "" },
+            { id: "jj-du",      who: "jj",    date: "Sep 2012",     fact: "Attends DU",               desc: "JJ moves to DU to be an entrepreneur.",                                                          image: "" },
+            { id: "court-du",   who: "court", date: "Sep 2015",     fact: "Attends DU",               desc: "Courtney moves to DU to study psychology.",                                                      image: "" },
+            { id: "jj-grad",    who: "jj",    date: "Aug 2017",     fact: "Graduation",               desc: "After 5 years of undergrad, JJ graduates.",                                                      image: "" },
+            { id: "court-grad", who: "court", date: "Jun 2019",     fact: "Graduation",               desc: "Courtney graduates. Eric & Courtney dominate the beer-pong table against JJ.",                   image: "" },
+            { id: "first-date", who: "both",  date: "Jun 2019",     fact: "First Date",               desc: "JJ & Court grab a slice of pizza on their first date.",                                          image: "9O7A3642.JPG" },
+            { id: "cohab",      who: "both",  date: "Mar 2022",     fact: "First Co-Habitation",      desc: "3 years into the relationship, C & J move to the Cheesman Park area together.",                  image: "" },
+            { id: "law-school", who: "both",  date: "Aug 2022",     fact: "Start of Law School",      desc: "Courtney takes JJ with her to New Bedford, Massachusetts for her first year of law school.",     image: "" },
+            { id: "transfer",   who: "both",  date: "Aug 2023",     fact: "Transfer to Wash U Law",   desc: "Courtney drags JJ across the country again as she transfers to Wash U Law in Saint Louis.",      image: "" },
+            { id: "bootstrap",  who: "both",  date: "Sep 2024",     fact: "Bootstrap William Turner", desc: "Bootstrap is adopted into the Gregg/Cuff house. 🐾",                                              image: "" },
+            { id: "bar",        who: "both",  date: "Jul 2025",     fact: "Bar Exam",                 desc: "Courtney takes (and passes) the bar in Saint Louis.",                                            image: "" },
+            { id: "denver",     who: "both",  date: "Aug 2025",     fact: "Return to Denver",         desc: "Jourtney settle into the South Pearl area of Denver.",                                           image: "" },
+            { id: "proposal",   who: "both",  date: "Aug 2025",     fact: "Proposal",                 desc: "JJ's 9 months of lying culminates in a surprise Prague proposal.",                               image: "" },
+            { id: "wedding",    who: "both",  date: "Jun 19, 2027", fact: "Betrothal", future: true,  desc: "The couple throws a huge party with all of their favorite people at Granby Ranch, CO.",          image: "" }
+        ]
+    },
+
     party: {
         title: "The Wedding Party",
         // Set to a string to hide bride/groom columns and show a coming-soon note instead.
