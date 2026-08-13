@@ -340,7 +340,7 @@ const CONFIG = {
 
     registry: {
         title: "Registry",
-        body: "Your presence is the greatest gift. However, should you wish to help us celebrate with a gift, a registry is held at:",
+        body: "Coming soon...",
         btnText: "View Registry",
         link: "https://www.zola.com",
         // Set comingSoon: false once the registry is live. While true, the button is greyed out + non-clickable.

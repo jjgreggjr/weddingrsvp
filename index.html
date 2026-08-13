@@ -309,7 +309,7 @@
         .journey-legend .lg-dash { width: 30px; height: 0; border-top: 3px dotted var(--wood); }
 
         /* ---- Desktop winding-road stage (viewBox 1000 x 3400) ---- */
-        .road-stage { position: relative; width: 100%; max-width: 1000px; margin: 48px auto 0; aspect-ratio: 1000 / 2450; }
+        .road-stage { position: relative; width: 100%; max-width: 1000px; margin: 48px auto 0; aspect-ratio: 1000 / 2420; }
         .road-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
         /* topographic contour lines behind the trail */
         .road-contours path { fill: none; stroke-width: 1.3; }
@@ -486,28 +486,28 @@
                     <span class="lg"><span class="lg-dash"></span> Still to come</span>
                 </div>
 
-                <!-- DESKTOP: winding trail. Road art is fixed (viewBox 1000 x 2450);
+                <!-- DESKTOP: winding trail. Road art is fixed (viewBox 1000 x 2420);
                      event cards + hover photos are generated from CONFIG.journey. -->
                 <div class="road-stage">
-                    <svg class="road-svg" viewBox="0 0 1000 2450" role="img" aria-label="A topographic trail-map timeline of Courtney and JJ's story">
+                    <svg class="road-svg" viewBox="0 0 1000 2420" role="img" aria-label="A topographic trail-map timeline of Courtney and JJ's story">
                         <defs>
-                            <clipPath id="map-clip"><rect x="0" y="0" width="1000" height="2450"></rect></clipPath>
+                            <clipPath id="map-clip"><rect x="0" y="0" width="1000" height="2420"></rect></clipPath>
                         </defs>
                         <!-- topographic contour lines (generated in JS) -->
                         <g class="road-contours" id="road-contours" clip-path="url(#map-clip)"></g>
                         <!-- cream casings first, so every route sits in a clean channel -->
                         <g class="road-trails">
-                            <path class="road-ink casing" d="M330,115 C340,175 292,215 300,275 C306,340 360,375 355,440 C350,505 305,540 315,605 C325,680 430,720 500,790"></path>
-                            <path class="road-ink casing" d="M680,190 C700,300 720,430 715,540 C710,640 610,730 500,790"></path>
-                            <path class="road-ink casing" d="M500,790 C560,850 195,900 285,955 C360,1000 800,1010 715,1045 C625,1130 195,1210 285,1295 C370,1345 800,1360 715,1410 C625,1475 195,1500 285,1560 C375,1615 805,1650 715,1710 C625,1790 195,1815 285,1890 C375,1925 805,1945 715,1985 C640,2025 430,2040 500,2080"></path>
+                            <path class="road-ink casing" d="M330,115 C340,175 292,215 300,275 C306,340 360,375 355,440 C350,505 305,540 315,605 C325,680 440,720 540,790"></path>
+                            <path class="road-ink casing" d="M680,190 C700,300 720,430 715,540 C710,640 620,740 540,790"></path>
+                            <path class="road-ink casing" d="M540,790 C540,867 360,867 360,945 C360,990 600,990 600,1035 C600,1162 300,1163 300,1290 C300,1347 620,1348 620,1405 C620,1482 340,1483 340,1560 C340,1630 660,1630 660,1700 C660,1787 400,1788 400,1875 C400,1920 560,1920 560,1965 C560,2010 440,2010 440,2055"></path>
                             <!-- JJ's trail (pine), left trailhead into the merge -->
-                            <path class="road-ink jj line" d="M330,115 C340,175 292,215 300,275 C306,340 360,375 355,440 C350,505 305,540 315,605 C325,680 430,720 500,790"></path>
+                            <path class="road-ink jj line" d="M330,115 C340,175 292,215 300,275 C306,340 360,375 355,440 C350,505 305,540 315,605 C325,680 440,720 540,790"></path>
                             <!-- Courtney's trail (wood), right trailhead into the merge -->
-                            <path class="road-ink court line" d="M680,190 C700,300 720,430 715,540 C710,640 610,730 500,790"></path>
-                            <!-- the shared trail (gold), switchbacking hard from Eli's birthday to the Proposal -->
-                            <path class="road-ink both line" d="M500,790 C560,850 195,900 285,955 C360,1000 800,1010 715,1045 C625,1130 195,1210 285,1295 C370,1345 800,1360 715,1410 C625,1475 195,1500 285,1560 C375,1615 805,1650 715,1710 C625,1790 195,1815 285,1890 C375,1925 805,1945 715,1985 C640,2025 430,2040 500,2080"></path>
+                            <path class="road-ink court line" d="M680,190 C700,300 720,430 715,540 C710,640 620,740 540,790"></path>
+                            <!-- the shared trail (gold), meandering from Eli's birthday to the Proposal -->
+                            <path class="road-ink both line" d="M540,790 C540,867 360,867 360,945 C360,990 600,990 600,1035 C600,1162 300,1163 300,1290 C300,1347 620,1348 620,1405 C620,1482 340,1483 340,1560 C340,1630 660,1630 660,1700 C660,1787 400,1788 400,1875 C400,1920 560,1920 560,1965 C560,2010 440,2010 440,2055"></path>
                             <!-- dotted trail onward to the wedding -->
-                            <path class="road-tail" d="M500,2080 C490,2170 585,2220 520,2320"></path>
+                            <path class="road-tail" d="M440,2055 C440,2160 560,2200 540,2300"></path>
                         </g>
                         <!-- compass rose (at the trailhead) -->
                         <g class="map-compass" transform="translate(500,100)">
@@ -519,9 +519,9 @@
                         </g>
                         <!-- destination flag -->
                         <g class="map-dest">
-                            <circle class="dest-ring" cx="520" cy="2320" r="40"></circle>
-                            <line class="flag-pole" x1="520" y1="2320" x2="520" y2="2270"></line>
-                            <path class="flag-pennant" d="M520,2272 L560,2282 L520,2292 Z"></path>
+                            <circle class="dest-ring" cx="540" cy="2300" r="40"></circle>
+                            <line class="flag-pole" x1="540" y1="2300" x2="540" y2="2250"></line>
+                            <path class="flag-pennant" d="M540,2252 L580,2262 L540,2272 Z"></path>
                         </g>
                     </svg>
                     <div class="road-nodes" id="road-nodes"></div>
@@ -999,19 +999,19 @@
             'jj-du':      { x: 355, y: 440,  side: 'left'  },
             'court-du':   { x: 715, y: 540,  side: 'right' },
             'jj-grad':    { x: 315, y: 605,  side: 'left'  },
-            'eli':        { x: 500, y: 790,  side: 'right' },
-            'court-grad': { x: 285, y: 955,  side: 'left'  },
-            'first-date': { x: 715, y: 1045, side: 'right' },
-            'cohab':      { x: 285, y: 1295, side: 'left'  },
-            'law-school': { x: 715, y: 1410, side: 'right' },
-            'transfer':   { x: 285, y: 1560, side: 'left'  },
-            'bootstrap':  { x: 715, y: 1710, side: 'right' },
-            'bar':        { x: 285, y: 1890, side: 'left'  },
-            'denver':     { x: 715, y: 1985, side: 'right' },
-            'proposal':   { x: 500, y: 2080, side: 'left'  },
-            'wedding':    { x: 520, y: 2320, side: 'right' }
+            'eli':        { x: 540, y: 790,  side: 'right' },
+            'court-grad': { x: 360, y: 945,  side: 'left'  },
+            'first-date': { x: 600, y: 1035, side: 'right' },
+            'cohab':      { x: 300, y: 1290, side: 'left'  },
+            'law-school': { x: 620, y: 1405, side: 'right' },
+            'transfer':   { x: 340, y: 1560, side: 'left'  },
+            'bootstrap':  { x: 660, y: 1700, side: 'right' },
+            'bar':        { x: 400, y: 1875, side: 'left'  },
+            'denver':     { x: 560, y: 1965, side: 'right' },
+            'proposal':   { x: 440, y: 2055, side: 'left'  },
+            'wedding':    { x: 540, y: 2300, side: 'right' }
         };
-        const ROAD_VB_W = 1000, ROAD_VB_H = 2450;
+        const ROAD_VB_W = 1000, ROAD_VB_H = 2420;
 
         function escapeHTML(s) {
             return String(s == null ? '' : s).replace(/[&<>"']/g, c => (
@@ -1039,7 +1039,7 @@
                 { cx: 165, cy: 1090, rings: 4, r0: 46, dr: 42, sx: 0.80, sy: 1.10, amp: 11, freq: 5, tone: 'b' },
                 { cx: 850, cy: 1500, rings: 4, r0: 46, dr: 42, sx: 0.82, sy: 1.10, amp: 11, freq: 6, tone: 'a' },
                 { cx: 150, cy: 1900, rings: 3, r0: 44, dr: 40, sx: 0.85, sy: 1.05, amp: 10, freq: 5, tone: 'a' },
-                { cx: 520, cy: 2320, rings: 4, r0: 52, dr: 32, sx: 1.10, sy: 0.90, amp: 7,  freq: 6, tone: 'a' }
+                { cx: 540, cy: 2300, rings: 4, r0: 52, dr: 32, sx: 1.10, sy: 0.90, amp: 7,  freq: 6, tone: 'a' }
             ];
             const N = 64;
             let out = '';
