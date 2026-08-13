@@ -80,7 +80,7 @@ const CONFIG = {
         title: "The Wedding Party",
         // Set to a string to hide bride/groom columns and show a coming-soon note instead.
         // Remove or set to "" to re-enable the full party section.
-        placeholder: "Our bridal and groom parties are coming soon — we're still putting the finishing touches on our lineup. Check back later!",
+        placeholder: "Coming soon...",
         // LEFT SIDE (White/Olive)
         brideSideTitle: "The Goiois",
         bride: [
@@ -345,7 +345,7 @@ const CONFIG = {
         link: "https://www.zola.com",
         // Set comingSoon: false once the registry is live. While true, the button is greyed out + non-clickable.
         comingSoon: true,
-        comingSoonText: "Registry coming soon..."
+        comingSoonText: "Coming soon..."
     },
 
     rsvp: {
