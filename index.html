@@ -309,7 +309,7 @@
         .journey-legend .lg-dash { width: 30px; height: 0; border-top: 3px dotted var(--wood); }
 
         /* ---- Desktop winding-road stage (viewBox 1000 x 3400) ---- */
-        .road-stage { position: relative; width: 100%; max-width: 1000px; margin: 48px auto 0; aspect-ratio: 1000 / 2800; }
+        .road-stage { position: relative; width: 100%; max-width: 1000px; margin: 48px auto 0; aspect-ratio: 1000 / 2680; }
         .road-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
         /* topographic contour lines behind the trail */
         .road-contours path { fill: none; stroke-width: 1.3; }
@@ -361,12 +361,24 @@
         .road-fact { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.32rem; color: var(--slate); margin: 3px 0 0; line-height: 1.22; }
         .road-desc { margin: 9px 0 0; font-size: 0.92rem; line-height: 1.55; color: var(--text); opacity: 0.9; }
 
-        /* minimalist cards for the little milestones */
-        .road-card.minimal { width: 182px; padding: 11px 15px 13px; box-shadow: 0 3px 9px rgba(47,53,64,0.08); border-top-width: 3px; }
-        .road-card.minimal .road-fact { font-size: 1.02rem; }
-        .road-card.minimal .road-desc { font-size: 0.78rem; margin-top: 5px; opacity: 0.82; }
-        .road-card.minimal .road-badge { font-size: 0.55rem; padding: 2px 7px; }
-        .road-card.minimal .road-date { font-size: 0.6rem; margin: 8px 0 1px; }
+        /* minimalist cards for the little milestones — quiet, recessive, blend into the map */
+        .road-card.minimal { width: 176px; padding: 10px 14px 12px; background: rgba(236,231,217,0.7); border-color: rgba(61,92,58,0.08); box-shadow: 0 2px 6px rgba(47,53,64,0.05); border-top-width: 3px; }
+        .road-node .road-card.minimal { border-top-color: rgba(122,121,105,0.55); }
+        .road-card.minimal .road-fact { font-size: 1.0rem; color: #5c5d52; }
+        .road-card.minimal .road-desc { font-size: 0.76rem; margin-top: 5px; opacity: 0.68; }
+        .road-card.minimal .road-badge { font-size: 0.54rem; padding: 2px 7px; opacity: 0.75; }
+        .road-card.minimal .road-date { font-size: 0.58rem; margin: 7px 0 1px; }
+
+        /* celebratory fireworks looping behind the wedding card (finish is always side-right) */
+        .finish-fw { position: absolute; left: 26px; top: 0; width: 234px; height: 150px; transform: translateY(-50%); z-index: 1; pointer-events: none; }
+        .finish-fw span { position: absolute; width: 6px; height: 6px; border-radius: 50%; opacity: 0;
+            box-shadow: 70px 0 2px 0, 61px 35px 2px 0, 35px 61px 2px 0, 0 70px 2px 0, -35px 61px 2px 0, -61px 35px 2px 0, -70px 0 2px 0, -61px -35px 2px 0, -35px -61px 2px 0, 0 -70px 2px 0, 35px -61px 2px 0, 61px -35px 2px 0;
+            animation: fwburst 2.8s ease-out infinite; }
+        .finish-fw span:nth-child(1) { left: 18%; top: -6px; color: var(--gold); animation-delay: 0s; }
+        .finish-fw span:nth-child(2) { left: 52%; top: -14px; color: var(--wood); animation-delay: 0.95s; }
+        .finish-fw span:nth-child(3) { left: 86%; top: 0;    color: var(--gold); animation-delay: 1.9s; }
+        @keyframes fwburst { 0% { transform: scale(0.08); opacity: 0; } 16% { opacity: 1; } 72% { opacity: 0.9; } 100% { transform: scale(1.15); opacity: 0; } }
+        @media (prefers-reduced-motion: reduce) { .finish-fw span { animation: none; opacity: 0; } }
 
         /* highlighted cards that carry a photo — lifted + a camera badge */
         .road-card.has-photo { box-shadow: 0 10px 26px rgba(47,53,64,0.2); }
@@ -409,10 +421,13 @@
             .rm-item.jj    .rm-card { border-top-color: var(--pine); }
             .rm-item.court .rm-card { border-top-color: var(--wood); }
             .rm-item.both  .rm-card { border-top-color: var(--gold); }
-            .rm-card.minimal { padding: 12px 16px 13px; box-shadow: 0 3px 9px rgba(47,53,64,0.08); }
-            .rm-card.minimal .road-fact { font-size: 1.08rem; }
-            .rm-card.minimal .road-desc { font-size: 0.82rem; opacity: 0.82; }
+            .rm-card.minimal { padding: 11px 15px 12px; background: rgba(236,231,217,0.72); border-color: rgba(61,92,58,0.08); box-shadow: 0 2px 6px rgba(47,53,64,0.05); }
+            .rm-item .rm-card.minimal { border-top-color: rgba(122,121,105,0.55); }
+            .rm-card.minimal .road-fact { font-size: 1.02rem; color: #5c5d52; }
+            .rm-card.minimal .road-desc { font-size: 0.8rem; opacity: 0.68; }
             .rm-item.minimal .rm-dot { width: 13px; height: 13px; }
+            /* fireworks behind the full-width mobile wedding card */
+            .rm-item .finish-fw { left: 50%; top: 0; width: 90%; height: 60px; transform: translateX(-50%); }
             .rm-card.has-photo { box-shadow: 0 7px 18px rgba(47,53,64,0.16); }
             .rm-card .road-photo-flag { top: -11px; right: -11px; width: 25px; height: 25px; font-size: 0.76rem; }
             .rm-item.finish .rm-card { background: var(--slate); border-top-color: var(--gold); }
@@ -471,28 +486,28 @@
                     <span class="lg"><span class="lg-dash"></span> Still to come</span>
                 </div>
 
-                <!-- DESKTOP: winding trail. Road art is fixed (viewBox 1000 x 2800);
+                <!-- DESKTOP: winding trail. Road art is fixed (viewBox 1000 x 2680);
                      event cards + hover photos are generated from CONFIG.journey. -->
                 <div class="road-stage">
-                    <svg class="road-svg" viewBox="0 0 1000 2800" role="img" aria-label="A topographic trail-map timeline of Courtney and JJ's story">
+                    <svg class="road-svg" viewBox="0 0 1000 2680" role="img" aria-label="A topographic trail-map timeline of Courtney and JJ's story">
                         <defs>
-                            <clipPath id="map-clip"><rect x="0" y="0" width="1000" height="2800"></rect></clipPath>
+                            <clipPath id="map-clip"><rect x="0" y="0" width="1000" height="2680"></rect></clipPath>
                         </defs>
                         <!-- topographic contour lines (generated in JS) -->
                         <g class="road-contours" id="road-contours" clip-path="url(#map-clip)"></g>
                         <!-- cream casings first, so every route sits in a clean channel -->
                         <g class="road-trails">
-                            <path class="road-ink casing" d="M330,115 C340,175 292,215 300,275 C306,340 360,375 355,440 C350,505 305,540 315,605 C325,690 430,720 500,800"></path>
-                            <path class="road-ink casing" d="M680,190 C700,285 722,345 715,415 C706,520 610,690 500,800"></path>
-                            <path class="road-ink casing" d="M500,800 C560,870 195,900 285,985 C375,1075 805,1090 715,1170 C625,1255 195,1275 285,1355 C375,1445 805,1460 715,1540 C625,1625 195,1645 285,1725 C375,1815 805,1830 715,1910 C650,1985 205,2010 285,2085 C365,2160 805,2185 715,2265 C645,2350 435,2380 500,2450"></path>
+                            <path class="road-ink casing" d="M330,115 C340,175 292,215 300,275 C306,340 360,375 355,440 C350,505 305,540 315,605 C325,680 430,720 500,790"></path>
+                            <path class="road-ink casing" d="M680,190 C700,300 720,430 715,540 C710,640 610,730 500,790"></path>
+                            <path class="road-ink casing" d="M500,790 C560,850 195,880 285,940 C375,1000 805,1010 715,1070 C625,1160 195,1240 285,1320 C375,1380 805,1400 715,1470 C625,1540 195,1560 285,1630 C375,1710 805,1790 715,1860 C625,1930 195,1970 285,2040 C375,2090 805,2110 715,2160 C660,2220 440,2230 500,2280"></path>
                             <!-- JJ's trail (pine), left trailhead into the merge -->
-                            <path class="road-ink jj line" d="M330,115 C340,175 292,215 300,275 C306,340 360,375 355,440 C350,505 305,540 315,605 C325,690 430,720 500,800"></path>
+                            <path class="road-ink jj line" d="M330,115 C340,175 292,215 300,275 C306,340 360,375 355,440 C350,505 305,540 315,605 C325,680 430,720 500,790"></path>
                             <!-- Courtney's trail (wood), right trailhead into the merge -->
-                            <path class="road-ink court line" d="M680,190 C700,285 722,345 715,415 C706,520 610,690 500,800"></path>
+                            <path class="road-ink court line" d="M680,190 C700,300 720,430 715,540 C710,640 610,730 500,790"></path>
                             <!-- the shared trail (gold), switchbacking hard from Eli's birthday to the Proposal -->
-                            <path class="road-ink both line" d="M500,800 C560,870 195,900 285,985 C375,1075 805,1090 715,1170 C625,1255 195,1275 285,1355 C375,1445 805,1460 715,1540 C625,1625 195,1645 285,1725 C375,1815 805,1830 715,1910 C650,1985 205,2010 285,2085 C365,2160 805,2185 715,2265 C645,2350 435,2380 500,2450"></path>
+                            <path class="road-ink both line" d="M500,790 C560,850 195,880 285,940 C375,1000 805,1010 715,1070 C625,1160 195,1240 285,1320 C375,1380 805,1400 715,1470 C625,1540 195,1560 285,1630 C375,1710 805,1790 715,1860 C625,1930 195,1970 285,2040 C375,2090 805,2110 715,2160 C660,2220 440,2230 500,2280"></path>
                             <!-- dotted trail onward to the wedding -->
-                            <path class="road-tail" d="M500,2450 C490,2540 585,2585 520,2650"></path>
+                            <path class="road-tail" d="M500,2280 C490,2370 585,2420 520,2520"></path>
                         </g>
                         <!-- compass rose (at the trailhead) -->
                         <g class="map-compass" transform="translate(500,100)">
@@ -504,9 +519,9 @@
                         </g>
                         <!-- destination flag -->
                         <g class="map-dest">
-                            <circle class="dest-ring" cx="520" cy="2650" r="40"></circle>
-                            <line class="flag-pole" x1="520" y1="2650" x2="520" y2="2600"></line>
-                            <path class="flag-pennant" d="M520,2602 L560,2612 L520,2622 Z"></path>
+                            <circle class="dest-ring" cx="520" cy="2520" r="40"></circle>
+                            <line class="flag-pole" x1="520" y1="2520" x2="520" y2="2470"></line>
+                            <path class="flag-pennant" d="M520,2472 L560,2482 L520,2492 Z"></path>
                         </g>
                     </svg>
                     <div class="road-nodes" id="road-nodes"></div>
@@ -982,21 +997,21 @@
             'court-born': { x: 680, y: 190,  side: 'right' },
             'jj-ny':      { x: 300, y: 275,  side: 'left'  },
             'jj-du':      { x: 355, y: 440,  side: 'left'  },
-            'court-du':   { x: 715, y: 415,  side: 'right' },
+            'court-du':   { x: 715, y: 540,  side: 'right' },
             'jj-grad':    { x: 315, y: 605,  side: 'left'  },
-            'eli':        { x: 500, y: 800,  side: 'right' },
-            'court-grad': { x: 285, y: 985,  side: 'left'  },
-            'first-date': { x: 715, y: 1170, side: 'right' },
-            'cohab':      { x: 285, y: 1355, side: 'left'  },
-            'law-school': { x: 715, y: 1540, side: 'right' },
-            'transfer':   { x: 285, y: 1725, side: 'left'  },
-            'bootstrap':  { x: 715, y: 1910, side: 'right' },
-            'bar':        { x: 285, y: 2085, side: 'left'  },
-            'denver':     { x: 715, y: 2265, side: 'right' },
-            'proposal':   { x: 500, y: 2450, side: 'left'  },
-            'wedding':    { x: 520, y: 2650, side: 'right' }
+            'eli':        { x: 500, y: 790,  side: 'right' },
+            'court-grad': { x: 285, y: 940,  side: 'left'  },
+            'first-date': { x: 715, y: 1070, side: 'right' },
+            'cohab':      { x: 285, y: 1320, side: 'left'  },
+            'law-school': { x: 715, y: 1470, side: 'right' },
+            'transfer':   { x: 285, y: 1630, side: 'left'  },
+            'bootstrap':  { x: 715, y: 1860, side: 'right' },
+            'bar':        { x: 285, y: 2040, side: 'left'  },
+            'denver':     { x: 715, y: 2160, side: 'right' },
+            'proposal':   { x: 500, y: 2280, side: 'left'  },
+            'wedding':    { x: 520, y: 2520, side: 'right' }
         };
-        const ROAD_VB_W = 1000, ROAD_VB_H = 2800;
+        const ROAD_VB_W = 1000, ROAD_VB_H = 2680;
 
         function escapeHTML(s) {
             return String(s == null ? '' : s).replace(/[&<>"']/g, c => (
@@ -1005,7 +1020,11 @@
         }
 
         function journeyPhotoInner(ev) {
-            if(ev.image) return `<img src="${escapeHTML(ev.image)}" alt="${escapeHTML(ev.fact)}" loading="lazy" decoding="async">`;
+            if(ev.image) {
+                const pos = ev.focus === 'top' ? ' style="object-position:center top"'
+                          : ev.focus === 'bottom' ? ' style="object-position:center bottom"' : '';
+                return `<img src="${escapeHTML(ev.image)}" alt="${escapeHTML(ev.fact)}" loading="lazy" decoding="async"${pos}>`;
+            }
             return `<span class="ph-ico" aria-hidden="true">📷</span><span class="ph-txt">Photo coming soon</span>`;
         }
 
@@ -1015,12 +1034,12 @@
             const g = document.getElementById('road-contours');
             if(!g) return;
             const peaks = [
-                { cx: 320, cy: 200,  rings: 5, r0: 44, dr: 38, sx: 1.05, sy: 0.82, amp: 9,  freq: 6, tone: 'a' },
-                { cx: 700, cy: 330,  rings: 5, r0: 40, dr: 36, sx: 0.95, sy: 0.90, amp: 8,  freq: 7, tone: 'b' },
-                { cx: 165, cy: 1250, rings: 4, r0: 46, dr: 42, sx: 0.80, sy: 1.10, amp: 11, freq: 5, tone: 'b' },
-                { cx: 850, cy: 1700, rings: 4, r0: 46, dr: 42, sx: 0.82, sy: 1.10, amp: 11, freq: 6, tone: 'a' },
-                { cx: 150, cy: 2180, rings: 3, r0: 44, dr: 40, sx: 0.85, sy: 1.05, amp: 10, freq: 5, tone: 'a' },
-                { cx: 520, cy: 2650, rings: 4, r0: 52, dr: 32, sx: 1.10, sy: 0.90, amp: 7,  freq: 6, tone: 'a' }
+                { cx: 320, cy: 190,  rings: 5, r0: 44, dr: 38, sx: 1.05, sy: 0.82, amp: 9,  freq: 6, tone: 'a' },
+                { cx: 700, cy: 320,  rings: 5, r0: 40, dr: 36, sx: 0.95, sy: 0.90, amp: 8,  freq: 7, tone: 'b' },
+                { cx: 165, cy: 1160, rings: 4, r0: 46, dr: 42, sx: 0.80, sy: 1.10, amp: 11, freq: 5, tone: 'b' },
+                { cx: 850, cy: 1600, rings: 4, r0: 46, dr: 42, sx: 0.82, sy: 1.10, amp: 11, freq: 6, tone: 'a' },
+                { cx: 150, cy: 2040, rings: 3, r0: 44, dr: 40, sx: 0.85, sy: 1.05, amp: 10, freq: 5, tone: 'a' },
+                { cx: 520, cy: 2520, rings: 4, r0: 52, dr: 32, sx: 1.10, sy: 0.90, amp: 7,  freq: 6, tone: 'a' }
             ];
             const N = 64;
             let out = '';
@@ -1081,10 +1100,12 @@
                 const date  = ev.date ? `<span class="road-date rm-date">${escapeHTML(ev.date)}</span>` : '';
                 const fact  = `<h4 class="road-fact">${escapeHTML(ev.fact)}</h4>`;
                 const desc  = ev.desc ? `<p class="road-desc">${escapeHTML(ev.desc)}</p>` : '';
-                // minimalist cards with no photo skip the pop-up entirely (kept clean)
-                const showPhoto = hasPhoto || !ev.minimal;
+                // minimalist cards with no photo — and the wedding — skip the pop-up (kept clean)
+                const showPhoto = hasPhoto || (!ev.minimal && !ev.future);
                 const photoDesktop = showPhoto ? `<div class="road-photo">${journeyPhotoInner(ev)}</div>` : '';
                 const photoMobile  = showPhoto ? `<div class="road-photo rm-photo">${journeyPhotoInner(ev)}</div>` : '';
+                // celebratory fireworks loop behind the wedding card
+                const fireworks = ev.future ? `<div class="finish-fw" aria-hidden="true"><span></span><span></span><span></span></div>` : '';
 
                 // DESKTOP node on the winding road
                 const geo = ROAD_LAYOUT[ev.id];
@@ -1096,6 +1117,7 @@
                     node.tabIndex = 0;
                     node.innerHTML = `
                         <span class="road-marker" aria-hidden="true"></span>
+                        ${fireworks}
                         <div class="road-card side-${geo.side}${minimalCls}${photoCls}">
                             ${photoFlag}${badge}${date}${fact}${desc}
                             ${photoDesktop}
@@ -1112,6 +1134,7 @@
                     item.tabIndex = 0;
                     item.innerHTML = `
                         <span class="rm-dot" aria-hidden="true"></span>
+                        ${fireworks}
                         <div class="rm-card${minimalCls}${photoCls}">
                             ${photoFlag}<div class="rm-top">${badge}${date}</div>
                             ${fact}${desc}
